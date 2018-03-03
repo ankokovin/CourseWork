@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="Model1TargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OrderSet" EntityType="Model1.Order" />
+          <EntitySet Name="UserSet" EntityType="Model1.User" />
+          <EntitySet Name="CustomerSet" EntityType="Model1.Customer" />
+          <EntitySet Name="PersonSet" EntityType="Model1.Person" />
+          <EntitySet Name="StavkaSet" EntityType="Model1.Stavka" />
+          <EntitySet Name="PlannedTimeSet" EntityType="Model1.PlannedTime" />
+          <AssociationSet Name="CustomerOrder" Association="Model1.CustomerOrder">
+            <End Role="Customer" EntitySet="CustomerSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="UserOrder" Association="Model1.UserOrder">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          <AssociationSet Name="PersonWorker" Association="Model1.PersonWorker">
+            <End Role="Person" EntitySet="PersonSet" />
+            <End Role="Worker" EntitySet="StavkaSet" />
+          </AssociationSet>
+          <AssociationSet Name="PersonTime" Association="Model1.PersonTime">
+            <End Role="Person" EntitySet="PersonSet" />
+            <End Role="Time" EntitySet="PlannedTimeSet" />
+          </AssociationSet>
+          <EntitySet Name="MeterSet" EntityType="Model1.Meter" />
+          <EntitySet Name="StavkaTypeSet" EntityType="Model1.StavkaType" />
+          <AssociationSet Name="StavkaTypeStavka" Association="Model1.StavkaTypeStavka">
+            <End Role="StavkaType" EntitySet="StavkaTypeSet" />
+            <End Role="Stavka" EntitySet="StavkaSet" />
+          </AssociationSet>
+          <EntitySet Name="OrderEntrySet" EntityType="Model1.OrderEntry" />
+          <AssociationSet Name="OrderOrderEntry" Association="Model1.OrderOrderEntry">
+            <End Role="Order" EntitySet="OrderSet" />
+            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+          </AssociationSet>
+          <AssociationSet Name="OrderEntryPlannedTime" Association="Model1.OrderEntryPlannedTime">
+            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+            <End Role="PlannedTime" EntitySet="PlannedTimeSet" />
+          </AssociationSet>
+          <AssociationSet Name="MeterOrderEntry" Association="Model1.MeterOrderEntry">
+            <End Role="Meter" EntitySet="MeterSet" />
+            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+          </AssociationSet>
+          <EntitySet Name="MeterTypeSet" EntityType="Model1.MeterType" />
+          <AssociationSet Name="MeterTypeMeter" Association="Model1.MeterTypeMeter">
+            <End Role="MeterType" EntitySet="MeterTypeSet" />
+            <End Role="Meter" EntitySet="MeterSet" />
+          </AssociationSet>
+          <AssociationSet Name="StavkaTypeMeterType" Association="Model1.StavkaTypeMeterType">
+            <End Role="StavkaType" EntitySet="StavkaTypeSet" />
+            <End Role="MeterType" EntitySet="MeterTypeSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Model1.CustomerOrder" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="User" Relationship="Model1.UserOrder" FromRole="Order" ToRole="User" />
+          <NavigationProperty Name="OrderEntry" Relationship="Model1.OrderOrderEntry" FromRole="Order" ToRole="OrderEntry" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" Nullable="false" />
+          <Property Name="Login" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.UserOrder" FromRole="User" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Customer" Abstract="true">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.CustomerOrder" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="PrivatePerson" BaseType="Model1.Customer">
+          <Property Name="Passport" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company" BaseType="Model1.Customer">
+          <Property Name="CompanyName" Type="String" Nullable="false" />
+          <Property Name="INN" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Person">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" Nullable="false" />
+          <NavigationProperty Name="Worker" Relationship="Model1.PersonWorker" FromRole="Person" ToRole="Worker" />
+          <NavigationProperty Name="Time" Relationship="Model1.PersonTime" FromRole="Person" ToRole="Time" />
+        </EntityType>
+        <EntityType Name="Stavka">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Person" Relationship="Model1.PersonWorker" FromRole="Worker" ToRole="Person" />
+          <NavigationProperty Name="StavkaType" Relationship="Model1.StavkaTypeStavka" FromRole="Stavka" ToRole="StavkaType" />
+        </EntityType>
+        <EntityType Name="PlannedTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Start" Type="String" Nullable="false" />
+          <Property Name="End" Type="String" Nullable="false" />
+          <Property Name="Used" Type="String" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model1.PersonTime" FromRole="Time" ToRole="Person" />
+          <NavigationProperty Name="OrderEntry" Relationship="Model1.OrderEntryPlannedTime" FromRole="PlannedTime" ToRole="OrderEntry" />
+        </EntityType>
+        <EntityType Name="DoneOrderEntry" BaseType="Model1.OrderEntry">
+          <Property Name="MeterInvetarID" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="CustomerOrder">
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
+        </Association>
+        <Association Name="UserOrder">
+          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonWorker">
+          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model1.Stavka" Role="Worker" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonTime">
+          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model1.PlannedTime" Role="Time" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Meter">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OrderEntry" Relationship="Model1.MeterOrderEntry" FromRole="Meter" ToRole="OrderEntry" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="MeterType" Relationship="Model1.MeterTypeMeter" FromRole="Meter" ToRole="MeterType" />
+        </EntityType>
+        <EntityType Name="StavkaType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Stavka" Relationship="Model1.StavkaTypeStavka" FromRole="StavkaType" ToRole="Stavka" />
+          <NavigationProperty Name="MeterType" Relationship="Model1.StavkaTypeMeterType" FromRole="StavkaType" ToRole="MeterType" />
+        </EntityType>
+        <Association Name="StavkaTypeStavka">
+          <End Type="Model1.StavkaType" Role="StavkaType" Multiplicity="1" />
+          <End Type="Model1.Stavka" Role="Stavka" Multiplicity="*" />
+        </Association>
+        <EntityType Name="OrderEntry">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Order" Relationship="Model1.OrderOrderEntry" FromRole="OrderEntry" ToRole="Order" />
+          <NavigationProperty Name="PlannedTime" Relationship="Model1.OrderEntryPlannedTime" FromRole="OrderEntry" ToRole="PlannedTime" />
+          <NavigationProperty Name="Meter" Relationship="Model1.MeterOrderEntry" FromRole="OrderEntry" ToRole="Meter" />
+        </EntityType>
+        <Association Name="OrderOrderEntry">
+          <End Type="Model1.Order" Role="Order" Multiplicity="1" />
+          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
+        </Association>
+        <Association Name="OrderEntryPlannedTime">
+          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="1" />
+          <End Type="Model1.PlannedTime" Role="PlannedTime" Multiplicity="1" />
+        </Association>
+        <Association Name="MeterOrderEntry">
+          <End Type="Model1.Meter" Role="Meter" Multiplicity="1" />
+          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
+        </Association>
+        <EntityType Name="MeterType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Meter" Relationship="Model1.MeterTypeMeter" FromRole="MeterType" ToRole="Meter" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="StavkaType" Relationship="Model1.StavkaTypeMeterType" FromRole="MeterType" ToRole="StavkaType" />
+        </EntityType>
+        <Association Name="MeterTypeMeter">
+          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
+          <End Type="Model1.Meter" Role="Meter" Multiplicity="*" />
+        </Association>
+        <Association Name="StavkaTypeMeterType">
+          <End Type="Model1.StavkaType" Role="StavkaType" Multiplicity="1" />
+          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Model1" />
+        <Alias Key="Target" Value="Model1.Store" />
+        <EntityContainerMapping CdmEntityContainer="Model1Container" StorageEntityContainer="Model1TargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
