@@ -18,7 +18,6 @@
           <EntitySet Name="CustomerSet" EntityType="Model1.Customer" />
           <EntitySet Name="PersonSet" EntityType="Model1.Person" />
           <EntitySet Name="StavkaSet" EntityType="Model1.Stavka" />
-          <EntitySet Name="PlannedTimeSet" EntityType="Model1.PlannedTime" />
           <AssociationSet Name="CustomerOrder" Association="Model1.CustomerOrder">
             <End Role="Customer" EntitySet="CustomerSet" />
             <End Role="Order" EntitySet="OrderSet" />
@@ -31,24 +30,11 @@
             <End Role="Person" EntitySet="PersonSet" />
             <End Role="Worker" EntitySet="StavkaSet" />
           </AssociationSet>
-          <AssociationSet Name="PersonTime" Association="Model1.PersonTime">
-            <End Role="Person" EntitySet="PersonSet" />
-            <End Role="Time" EntitySet="PlannedTimeSet" />
-          </AssociationSet>
           <EntitySet Name="MeterSet" EntityType="Model1.Meter" />
-          <EntitySet Name="StavkaTypeSet" EntityType="Model1.StavkaType" />
-          <AssociationSet Name="StavkaTypeStavka" Association="Model1.StavkaTypeStavka">
-            <End Role="StavkaType" EntitySet="StavkaTypeSet" />
-            <End Role="Stavka" EntitySet="StavkaSet" />
-          </AssociationSet>
           <EntitySet Name="OrderEntrySet" EntityType="Model1.OrderEntry" />
           <AssociationSet Name="OrderOrderEntry" Association="Model1.OrderOrderEntry">
             <End Role="Order" EntitySet="OrderSet" />
             <End Role="OrderEntry" EntitySet="OrderEntrySet" />
-          </AssociationSet>
-          <AssociationSet Name="OrderEntryPlannedTime" Association="Model1.OrderEntryPlannedTime">
-            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
-            <End Role="PlannedTime" EntitySet="PlannedTimeSet" />
           </AssociationSet>
           <AssociationSet Name="MeterOrderEntry" Association="Model1.MeterOrderEntry">
             <End Role="Meter" EntitySet="MeterSet" />
@@ -59,45 +45,81 @@
             <End Role="MeterType" EntitySet="MeterTypeSet" />
             <End Role="Meter" EntitySet="MeterSet" />
           </AssociationSet>
-          <AssociationSet Name="StavkaTypeMeterType" Association="Model1.StavkaTypeMeterType">
-            <End Role="StavkaType" EntitySet="StavkaTypeSet" />
+          <EntitySet Name="StatusSet" EntityType="Model1.Status" />
+          <AssociationSet Name="MeterTypeStavka" Association="Model1.MeterTypeStavka">
             <End Role="MeterType" EntitySet="MeterTypeSet" />
+            <End Role="Stavka" EntitySet="StavkaSet" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="StatusOrderEntry" Association="Model1.StatusOrderEntry">
+            <End Role="Status" EntitySet="StatusSet" />
+            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+          </AssociationSet>
+          <EntitySet Name="CitySet" EntityType="Model1.City" />
+          <EntitySet Name="DistrictSet" EntityType="Model1.District" />
+          <AssociationSet Name="CityDistrict" Association="Model1.CityDistrict">
+            <End Role="City" EntitySet="CitySet" />
+            <End Role="District" EntitySet="DistrictSet" />
+          </AssociationSet>
+          <EntitySet Name="StreetSet" EntityType="Model1.Street" />
+          <AssociationSet Name="CityStreet" Association="Model1.CityStreet">
+            <End Role="City" EntitySet="CitySet" />
+            <End Role="Street" EntitySet="StreetSet" />
+          </AssociationSet>
+          <EntitySet Name="DisStreetSet" EntityType="Model1.DisStreet" />
+          <AssociationSet Name="DistrictDisStreet" Association="Model1.DistrictDisStreet">
+            <End Role="District" EntitySet="DistrictSet" />
+            <End Role="DisStreet" EntitySet="DisStreetSet" />
+          </AssociationSet>
+          <AssociationSet Name="StreetDisStreet" Association="Model1.StreetDisStreet">
+            <End Role="Street" EntitySet="StreetSet" />
+            <End Role="DisStreet" EntitySet="DisStreetSet" />
+          </AssociationSet>
+          <EntitySet Name="HouseSet" EntityType="Model1.House" />
+          <AssociationSet Name="DisStreetHouse" Association="Model1.DisStreetHouse">
+            <End Role="DisStreet" EntitySet="DisStreetSet" />
+            <End Role="House" EntitySet="HouseSet" />
+          </AssociationSet>
+          <EntitySet Name="AddressSet" EntityType="Model1.Address" />
+          <AssociationSet Name="HouseAddress" Association="Model1.HouseAddress">
+            <End Role="House" EntitySet="HouseSet" />
+            <End Role="Address" EntitySet="AddressSet" />
+          </AssociationSet>
+          <AssociationSet Name="AddressOrder" Association="Model1.AddressOrder">
+            <End Role="Address" EntitySet="AddressSet" />
+            <End Role="Order" EntitySet="OrderSet" />
+          </AssociationSet>
+          </EntityContainer>
         <EntityType Name="Order">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Address" Type="String" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Model1.CustomerOrder" FromRole="Order" ToRole="Customer" />
           <NavigationProperty Name="User" Relationship="Model1.UserOrder" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="OrderEntry" Relationship="Model1.OrderOrderEntry" FromRole="Order" ToRole="OrderEntry" />
+          <NavigationProperty Name="Address" Relationship="Model1.AddressOrder" FromRole="Order" ToRole="Address" />
         </EntityType>
         <EntityType Name="User">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Login" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserType" Type="String" Nullable="false" />
+          <Property Name="UserType" Type="Model1.UserType" Nullable="false" />
           <Property Name="Login" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.UserOrder" FromRole="User" ToRole="Order" />
         </EntityType>
-        <EntityType Name="Customer" Abstract="true">
+        <EntityType Name="Customer" Abstract="false">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.CustomerOrder" FromRole="Customer" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="PrivatePerson" BaseType="Model1.Customer">
           <Property Name="Passport" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Company" BaseType="Model1.Customer">
-          <Property Name="CompanyName" Type="String" Nullable="false" />
-          <Property Name="INN" Type="String" Nullable="false" />
+          <Property Name="CompanyName" Nullable="false" Type="String" />
+          <Property Name="INN" Nullable="false" Type="String" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -106,7 +128,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FIO" Type="String" Nullable="false" />
           <NavigationProperty Name="Worker" Relationship="Model1.PersonWorker" FromRole="Person" ToRole="Worker" />
-          <NavigationProperty Name="Time" Relationship="Model1.PersonTime" FromRole="Person" ToRole="Time" />
         </EntityType>
         <EntityType Name="Stavka">
           <Key>
@@ -114,21 +135,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Person" Relationship="Model1.PersonWorker" FromRole="Worker" ToRole="Person" />
-          <NavigationProperty Name="StavkaType" Relationship="Model1.StavkaTypeStavka" FromRole="Stavka" ToRole="StavkaType" />
-        </EntityType>
-        <EntityType Name="PlannedTime">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Start" Type="String" Nullable="false" />
-          <Property Name="End" Type="String" Nullable="false" />
-          <Property Name="Used" Type="String" Nullable="false" />
-          <NavigationProperty Name="Person" Relationship="Model1.PersonTime" FromRole="Time" ToRole="Person" />
-          <NavigationProperty Name="OrderEntry" Relationship="Model1.OrderEntryPlannedTime" FromRole="PlannedTime" ToRole="OrderEntry" />
-        </EntityType>
-        <EntityType Name="DoneOrderEntry" BaseType="Model1.OrderEntry">
-          <Property Name="MeterInvetarID" Type="String" Nullable="false" />
+          <NavigationProperty Name="MeterType" Relationship="Model1.MeterTypeStavka" FromRole="Stavka" ToRole="MeterType" />
         </EntityType>
         <Association Name="CustomerOrder">
           <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
@@ -142,47 +149,29 @@
           <End Type="Model1.Person" Role="Person" Multiplicity="1" />
           <End Type="Model1.Stavka" Role="Worker" Multiplicity="*" />
         </Association>
-        <Association Name="PersonTime">
-          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
-          <End Type="Model1.PlannedTime" Role="Time" Multiplicity="*" />
-        </Association>
         <EntityType Name="Meter">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="OrderEntry" Relationship="Model1.MeterOrderEntry" FromRole="Meter" ToRole="OrderEntry" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="MeterType" Relationship="Model1.MeterTypeMeter" FromRole="Meter" ToRole="MeterType" />
         </EntityType>
-        <EntityType Name="StavkaType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Stavka" Relationship="Model1.StavkaTypeStavka" FromRole="StavkaType" ToRole="Stavka" />
-          <NavigationProperty Name="MeterType" Relationship="Model1.StavkaTypeMeterType" FromRole="StavkaType" ToRole="MeterType" />
-        </EntityType>
-        <Association Name="StavkaTypeStavka">
-          <End Type="Model1.StavkaType" Role="StavkaType" Multiplicity="1" />
-          <End Type="Model1.Stavka" Role="Stavka" Multiplicity="*" />
-        </Association>
         <EntityType Name="OrderEntry">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Order" Relationship="Model1.OrderOrderEntry" FromRole="OrderEntry" ToRole="Order" />
-          <NavigationProperty Name="PlannedTime" Relationship="Model1.OrderEntryPlannedTime" FromRole="OrderEntry" ToRole="PlannedTime" />
           <NavigationProperty Name="Meter" Relationship="Model1.MeterOrderEntry" FromRole="OrderEntry" ToRole="Meter" />
+          <Property Name="RegNumer" Type="String" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="Model1.StatusOrderEntry" FromRole="OrderEntry" ToRole="Status" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" />
         </EntityType>
         <Association Name="OrderOrderEntry">
           <End Type="Model1.Order" Role="Order" Multiplicity="1" />
           <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
-        </Association>
-        <Association Name="OrderEntryPlannedTime">
-          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="1" />
-          <End Type="Model1.PlannedTime" Role="PlannedTime" Multiplicity="1" />
         </Association>
         <Association Name="MeterOrderEntry">
           <End Type="Model1.Meter" Role="Meter" Multiplicity="1" />
@@ -190,24 +179,115 @@
         </Association>
         <EntityType Name="MeterType">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <NavigationProperty Name="Meter" Relationship="Model1.MeterTypeMeter" FromRole="MeterType" ToRole="Meter" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="StavkaType" Relationship="Model1.StavkaTypeMeterType" FromRole="MeterType" ToRole="StavkaType" />
+          <NavigationProperty Name="Stavka" Relationship="Model1.MeterTypeStavka" FromRole="MeterType" ToRole="Stavka" />
         </EntityType>
         <Association Name="MeterTypeMeter">
           <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
           <End Type="Model1.Meter" Role="Meter" Multiplicity="*" />
         </Association>
-        <Association Name="StavkaTypeMeterType">
-          <End Type="Model1.StavkaType" Role="StavkaType" Multiplicity="1" />
-          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
-        </Association>
-        <EntityType Name="CanceledOrderEntry" BaseType="Model1.OrderEntry">
-          <Property Name="Reason" Type="String" Nullable="false" />
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="OrderEntry" Relationship="Model1.StatusOrderEntry" FromRole="Status" ToRole="OrderEntry" />
         </EntityType>
+        <Association Name="MeterTypeStavka">
+          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
+          <End Type="Model1.Stavka" Role="Stavka" Multiplicity="*" />
+        </Association>
+        <EnumType Name="UserType" />
+        <Association Name="StatusOrderEntry">
+          <End Type="Model1.Status" Role="Status" Multiplicity="1" />
+          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
+        </Association>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="District" Relationship="Model1.CityDistrict" FromRole="City" ToRole="District" />
+          <NavigationProperty Name="Street" Relationship="Model1.CityStreet" FromRole="City" ToRole="Street" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="City" Relationship="Model1.CityDistrict" FromRole="District" ToRole="City" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisStreet" Relationship="Model1.DistrictDisStreet" FromRole="District" ToRole="DisStreet" />
+        </EntityType>
+        <Association Name="CityDistrict">
+          <End Type="Model1.City" Role="City" Multiplicity="1" />
+          <End Type="Model1.District" Role="District" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="City" Relationship="Model1.CityStreet" FromRole="Street" ToRole="City" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="DisStreet" Relationship="Model1.StreetDisStreet" FromRole="Street" ToRole="DisStreet" />
+        </EntityType>
+        <Association Name="CityStreet">
+          <End Type="Model1.City" Role="City" Multiplicity="1" />
+          <End Type="Model1.Street" Role="Street" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DisStreet">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="District" Relationship="Model1.DistrictDisStreet" FromRole="DisStreet" ToRole="District" />
+          <NavigationProperty Name="Street" Relationship="Model1.StreetDisStreet" FromRole="DisStreet" ToRole="Street" />
+          <NavigationProperty Name="House" Relationship="Model1.DisStreetHouse" FromRole="DisStreet" ToRole="House" />
+        </EntityType>
+        <Association Name="DistrictDisStreet">
+          <End Type="Model1.District" Role="District" Multiplicity="1" />
+          <End Type="Model1.DisStreet" Role="DisStreet" Multiplicity="*" />
+        </Association>
+        <Association Name="StreetDisStreet">
+          <End Type="Model1.Street" Role="Street" Multiplicity="1" />
+          <End Type="Model1.DisStreet" Role="DisStreet" Multiplicity="*" />
+        </Association>
+        <EntityType Name="House">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="FlatsCount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DisStreet" Relationship="Model1.DisStreetHouse" FromRole="House" ToRole="DisStreet" />
+          <NavigationProperty Name="Address" Relationship="Model1.HouseAddress" FromRole="House" ToRole="Address" />
+        </EntityType>
+        <Association Name="DisStreetHouse">
+          <End Type="Model1.DisStreet" Role="DisStreet" Multiplicity="1" />
+          <End Type="Model1.House" Role="House" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="House" Relationship="Model1.HouseAddress" FromRole="Address" ToRole="House" />
+          <Property Name="Flat" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Model1.AddressOrder" FromRole="Address" ToRole="Order" />
+        </EntityType>
+        <Association Name="HouseAddress">
+          <End Type="Model1.House" Role="House" Multiplicity="1" />
+          <End Type="Model1.Address" Role="Address" Multiplicity="*" />
+        </Association>
+        <Association Name="AddressOrder">
+          <End Type="Model1.Address" Role="Address" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -5,34 +5,38 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d1cb03007c5542c8b5fc67c15affa15e" Name="Diagram1" ZoomLevel="94" >
-        <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="4" PointY="0.75" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.875" />
-        <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="6.25" PointY="0.75" />
-        <EntityTypeShape EntityType="Model1.PrivatePerson" Width="1.5" PointX="8.125" PointY="2.75" />
-        <EntityTypeShape EntityType="Model1.Company" Width="1.5" PointX="6.25" PointY="2.625" />
-        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="6.625" PointY="4.25" />
-        <EntityTypeShape EntityType="Model1.Stavka" Width="1.5" PointX="6.875" PointY="7" />
-        <EntityTypeShape EntityType="Model1.PlannedTime" Width="1.5" PointX="4.375" PointY="4" />
-        <EntityTypeShape EntityType="Model1.DoneOrderEntry" Width="1.5" PointX="1.125" PointY="5.875" />
+        <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="2.625" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="4.875" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.Company" PointX="4.875" PointY="2.625" Width="1.5" />
+        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="3.25" PointY="5.125" />
+        <EntityTypeShape EntityType="Model1.Stavka" Width="1.5" PointX="4.875" PointY="7.5" />
         <AssociationConnector Association="Model1.CustomerOrder" />
         <AssociationConnector Association="Model1.UserOrder" />
         <AssociationConnector Association="Model1.PersonWorker" />
-        <AssociationConnector Association="Model1.PersonTime" />
-        <InheritanceConnector EntityType="Model1.PrivatePerson" />
         <InheritanceConnector EntityType="Model1.Company" />
-        <EntityTypeShape EntityType="Model1.Meter" Width="1.5" PointX="0.5" PointY="7.5" />
-        <EntityTypeShape EntityType="Model1.StavkaType" Width="1.5" PointX="4.625" PointY="7" />
-        <AssociationConnector Association="Model1.StavkaTypeStavka" />
-        <EntityTypeShape EntityType="Model1.OrderEntry" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="Model1.Meter" Width="1.5" PointX="0.625" PointY="7.875" />
+        <EntityTypeShape EntityType="Model1.OrderEntry" Width="1.5" PointX="2.625" PointY="2.375" />
         <AssociationConnector Association="Model1.OrderOrderEntry" />
-        <InheritanceConnector EntityType="Model1.DoneOrderEntry" />
-        <AssociationConnector Association="Model1.OrderEntryPlannedTime" />
         <AssociationConnector Association="Model1.MeterOrderEntry" />
-        <EntityTypeShape EntityType="Model1.MeterType" Width="1.5" PointX="2.5" PointY="7.5" />
+        <EntityTypeShape EntityType="Model1.MeterType" Width="1.5" PointX="2.625" PointY="8" />
         <AssociationConnector Association="Model1.MeterTypeMeter" />
-        <AssociationConnector Association="Model1.StavkaTypeMeterType" />
-        <EntityTypeShape EntityType="Model1.CanceledOrderEntry" Width="1.5" PointX="2.625" PointY="5.875" />
-        <InheritanceConnector EntityType="Model1.CanceledOrderEntry" />
+        <EntityTypeShape EntityType="Model1.Status" Width="1.5" PointX="1.25" PointY="5.125" />
+        <AssociationConnector Association="Model1.MeterTypeStavka" />
+        <AssociationConnector Association="Model1.StatusOrderEntry" />
+        <EntityTypeShape EntityType="Model1.City" Width="1.5" PointX="9.875" PointY="8.25" />
+        <EntityTypeShape EntityType="Model1.District" Width="1.5" PointX="7.625" PointY="8.25" />
+        <AssociationConnector Association="Model1.CityDistrict" />
+        <EntityTypeShape EntityType="Model1.Street" Width="1.5" PointX="9.875" PointY="5.75" />
+        <AssociationConnector Association="Model1.CityStreet" />
+        <EntityTypeShape EntityType="Model1.DisStreet" Width="1.5" PointX="7.625" PointY="5.75" />
+        <AssociationConnector Association="Model1.DistrictDisStreet" />
+        <AssociationConnector Association="Model1.StreetDisStreet" />
+        <EntityTypeShape EntityType="Model1.House" Width="1.5" PointX="7.5" PointY="3" />
+        <AssociationConnector Association="Model1.DisStreetHouse" />
+        <EntityTypeShape EntityType="Model1.Address" Width="1.5" PointX="7.25" PointY="0.5" />
+        <AssociationConnector Association="Model1.HouseAddress" />
+        <AssociationConnector Association="Model1.AddressOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

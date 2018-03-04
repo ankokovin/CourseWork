@@ -6,6 +6,8 @@ using System.Windows.Forms;
 
 namespace CourseWork
 {
+
+
     static class Program
     {
         /// <summary>
