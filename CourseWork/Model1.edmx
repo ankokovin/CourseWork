@@ -205,6 +205,9 @@
           <End Type="Model1.StavkaType" Role="StavkaType" Multiplicity="1" />
           <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
         </Association>
+        <EntityType Name="CanceledOrderEntry" BaseType="Model1.OrderEntry">
+          <Property Name="Reason" Type="String" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

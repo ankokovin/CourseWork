@@ -13,7 +13,7 @@
         <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="6.625" PointY="4.25" />
         <EntityTypeShape EntityType="Model1.Stavka" Width="1.5" PointX="6.875" PointY="7" />
         <EntityTypeShape EntityType="Model1.PlannedTime" Width="1.5" PointX="4.375" PointY="4" />
-        <EntityTypeShape EntityType="Model1.DoneOrderEntry" Width="1.5" PointX="2.125" PointY="5.625" />
+        <EntityTypeShape EntityType="Model1.DoneOrderEntry" Width="1.5" PointX="1.125" PointY="5.875" />
         <AssociationConnector Association="Model1.CustomerOrder" />
         <AssociationConnector Association="Model1.UserOrder" />
         <AssociationConnector Association="Model1.PersonWorker" />
@@ -23,7 +23,7 @@
         <EntityTypeShape EntityType="Model1.Meter" Width="1.5" PointX="0.5" PointY="7.5" />
         <EntityTypeShape EntityType="Model1.StavkaType" Width="1.5" PointX="4.625" PointY="7" />
         <AssociationConnector Association="Model1.StavkaTypeStavka" />
-        <EntityTypeShape EntityType="Model1.OrderEntry" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="Model1.OrderEntry" Width="1.5" PointX="0.75" PointY="3.125" />
         <AssociationConnector Association="Model1.OrderOrderEntry" />
         <InheritanceConnector EntityType="Model1.DoneOrderEntry" />
         <AssociationConnector Association="Model1.OrderEntryPlannedTime" />
@@ -31,6 +31,8 @@
         <EntityTypeShape EntityType="Model1.MeterType" Width="1.5" PointX="2.5" PointY="7.5" />
         <AssociationConnector Association="Model1.MeterTypeMeter" />
         <AssociationConnector Association="Model1.StavkaTypeMeterType" />
+        <EntityTypeShape EntityType="Model1.CanceledOrderEntry" Width="1.5" PointX="2.625" PointY="5.875" />
+        <InheritanceConnector EntityType="Model1.CanceledOrderEntry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
