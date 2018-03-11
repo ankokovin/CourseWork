@@ -14,9 +14,11 @@ namespace CourseWork
         {
             InitializeComponent();
         }
-        public override void Change()
+        public override void Change(Object obj)
         {
             ActionMode = ActionMode.Change;
+            if (obj is City city)
+                CityNameTextBox.Text = city.Name;
             AddCityButton.Text = "Изменить город";
         }
         private void AddCityButton_Click(object sender, EventArgs e)

@@ -28,36 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.LoginTextBox = new System.Windows.Forms.TextBox();
+            this.PasswordTextBox = new System.Windows.Forms.TextBox();
+            this.UserTypeComboBox = new System.Windows.Forms.ComboBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // LoginTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(67, 39);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 0;
+            this.LoginTextBox.Location = new System.Drawing.Point(67, 39);
+            this.LoginTextBox.Name = "LoginTextBox";
+            this.LoginTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LoginTextBox.TabIndex = 0;
             // 
-            // textBox2
+            // PasswordTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(67, 78);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 1;
+            this.PasswordTextBox.Location = new System.Drawing.Point(67, 78);
+            this.PasswordTextBox.Name = "PasswordTextBox";
+            this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PasswordTextBox.TabIndex = 1;
             // 
-            // comboBox1
+            // UserTypeComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(67, 120);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
+            this.UserTypeComboBox.FormattingEnabled = true;
+            this.UserTypeComboBox.Location = new System.Drawing.Point(67, 120);
+            this.UserTypeComboBox.Name = "UserTypeComboBox";
+            this.UserTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.UserTypeComboBox.TabIndex = 2;
             // 
             // button1
             // 
@@ -67,6 +67,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "Добавить пользователя";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label1
             // 
@@ -103,9 +104,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.UserTypeComboBox);
+            this.Controls.Add(this.PasswordTextBox);
+            this.Controls.Add(this.LoginTextBox);
             this.Name = "OPUser1";
             this.Load += new System.EventHandler(this.OPUser1_Load);
             this.ResumeLayout(false);
@@ -115,9 +116,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox LoginTextBox;
+        private System.Windows.Forms.TextBox PasswordTextBox;
+        private System.Windows.Forms.ComboBox UserTypeComboBox;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;

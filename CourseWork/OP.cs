@@ -22,7 +22,7 @@ namespace CourseWork
         {
 
         }
-        virtual public void Change()
+        virtual public void Change(object obj)
         {
 
         }

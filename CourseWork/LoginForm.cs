@@ -36,6 +36,7 @@ namespace CourseWork
                             adminForm.FormClosed += BackUp;
                             adminForm.Visible = true;
                             adminForm.Show();
+                            adminForm.CurrentUser = result;
                             break;
                         case UserType.Analitic:
                             AnaliticForm analiticForm = new AnaliticForm();

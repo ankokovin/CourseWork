@@ -23,13 +23,13 @@ namespace CourseWork
         /// <param name="Login">Логин пользователя</param>
         /// <param name="Password">Пароль пользователя</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddUser(UserType userType, string Login, string Password)
+        public static bool AddUser(UserType userType, string Login, string Password,out string Res)
         {
             try
             { 
                 if ((from u in cont.UserSet where u.Login==Login select u).Count() > 0)
                 {
-                    //TODO: сообщение
+                    Res = "Пользователь с данным именем уже существует";
                     return false;
                 }
 
@@ -41,11 +41,13 @@ namespace CourseWork
                 };
                 cont.UserSet.Add(user);
                 cont.SaveChanges();
+                Res = "Пользователь " + Login + " успешно добавлен";
                 return true;
             }
             catch (Exception e)
             {
                 // TODO: добавить обработку
+                Res = e.Message;
                 return false;
             }
         }
@@ -60,7 +62,7 @@ namespace CourseWork
         /// <returns>Результат изменения</returns>
         public static bool ChangeUser(int Id, UserType userType, string Login, string Password, out string Res)
         {
-            if ((from u in cont.UserSet where u.Login == Login select u).FirstOrDefault() != null)
+            if ((from u in cont.UserSet where u.Login == Login select u).Count() > 1)
             {
                 Res = "Пользователь с данным именем уже существует";
                 return false;
@@ -78,6 +80,39 @@ namespace CourseWork
             Res = "Изменение успешно";
             return true;
         }
+        /// <summary>
+        /// Функция удаления пользователя
+        /// </summary>
+        /// <param name="id">Идентификационный номер пользователя</param>
+        /// <param name="Res">Сообщение результата удаления</param>
+        /// <returns>Результат удаления</returns>
+        public static bool RemoveUser(int id, out string Res)
+        {
+            try
+            {
+                var u = cont.UserSet.Find(id);
+                if (u == null)
+                {
+                    Res = "Нет пользователя с данным идентификационным номером";
+                    return false;
+                }
+                cont.UserSet.Remove(u);
+                cont.SaveChanges();
+                Res = "Пользователь " + u.Login + " успешно удалён";
+                return true;
+            }
+            catch(Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+        /// <summary>
+        /// Поиск пользователя по идентификационному номеру
+        /// </summary>
+        /// <param name="Id">Идентификационный номер</param>
+        /// <returns>Пользователь</returns>
+        public static User FindUser(int Id) => (from u in cont.UserSet where u.Id == Id select u).FirstOrDefault();
         /// <summary>
         /// Функция входа в систему
         /// </summary>
@@ -195,6 +230,12 @@ namespace CourseWork
             Res = "Изменение успешно";
             return true;
         }
+        /// <summary>
+        /// Функция поиска города по идентификационному номеру
+        /// </summary>
+        /// <param name="Id">Идентификационный номер</param>
+        /// <returns>Город</returns>
+        public static City FindCity(int Id) => (from c in cont.CitySet where c.Id == Id select c).FirstOrDefault();
 
         public static bool AddStreet(string Name, City city)
         {
