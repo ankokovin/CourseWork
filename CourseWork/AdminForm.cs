@@ -53,6 +53,8 @@ namespace CourseWork
                         return Operations.FindUser(Id);
                     case "City":
                         return Operations.FindCity(Id);
+                    case "Street":
+                        return Operations.FindStreet(Id);
                     //TODO: дописать
                     default:
                         return null;
@@ -87,17 +89,17 @@ namespace CourseWork
             SimpleView StreetForm = new SimpleView();
             Operations.cont.StreetSet.Load();
             StreetForm.Source = Operations.cont.StreetSet.Local.ToBindingList();
-            StreetForm.Add += () =>
-            {
-
-            };
-            StreetForm.Change += (DataGridView dataGridView) =>
-            {
-
-            };
+            Changer<OPStreet> changer = new Changer<OPStreet>("Street");
+            StreetForm.Add += changer.Add;
+            StreetForm.Change += (DataGridView dataGridView) => changer.Change(dataGridView, 1);
             StreetForm.Remove += (DataGridView dataGridView) =>
             {
-
+                int index = dataGridView.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dataGridView[1, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveStreet(id, out string s);
+                MessageBox.Show(s);
             };
             StreetForm.SetButtonNames("Добавить улицу", "Удалить улицу", "Изменить улицу");
             StreetForm.Show();

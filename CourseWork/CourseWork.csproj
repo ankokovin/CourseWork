@@ -178,6 +178,9 @@
     <EmbeddedResource Include="OPCity1.resx">
       <DependentUpon>OPCity1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OPStreet.resx">
+      <DependentUpon>OPStreet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OPUser1.resx">
       <DependentUpon>OPUser1.cs</DependentUpon>
     </EmbeddedResource>
