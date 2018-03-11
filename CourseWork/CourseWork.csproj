@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActionMode.cs" />
+    <Compile Include="EntityTypes.cs" />
     <Compile Include="OP.cs">
       <SubType>Form</SubType>
     </Compile>

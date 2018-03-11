@@ -348,7 +348,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.HouseSet where h.Street == street && h.Number == Number).FirstOrDefault() != null)
+                if ((from h in cont.HouseSet where h.Street == street && h.Number == Number select h).FirstOrDefault() != null)
                 {
                     Res = "Уже есть дом номер " + Number + " на улице " + street;
                     return false;
@@ -542,56 +542,225 @@ namespace CourseWork
         #endregion Адреса
         #region Order
         
-        public static bool AddOrder(User user, out string Res)
+        public static bool AddOrder(User user,Customer customer,Address address, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                Order order = new Order();
+                order.Customer = customer;
+                order.Address = address;
+                order.User = user;
+                cont.OrderSet.Add(order);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool ChangeOrder(int Id, User user, out string Res)
+        public static bool ChangeOrder(int Id, User user,Customer customer, Address address, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindOrder(Id);
+                if (a == null)
+                {
+                    Res = "Нет заказа с данным идентификационный номером";
+                    return false;
+                }
+                a.Address = address;
+                a.Customer = customer;
+                a.User = user;
+                cont.SaveChanges();
+                Res = "Изменение дома успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverOrder(int id,out string Res)
+        public static bool RemoveOrder(int id,out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindOrder(id);
+                if (a == null)
+                {
+                    Res = "Нет заказа с таким идентификационным номером";
+                    return false;
+                }
+                cont.OrderSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление заказа";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static Order FindOrder(int id) => (from o in cont.OrderSet where o.Id == id select o).FirstOrDefault();
         #endregion Order
         #region OrderEntry
-        public static bool AddOrderEntry(Order user,DateTime startTime, DateTime endTime,string RegNumber,Meter meter, out string Res)
+        public static bool AddOrderEntry(Order order,DateTime startTime, DateTime endTime
+            ,string RegNumber,Meter meter,Status status, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                OrderEntry orderEntry = new OrderEntry();
+                orderEntry.Order = order;
+                orderEntry.StartTime = startTime;
+                orderEntry.EndTime = endTime;
+                orderEntry.Meter = meter;
+                orderEntry.RegNumer = RegNumber;
+                orderEntry.Status = status;
+                cont.OrderEntrySet.Add(orderEntry);
+                cont.SaveChanges();
+                Res = "Успешное добавление заказа";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool ChangeOrderEntry(int Id, Order user, DateTime startTime, DateTime endTime, string RegNumber,Meter meter, out string Res)
+        public static bool ChangeOrderEntry(int Id, Order order, DateTime startTime, DateTime endTime, 
+            Status status, string RegNumber,Meter meter, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindOrderEntry(Id);
+                if (a == null)
+                {
+                    Res = "Нет заказной позиции с данным идентификационным номером";
+                    return false;
+                }
+                a.Meter = meter;
+                a.Order = order;
+                a.RegNumer = RegNumber;
+                a.StartTime = startTime;
+                a.EndTime = endTime;
+                a.Status = status;
+                cont.SaveChanges();
+                Res = "Изменение заказной позиции успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverOrderEntry(int id, out string Res)
+        public static bool RemoveOrderEntry(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindOrderEntry(id);
+                if (a == null)
+                {
+                    Res = "Нет заказной позиции с таким идентификационным номером";
+                    return false;
+                }
+                cont.OrderEntrySet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление заказной позиции";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static OrderEntry FindOrderEntry(int id) => (from o in cont.OrderEntrySet where o.Id == id select o).FirstOrDefault();
         #endregion OrderEntry
         #region Meter
 
-        public static bool AddMeter(string Name, out string Res)
+        public static bool AddMeter(string Name,MeterType meterType, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from a in cont.MeterSet where a.Name==Name select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть прибор учёта с данным названием";
+                    return false;
+                }
+                Meter meter = new Meter();
+                meter.Name = Name;
+                meter.MeterType = meterType;
+                cont.MeterSet.Add(meter);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool ChangeMeter(int Id, string Name, out string Res)
+        public static bool ChangeMeter(int Id, string Name,MeterType meterType, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from h in cont.MeterSet where h.Id != Id && h.Name == Name select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть прибор учёта с данным названием";
+                    return false;
+                }
+                var a = FindMeter(Id);
+                if (a == null)
+                {
+                    Res = "Нет прибора учёта с данным идентификационным номером";
+                    return false;
+                }
+                a.Name = Name;
+                a.MeterType = meterType;
+                cont.SaveChanges();
+                Res = "Изменение дома успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverMeter(int id, out string Res)
+        public static bool RemoveMeter(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindMeter(id);
+                if (a == null)
+                {
+                    Res = "Нет прибора учёта с таким идентификационным номером";
+                    return false;
+                }
+                cont.MeterSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление прибора учёта";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static Meter FindMeter(int id) => (from o in cont.MeterSet where o.Id == id select o).FirstOrDefault();
@@ -600,17 +769,74 @@ namespace CourseWork
 
         public static bool AddStatus(string Name, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from a in cont.StatusSet where a.Name == Name select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данный статус";
+                    return false;
+                }
+                Status status = new Status();
+                status.Name = Name;
+                cont.StatusSet.Add(status);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static bool ChangeStatus(int Id, string Name, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from h in cont.StatusSet where h.Id != Id && h.Name == Name select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данный статус";
+                    return false;
+                }
+                var a = FindStatus(Id);
+                if (a == null)
+                {
+                    Res = "Нет статуса с данным идентификационным номером";
+                    return false;
+                }
+                a.Name = Name;
+                cont.SaveChanges();
+                Res = "Изменение статуса успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverStatus(int id, out string Res)
+        public static bool RemoveStatus(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindStatus(id);
+                if (a == null)
+                {
+                    Res = "Нет статуса с таким идентификационным номером";
+                    return false;
+                }
+                cont.StatusSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление статуса";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static Status FindStatus(int id) => (from o in cont.StatusSet where o.Id == id select o).FirstOrDefault();
@@ -619,36 +845,152 @@ namespace CourseWork
 
         public static bool AddMeterType(string Name, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from a in cont.MeterTypeSet where a.Name == Name select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данный тип приборов учёта";
+                    return false;
+                }
+                MeterType meterType = new MeterType();
+                meterType.Name = Name;
+                cont.MeterTypeSet.Add(meterType);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static bool ChangeMeterType(int Id, string Name, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from h in cont.MeterTypeSet where h.Id != Id && h.Name == Name select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть тип приборов учёта с данным названием";
+                    return false;
+                }
+                var a = FindMeterType(Id);
+                if (a == null)
+                {
+                    Res = "Нет типа приборов учёта с данным идентификационным номером";
+                    return false;
+                }
+                a.Name = Name;
+                cont.SaveChanges();
+                Res = "Изменение прибора учёта успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverMeterType(int id, out string Res)
+        public static bool RemoveMeterType(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindMeterType(id);
+                if (a == null)
+                {
+                    Res = "Нет типа приборов учёта с таким идентификационным номером";
+                    return false;
+                }
+                cont.MeterTypeSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление типа приборов учёта";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static MeterType FindMeterType(int id) => (from o in cont.MeterTypeSet where o.Id == id select o).FirstOrDefault();
         #endregion MeterType
         #region Stavka
 
-        public static bool AddStavka(string Name,MeterType meterType,Person person, out string Res)
+        public static bool AddStavka(MeterType meterType,Person person, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from a in cont.StavkaSet where a.MeterType == meterType && a.Person == person select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данная ставка";
+                    return false;
+                }
+                Stavka stavka = new Stavka();
+                stavka.MeterType = meterType;
+                stavka.Person = person;
+                cont.StavkaSet.Add(stavka);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static bool ChangeStavka(int Id, string Name,MeterType meterType,Person person, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from h in cont.StavkaSet where h.Id != Id && h.MeterType==meterType&&h.Person==person select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данная ставка у данного человека";
+                    return false;
+                }
+                var a = FindStavka(Id);
+                if (a == null)
+                {
+                    Res = "Нет ставки с данным идентификационным номером";
+                    return false;
+                }
+                a.MeterType = meterType;
+                a.Person = person;
+                cont.SaveChanges();
+                Res = "Изменение ставки успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverStavka(int id, out string Res)
+        public static bool RemoveStavka(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindStavka(id);
+                if (a == null)
+                {
+                    Res = "Нет ставки с таким идентификационным номером";
+                    return false;
+                }
+                cont.StavkaSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление ставки";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static Stavka FindStavka(int id) => (from o in cont.StavkaSet where o.Id == id select o).FirstOrDefault();
@@ -658,24 +1000,249 @@ namespace CourseWork
 
         public static bool AddPerson(string FIO, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from a in cont.PersonSet where a.FIO==FIO select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данный человек";
+                    return false;
+                }
+                Person person = new Person();
+                person.FIO = FIO;
+                cont.PersonSet.Add(person);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static bool ChangePerson(int Id, string FIO, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if ((from h in cont.PersonSet where h.Id != Id && h.FIO == FIO select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть человек с данным ФИО";
+                    return false;
+                }
+                var a = FindPerson(Id);
+                if (a == null)
+                {
+                    Res = "Нет адреса с данным идентификационным номером";
+                    return false;
+                }
+                a.FIO = FIO;
+                cont.SaveChanges();
+                Res = "Изменение ФИО успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
-        public static bool RemoverPerson(int id, out string Res)
+        public static bool RemovePerson(int id, out string Res)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var a = FindPerson(id);
+                if (a == null)
+                {
+                    Res = "Нет ФИО с таким идентификационным номером";
+                    return false;
+                }
+                cont.PersonSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление ФИО";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
         }
 
         public static Person FindPerson(int id) => (from o in cont.PersonSet where o.Id == id select o).FirstOrDefault();
         #endregion Person
         #region Customer
+
+        public static bool AddCustomer(string Name, string Passport, out string Res)
+        {
+            try
+            {
+                if ((from a in cont.CustomerSet where a.Passport==Passport&&!(a is Company) select a).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данный частный заказчик";
+                    return false;
+                }
+                Customer customer = new Customer();
+                customer.Name = Name;
+                customer.Passport = Passport;
+                cont.CustomerSet.Add(customer);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+
+        public static bool ChangeCustomer(int Id, string Name, string Passport, out string Res)
+        {
+            try
+            {
+                if ((from h in cont.CustomerSet where h.Id != Id && !(h is Company) && h.Passport == h.Passport select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть частный клиент с данным номером паспорта";
+                    return false;
+                }
+                var a = FindCustomer(Id);
+                if (a == null)
+                {
+                    Res = "Нет частного клиента с данным идентификационным номером";
+                    return false;
+                }
+                a.Passport = Passport;
+                a.Name = Name;
+                cont.SaveChanges();
+                Res = "Изменение дома успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+
+        public static bool RemoveCustomer(int id, out string Res)
+        {
+            try
+            {
+                var a = FindCustomer(id);
+                if (a == null)
+                {
+                    Res = "Нет заказчика с таким идентификационным номером";
+                    return false;
+                }
+                if (a is Company)
+                {
+                    Res = "Данный заказчик является компанией, а не частным лицом";
+                    return false;
+                }
+                cont.CustomerSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление прибора учёта";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+
+        public static Customer FindCustomer(int id) => (from o in cont.CustomerSet where o.Id == id select o).FirstOrDefault();
         #endregion Customer
         #region Company
+
+        public static bool AddCompany(string Name, string Passport,string CompanyName,string INN,  out string Res)
+        {
+            try
+            {
+                if ((from a in cont.CustomerSet where (a is Company)&&((a as Company).INN==INN) select a)
+                    .FirstOrDefault() != null)
+                {
+                    Res = "Уже есть данная компания";
+                    return false;
+                }
+                Company company = new Company();
+                company.Name = Name;
+                company.Passport = Passport;
+                company.INN = INN;
+                company.CompanyName = CompanyName;
+                cont.CustomerSet.Add(company);
+                cont.SaveChanges();
+                Res = "Успешное добавление";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+
+        public static bool ChangeCompany(int Id, string Name, string Passport, string CompanyName, string INN, out string Res)
+        {
+
+            try
+            {
+                if ((from h in cont.CustomerSet where h.Id != Id && (h is Company) && (h as Company).INN == INN select h).FirstOrDefault() != null)
+                {
+                    Res = "Уже есть компания с данным ИНН";
+                    return false;
+                }
+                var a = FindCompany(Id);
+                if (a == null)
+                {
+                    Res = "Нет компании с данным идентификационным номером";
+                    return false;
+                }
+                a.Passport = Passport;
+                a.Name = Name;
+                cont.SaveChanges();
+                Res = "Изменение компании успешно";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+
+        }
+
+        public static bool RemoveCompany(int id, out string Res)
+        {
+
+            try
+            {
+                var a = FindCustomer(id);
+                if (a == null)
+                {
+                    Res = "Нет заказчика с таким идентификационным номером";
+                    return false;
+                }
+                if (!(a is Company))
+                {
+                    Res = "Данный заказчик является  не компанией, а частным лицом";
+                    return false;
+                }
+                cont.CustomerSet.Remove(a);
+                cont.SaveChanges();
+                Res = "Успешное удаление прибора учёта";
+                return true;
+            }
+            catch (Exception e)
+            {
+                Res = e.Message;
+                return false;
+            }
+        }
+
+        public static Company FindCompany(int id) => (from o in cont.CustomerSet where o.Id == id select o).FirstOrDefault() as Company;
         #endregion Company
     }
 }

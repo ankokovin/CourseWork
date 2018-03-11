@@ -33,6 +33,7 @@
             this.AddAddressButton = new System.Windows.Forms.Button();
             this.AddressGroupBox = new System.Windows.Forms.GroupBox();
             this.UsersButton = new System.Windows.Forms.Button();
+            this.AddressButton = new System.Windows.Forms.Button();
             this.AddressGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,12 +69,13 @@
             // 
             // AddressGroupBox
             // 
+            this.AddressGroupBox.Controls.Add(this.AddressButton);
             this.AddressGroupBox.Controls.Add(this.AddStreetButton);
             this.AddressGroupBox.Controls.Add(this.AddAddressButton);
             this.AddressGroupBox.Controls.Add(this.AddCityButton);
             this.AddressGroupBox.Location = new System.Drawing.Point(12, 12);
             this.AddressGroupBox.Name = "AddressGroupBox";
-            this.AddressGroupBox.Size = new System.Drawing.Size(145, 100);
+            this.AddressGroupBox.Size = new System.Drawing.Size(136, 128);
             this.AddressGroupBox.TabIndex = 3;
             this.AddressGroupBox.TabStop = false;
             this.AddressGroupBox.Text = "Адрес";
@@ -87,6 +89,16 @@
             this.UsersButton.Text = "Пользователи";
             this.UsersButton.UseVisualStyleBackColor = true;
             this.UsersButton.Click += new System.EventHandler(this.UsersButton_Click);
+            // 
+            // AddressButton
+            // 
+            this.AddressButton.Location = new System.Drawing.Point(6, 98);
+            this.AddressButton.Name = "AddressButton";
+            this.AddressButton.Size = new System.Drawing.Size(122, 23);
+            this.AddressButton.TabIndex = 3;
+            this.AddressButton.Text = "Адреса";
+            this.AddressButton.UseVisualStyleBackColor = true;
+            this.AddressButton.Click += new System.EventHandler(this.AddressButton_Click);
             // 
             // AdminForm
             // 
@@ -109,5 +121,6 @@
         private System.Windows.Forms.Button AddAddressButton;
         private System.Windows.Forms.GroupBox AddressGroupBox;
         private System.Windows.Forms.Button UsersButton;
+        private System.Windows.Forms.Button AddressButton;
     }
 }

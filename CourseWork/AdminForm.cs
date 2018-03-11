@@ -22,8 +22,8 @@ namespace CourseWork
         public class Changer<T> 
             where T: OP, new()
         {
-            private string type;
-            public Changer(string _type)
+            private EntityTypes type;
+            public Changer(EntityTypes _type)
             {
                 type = _type;
             }
@@ -49,13 +49,34 @@ namespace CourseWork
             {
                 switch (type)
                 {
-                    case "User":
+                    case EntityTypes.User:
                         return Operations.FindUser(Id);
-                    case "City":
+                    case EntityTypes.City:
                         return Operations.FindCity(Id);
-                    case "Street":
+                    case EntityTypes.Street:
                         return Operations.FindStreet(Id);
-                    //TODO: дописать
+                    case EntityTypes.House:
+                        return Operations.FindHouse(Id);
+                    case EntityTypes.Address:
+                        return Operations.FindAddress(Id);
+                    case EntityTypes.Order:
+                        return Operations.FindOrder(Id);
+                    case EntityTypes.OrderEntry:
+                        return Operations.FindOrderEntry(Id);
+                    case EntityTypes.Status:
+                        return Operations.FindStatus(Id);
+                    case EntityTypes.Meter:
+                        return Operations.FindMeter(Id);
+                    case EntityTypes.MeterType:
+                        return Operations.FindMeterType(Id);
+                    case EntityTypes.Stavka:
+                        return Operations.FindStavka(Id);
+                    case EntityTypes.Person:
+                        return Operations.FindPerson(Id);
+                    case EntityTypes.Customer:
+                        return Operations.FindCustomer(Id);
+                    case EntityTypes.Company:
+                        return Operations.FindCompany(Id);
                     default:
                         return null;
                 }
@@ -68,7 +89,7 @@ namespace CourseWork
             SimpleView CityForm = new SimpleView();
             Operations.cont.CitySet.Load();
             CityForm.Source = Operations.cont.CitySet.Local.ToBindingList();
-            Changer<OPCity1> changer = new Changer<OPCity1>("City");
+            Changer<OPCity1> changer = new Changer<OPCity1>(EntityTypes.City);
             CityForm.Add += changer.Add;
             CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,1);
             CityForm.Remove += (DataGridView dataGridView) =>
@@ -89,7 +110,7 @@ namespace CourseWork
             SimpleView StreetForm = new SimpleView();
             Operations.cont.StreetSet.Load();
             StreetForm.Source = Operations.cont.StreetSet.Local.ToBindingList();
-            Changer<OPStreet> changer = new Changer<OPStreet>("Street");
+            Changer<OPStreet> changer = new Changer<OPStreet>(EntityTypes.Street);
             StreetForm.Add += changer.Add;
             StreetForm.Change += (DataGridView dataGridView) => changer.Change(dataGridView, 1);
             StreetForm.Remove += (DataGridView dataGridView) =>
@@ -131,7 +152,7 @@ namespace CourseWork
             SimpleView UserForm = new SimpleView();
             Operations.cont.UserSet.Load();
             UserForm.Source = Operations.cont.UserSet.Local.ToBindingList();
-            Changer<OPUser1> changer = new Changer<OPUser1>("User");
+            Changer<OPUser1> changer = new Changer<OPUser1>(EntityTypes.User);
             UserForm.Add += changer.Add;
             UserForm.Change += (DataGridView dgv) => changer.Change(dgv, 3);
             UserForm.Remove += (DataGridView dataGridView) =>
@@ -150,6 +171,11 @@ namespace CourseWork
             };
             UserForm.SetButtonNames("Добавить пользователя", "Удалить пользователя", "Изменить пользователя");
             UserForm.Show();
+        }
+
+        private void AddressButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
