@@ -12,7 +12,6 @@ namespace CourseWork
         /// Контекст базы данных
         /// </summary>
         public static Model1Container cont = new Model1Container();
-
         #region Users
         /// <summary>
         /// Функция добавления нового пользователя
@@ -541,5 +540,142 @@ namespace CourseWork
         public static Address FindAddress(int id) => (from a in cont.AddressSet where a.Id == id select a).FirstOrDefault();
         #endregion Address
         #endregion Адреса
+        #region Order
+        
+        public static bool AddOrder(User user, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeOrder(int Id, User user, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverOrder(int id,out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Order FindOrder(int id) => (from o in cont.OrderSet where o.Id == id select o).FirstOrDefault();
+        #endregion Order
+        #region OrderEntry
+        public static bool AddOrderEntry(Order user,DateTime startTime, DateTime endTime,string RegNumber,Meter meter, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeOrderEntry(int Id, Order user, DateTime startTime, DateTime endTime, string RegNumber,Meter meter, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverOrderEntry(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static OrderEntry FindOrderEntry(int id) => (from o in cont.OrderEntrySet where o.Id == id select o).FirstOrDefault();
+        #endregion OrderEntry
+        #region Meter
+
+        public static bool AddMeter(string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeMeter(int Id, string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverMeter(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Meter FindMeter(int id) => (from o in cont.MeterSet where o.Id == id select o).FirstOrDefault();
+        #endregion Meter
+        #region Status
+
+        public static bool AddStatus(string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeStatus(int Id, string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverStatus(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Status FindStatus(int id) => (from o in cont.StatusSet where o.Id == id select o).FirstOrDefault();
+        #endregion Status
+        #region MeterType
+
+        public static bool AddMeterType(string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeMeterType(int Id, string Name, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverMeterType(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static MeterType FindMeterType(int id) => (from o in cont.MeterTypeSet where o.Id == id select o).FirstOrDefault();
+        #endregion MeterType
+        #region Stavka
+
+        public static bool AddStavka(string Name,MeterType meterType,Person person, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangeStavka(int Id, string Name,MeterType meterType,Person person, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverStavka(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Stavka FindStavka(int id) => (from o in cont.StavkaSet where o.Id == id select o).FirstOrDefault();
+
+        #endregion Stavka
+        #region Person
+
+        public static bool AddPerson(string FIO, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool ChangePerson(int Id, string FIO, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static bool RemoverPerson(int id, out string Res)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static Person FindPerson(int id) => (from o in cont.PersonSet where o.Id == id select o).FirstOrDefault();
+        #endregion Person
+        #region Customer
+        #endregion Customer
+        #region Company
+        #endregion Company
     }
 }
