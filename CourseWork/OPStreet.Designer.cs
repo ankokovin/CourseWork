@@ -1,6 +1,6 @@
 ﻿namespace CourseWork
 {
-    partial class Form1
+    partial class OPStreet
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -29,11 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
         }
 
         #endregion
     }
 }
-

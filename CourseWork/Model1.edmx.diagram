@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="d1cb03007c5542c8b5fc67c15affa15e" Name="Diagram1" ZoomLevel="94" >
         <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="2.625" PointY="0.5" />
-        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.5" />
+        <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="4.875" PointY="0.5" />
         <EntityTypeShape EntityType="Model1.Company" PointX="4.875" PointY="2.625" Width="1.5" />
         <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="3.25" PointY="5.125" />
@@ -24,19 +24,14 @@
         <EntityTypeShape EntityType="Model1.Status" Width="1.5" PointX="1.25" PointY="5.125" />
         <AssociationConnector Association="Model1.MeterTypeStavka" />
         <AssociationConnector Association="Model1.StatusOrderEntry" />
-        <EntityTypeShape EntityType="Model1.City" Width="1.5" PointX="9.875" PointY="8.25" />
-        <EntityTypeShape EntityType="Model1.District" Width="1.5" PointX="7.625" PointY="8.25" />
-        <AssociationConnector Association="Model1.CityDistrict" />
-        <EntityTypeShape EntityType="Model1.Street" Width="1.5" PointX="9.875" PointY="5.75" />
+        <EntityTypeShape EntityType="Model1.City" Width="1.5" PointX="7.375" PointY="8.25" />
+        <EntityTypeShape EntityType="Model1.Street" Width="1.5" PointX="7.375" PointY="5.75" />
         <AssociationConnector Association="Model1.CityStreet" />
-        <EntityTypeShape EntityType="Model1.DisStreet" Width="1.5" PointX="7.625" PointY="5.75" />
-        <AssociationConnector Association="Model1.DistrictDisStreet" />
-        <AssociationConnector Association="Model1.StreetDisStreet" />
         <EntityTypeShape EntityType="Model1.House" Width="1.5" PointX="7.5" PointY="3" />
-        <AssociationConnector Association="Model1.DisStreetHouse" />
         <EntityTypeShape EntityType="Model1.Address" Width="1.5" PointX="7.25" PointY="0.5" />
         <AssociationConnector Association="Model1.HouseAddress" />
         <AssociationConnector Association="Model1.AddressOrder" />
+        <AssociationConnector Association="Model1.StreetHouse" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
