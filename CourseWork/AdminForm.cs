@@ -175,6 +175,196 @@ namespace CourseWork
 
         private void AddressButton_Click(object sender, EventArgs e)
         {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.AddressSet.Load();
+            simpleView.Source = Operations.cont.AddressSet.Local.ToBindingList();
+            Changer<OPAddress> changer = new Changer<OPAddress>(EntityTypes.Address);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveAddress(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить адрес", "Удалить адрес", "Изменить адрес");
+            simpleView.Show();
+        }
+
+        private void MeterButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.MeterSet.Load();
+            simpleView.Source = Operations.cont.MeterSet.Local.ToBindingList();
+            Changer<OPMeter> changer = new Changer<OPMeter>(EntityTypes.Meter);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveMeter(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить прибор учёта", "Удалить прибор учёта", "Изменить прибор учёта");
+            simpleView.Show();
+        }
+
+        private void MeterTypeButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.MeterTypeSet.Load();
+            simpleView.Source = Operations.cont.MeterTypeSet.Local.ToBindingList();
+            Changer<OPMeterType> changer = new Changer<OPMeterType>(EntityTypes.MeterType);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveMeterType(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить тип приборов учёта", "Удалить тип приборов учёта", "Изменить тип приборов учёта");
+            simpleView.Show();
+        }
+
+        private void OrderButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.OrderSet.Load();
+            simpleView.Source = Operations.cont.OrderSet.Local.ToBindingList();
+            Changer<OPOrder> changer = new Changer<OPOrder>(EntityTypes.Order);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveOrder(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить заказ", "Удалить заказ", "Изменить заказ");
+            simpleView.Show();
+
+        }
+
+        private void OrderEntryButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.OrderEntrySet.Load();
+            simpleView.Source = Operations.cont.OrderEntrySet.Local.ToBindingList();
+            Changer<OPOrderEntry> changer = new Changer<OPOrderEntry>(EntityTypes.OrderEntry);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveOrderEntry(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить заказную позицию", "Удалить заказную позицию", "Изменить заказную позицию");
+            simpleView.Show();
+
+        }
+
+        private void StatusButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.StatusSet.Load();
+            simpleView.Source = Operations.cont.StatusSet.Local.ToBindingList();
+            Changer<OPStatus> changer = new Changer<OPStatus>(EntityTypes.Status);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveStatus(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить статус заказа", "Удалить статус заказа", "Изменить статус заказа");
+            simpleView.Show();
+
+        }
+
+        private void CustomerButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.CustomerSet.Load();
+            simpleView.Source = Operations.cont.CustomerSet.Local.ToBindingList();
+            Changer<OPCustomer> changer = new Changer<OPCustomer>(EntityTypes.Customer);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveCustomer(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить заказчика", "Удалить заказчика", "Изменить заказчика");
+            simpleView.Show();
+
+        }
+        
+        private void PersonButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.PersonSet.Load();
+            simpleView.Source = Operations.cont.PersonSet.Local.ToBindingList();
+            Changer<OPPerson> changer = new Changer<OPPerson>(EntityTypes.Person);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemovePerson(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить работника", "Удалить работника", "Изменить работника");
+            simpleView.Show();
+
+        }
+
+        private void StavkaButton_Click(object sender, EventArgs e)
+        {
+            SimpleView simpleView = new SimpleView();
+            Operations.cont.StavkaSet.Load();
+            simpleView.Source = Operations.cont.StavkaSet.Local.ToBindingList();
+            Changer<OPStavka> changer = new Changer<OPStavka>(EntityTypes.Stavka);
+            simpleView.Add += changer.Add;
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, 0);
+            simpleView.Remove += (DataGridView dgv) =>
+            {
+                int index = dgv.SelectedRows[0].Index;
+                int id = 0;
+                bool ok = int.TryParse(dgv[0, index].Value.ToString(), out id);
+                if (!ok) return;
+                Operations.RemoveStavka(id, out string s);
+                MessageBox.Show(s);
+            };
+            simpleView.SetButtonNames("Добавить ставку", "Удалить ставку", "Изменить ставку");
+            simpleView.Show();
 
         }
     }
