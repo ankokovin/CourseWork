@@ -30,7 +30,7 @@
         {
             this.AddCityButton = new System.Windows.Forms.Button();
             this.AddStreetButton = new System.Windows.Forms.Button();
-            this.AddAddressButton = new System.Windows.Forms.Button();
+            this.HouseButton = new System.Windows.Forms.Button();
             this.AddressGroupBox = new System.Windows.Forms.GroupBox();
             this.AddressButton = new System.Windows.Forms.Button();
             this.UsersButton = new System.Windows.Forms.Button();
@@ -38,9 +38,9 @@
             this.MeterTypeButton = new System.Windows.Forms.Button();
             this.MeterButton = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.OrderButton = new System.Windows.Forms.Button();
-            this.OrderEntryButton = new System.Windows.Forms.Button();
             this.StatusButton = new System.Windows.Forms.Button();
+            this.OrderEntryButton = new System.Windows.Forms.Button();
+            this.OrderButton = new System.Windows.Forms.Button();
             this.CustomerGroupBox = new System.Windows.Forms.GroupBox();
             this.CustomerButton = new System.Windows.Forms.Button();
             this.WorkerGroupBox = new System.Windows.Forms.GroupBox();
@@ -73,21 +73,21 @@
             this.AddStreetButton.UseVisualStyleBackColor = true;
             this.AddStreetButton.Click += new System.EventHandler(this.AddStreetButton_Click);
             // 
-            // AddAddressButton
+            // HouseButton
             // 
-            this.AddAddressButton.Location = new System.Drawing.Point(6, 69);
-            this.AddAddressButton.Name = "AddAddressButton";
-            this.AddAddressButton.Size = new System.Drawing.Size(122, 23);
-            this.AddAddressButton.TabIndex = 2;
-            this.AddAddressButton.Text = "Дома";
-            this.AddAddressButton.UseVisualStyleBackColor = true;
-            this.AddAddressButton.Click += new System.EventHandler(this.AddAddressButton_Click);
+            this.HouseButton.Location = new System.Drawing.Point(6, 69);
+            this.HouseButton.Name = "HouseButton";
+            this.HouseButton.Size = new System.Drawing.Size(122, 23);
+            this.HouseButton.TabIndex = 2;
+            this.HouseButton.Text = "Дома";
+            this.HouseButton.UseVisualStyleBackColor = true;
+            this.HouseButton.Click += new System.EventHandler(this.HouseButton_Click);
             // 
             // AddressGroupBox
             // 
             this.AddressGroupBox.Controls.Add(this.AddressButton);
             this.AddressGroupBox.Controls.Add(this.AddStreetButton);
-            this.AddressGroupBox.Controls.Add(this.AddAddressButton);
+            this.AddressGroupBox.Controls.Add(this.HouseButton);
             this.AddressGroupBox.Controls.Add(this.AddCityButton);
             this.AddressGroupBox.Location = new System.Drawing.Point(12, 12);
             this.AddressGroupBox.Name = "AddressGroupBox";
@@ -159,15 +159,15 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Заказы";
             // 
-            // OrderButton
+            // StatusButton
             // 
-            this.OrderButton.Location = new System.Drawing.Point(6, 11);
-            this.OrderButton.Name = "OrderButton";
-            this.OrderButton.Size = new System.Drawing.Size(122, 23);
-            this.OrderButton.TabIndex = 1;
-            this.OrderButton.Text = "Заказы";
-            this.OrderButton.UseVisualStyleBackColor = true;
-            this.OrderButton.Click += new System.EventHandler(this.OrderButton_Click);
+            this.StatusButton.Location = new System.Drawing.Point(6, 68);
+            this.StatusButton.Name = "StatusButton";
+            this.StatusButton.Size = new System.Drawing.Size(122, 23);
+            this.StatusButton.TabIndex = 3;
+            this.StatusButton.Text = "Статусы заказа";
+            this.StatusButton.UseVisualStyleBackColor = true;
+            this.StatusButton.Click += new System.EventHandler(this.StatusButton_Click);
             // 
             // OrderEntryButton
             // 
@@ -180,15 +180,15 @@
             this.OrderEntryButton.UseVisualStyleBackColor = true;
             this.OrderEntryButton.Click += new System.EventHandler(this.OrderEntryButton_Click);
             // 
-            // StatusButton
+            // OrderButton
             // 
-            this.StatusButton.Location = new System.Drawing.Point(6, 68);
-            this.StatusButton.Name = "StatusButton";
-            this.StatusButton.Size = new System.Drawing.Size(122, 23);
-            this.StatusButton.TabIndex = 3;
-            this.StatusButton.Text = "Статусы заказа";
-            this.StatusButton.UseVisualStyleBackColor = true;
-            this.StatusButton.Click += new System.EventHandler(this.StatusButton_Click);
+            this.OrderButton.Location = new System.Drawing.Point(6, 11);
+            this.OrderButton.Name = "OrderButton";
+            this.OrderButton.Size = new System.Drawing.Size(122, 23);
+            this.OrderButton.TabIndex = 1;
+            this.OrderButton.Text = "Заказы";
+            this.OrderButton.UseVisualStyleBackColor = true;
+            this.OrderButton.Click += new System.EventHandler(this.OrderButton_Click);
             // 
             // CustomerGroupBox
             // 
@@ -267,7 +267,7 @@
 
         private System.Windows.Forms.Button AddCityButton;
         private System.Windows.Forms.Button AddStreetButton;
-        private System.Windows.Forms.Button AddAddressButton;
+        private System.Windows.Forms.Button HouseButton;
         private System.Windows.Forms.GroupBox AddressGroupBox;
         private System.Windows.Forms.Button UsersButton;
         private System.Windows.Forms.Button AddressButton;

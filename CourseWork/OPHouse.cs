@@ -25,7 +25,7 @@ namespace CourseWork
         {
             int index = dataGridView1.SelectedRows[0].Index;
             int id = 0;
-            bool ok = int.TryParse(dataGridView1[1, index].Value.ToString(), out id);
+            bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1,"Id"), index].Value.ToString(), out id);
             if (!ok) return;
             if (ActionMode == ActionMode.Add)
             {

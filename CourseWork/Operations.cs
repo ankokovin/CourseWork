@@ -348,7 +348,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.HouseSet where h.Street == street && h.Number == Number select h).FirstOrDefault() != null)
+                if ((from h in cont.HouseSet where h.Street.Id == street.Id && h.Number == Number select h).FirstOrDefault() != null)
                 {
                     Res = "Уже есть дом номер " + Number + " на улице " + street;
                     return false;
@@ -381,7 +381,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.HouseSet where h.Id != id && h.Street == street && h.Number == Number select h).FirstOrDefault() != null)
+                if ((from h in cont.HouseSet where h.Id != id && h.Street.Id == street.Id && h.Number == Number select h).FirstOrDefault() != null)
                 {
                     Res = "В городе " + street.City + " на улице " + street + " уже есть дом номер " + Number;
                     return false;
@@ -450,7 +450,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from a in cont.AddressSet where a.House == house && a.Flat == Flat select a).FirstOrDefault() != null)
+                if ((from a in cont.AddressSet where a.House.Id == house.Id && a.Flat == Flat select a).FirstOrDefault() != null)
                 {
                     Res = "Уже есть данный адрес";
                     return false;
@@ -480,7 +480,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.AddressSet where h.Id != id && h.House == house && h.Flat == Flat select h).FirstOrDefault() != null)
+                if ((from h in cont.AddressSet where h.Id != id && h.House.Id == house.Id && h.Flat == Flat select h).FirstOrDefault() != null)
                 {
                     Res = "В городе " + house.Street.City + " на улице " + house.Street + 
                         " в доме номер " + house.Number+" уже есть квартира номер "+Flat;
@@ -923,7 +923,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from a in cont.StavkaSet where a.MeterType == meterType && a.Person == person select a).FirstOrDefault() != null)
+                if ((from a in cont.StavkaSet where a.MeterType.Id == meterType.Id && a.Person.Id == person.Id select a).FirstOrDefault() != null)
                 {
                     Res = "Уже есть данная ставка";
                     return false;
@@ -947,7 +947,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.StavkaSet where h.Id != Id && h.MeterType==meterType&&h.Person==person select h).FirstOrDefault() != null)
+                if ((from h in cont.StavkaSet where h.Id != Id && h.MeterType.Id == meterType.Id && h.Person.Id == person.Id select h).FirstOrDefault() != null)
                 {
                     Res = "Уже есть данная ставка у данного человека";
                     return false;
