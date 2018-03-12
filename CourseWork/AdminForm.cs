@@ -22,6 +22,7 @@ namespace CourseWork
         public class Changer<T> 
             where T: OP, new()
         {
+            public AdminForm owner;
             private EntityTypes type;
             public Changer(EntityTypes _type)
             {
@@ -42,6 +43,7 @@ namespace CourseWork
                 Object obj = Find(id);
                 op.Change(obj);
                 op.Id = id;
+                op.Owner = owner;
                 op.Show();
                 op.FormClosed +=(object obj1, FormClosedEventArgs arg)=> dgv.Refresh(); 
             }
@@ -90,6 +92,7 @@ namespace CourseWork
             Operations.cont.CitySet.Load();
             CityForm.Source = Operations.cont.CitySet.Local.ToBindingList();
             Changer<OPCity1> changer = new Changer<OPCity1>(EntityTypes.City);
+            changer.owner = this;
             CityForm.Add += changer.Add;
             CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,Program.FindTitle(dgv,"Id"));
             CityForm.Remove += (DataGridView dgv) =>
@@ -111,6 +114,7 @@ namespace CourseWork
             Operations.cont.StreetSet.Load();
             StreetForm.Source = Operations.cont.StreetSet.Local.ToBindingList();
             Changer<OPStreet> changer = new Changer<OPStreet>(EntityTypes.Street);
+            changer.owner = this;
             StreetForm.Add += changer.Add;
             StreetForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             StreetForm.Remove += (DataGridView dgv) =>
@@ -133,6 +137,7 @@ namespace CourseWork
             Operations.cont.UserSet.Load();
             UserForm.Source = Operations.cont.UserSet.Local.ToBindingList();
             Changer<OPUser1> changer = new Changer<OPUser1>(EntityTypes.User);
+            changer.owner = this;
             UserForm.Add += changer.Add;
             UserForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             UserForm.Remove += (DataGridView dgv) =>
@@ -159,6 +164,7 @@ namespace CourseWork
             Operations.cont.AddressSet.Load();
             simpleView.Source = Operations.cont.AddressSet.Local.ToBindingList();
             Changer<OPAddress> changer = new Changer<OPAddress>(EntityTypes.Address);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -180,6 +186,7 @@ namespace CourseWork
             Operations.cont.MeterSet.Load();
             simpleView.Source = Operations.cont.MeterSet.Local.ToBindingList();
             Changer<OPMeter> changer = new Changer<OPMeter>(EntityTypes.Meter);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -201,6 +208,7 @@ namespace CourseWork
             Operations.cont.MeterTypeSet.Load();
             simpleView.Source = Operations.cont.MeterTypeSet.Local.ToBindingList();
             Changer<OPMeterType> changer = new Changer<OPMeterType>(EntityTypes.MeterType);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -222,6 +230,7 @@ namespace CourseWork
             Operations.cont.OrderSet.Load();
             simpleView.Source = Operations.cont.OrderSet.Local.ToBindingList();
             Changer<OPOrder> changer = new Changer<OPOrder>(EntityTypes.Order);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -244,6 +253,7 @@ namespace CourseWork
             Operations.cont.OrderEntrySet.Load();
             simpleView.Source = Operations.cont.OrderEntrySet.Local.ToBindingList();
             Changer<OPOrderEntry> changer = new Changer<OPOrderEntry>(EntityTypes.OrderEntry);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -266,6 +276,7 @@ namespace CourseWork
             Operations.cont.StatusSet.Load();
             simpleView.Source = Operations.cont.StatusSet.Local.ToBindingList();
             Changer<OPStatus> changer = new Changer<OPStatus>(EntityTypes.Status);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -288,6 +299,7 @@ namespace CourseWork
             Operations.cont.CustomerSet.Load();
             simpleView.Source = Operations.cont.CustomerSet.Local.ToBindingList();
             Changer<OPCustomer> changer = new Changer<OPCustomer>(EntityTypes.Customer);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -296,8 +308,16 @@ namespace CourseWork
                 int id = 0;
                 bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
                 if (!ok) return;
-                Operations.RemoveCustomer(id, out string s);
-                MessageBox.Show(s);
+                if (Operations.FindCustomer(id) is Company)
+                {
+                    Operations.RemoveCompany(id, out string s);
+                    MessageBox.Show(s);
+                }
+                else
+                {
+                    Operations.RemoveCustomer(id, out string s);
+                    MessageBox.Show(s);
+                }
             };
             simpleView.SetButtonNames("Добавить заказчика", "Удалить заказчика", "Изменить заказчика");
             simpleView.Show();
@@ -310,6 +330,7 @@ namespace CourseWork
             Operations.cont.PersonSet.Load();
             simpleView.Source = Operations.cont.PersonSet.Local.ToBindingList();
             Changer<OPPerson> changer = new Changer<OPPerson>(EntityTypes.Person);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -332,6 +353,7 @@ namespace CourseWork
             Operations.cont.StavkaSet.Load();
             simpleView.Source = Operations.cont.StavkaSet.Local.ToBindingList();
             Changer<OPStavka> changer = new Changer<OPStavka>(EntityTypes.Stavka);
+            changer.owner = this;
             simpleView.Add += changer.Add;
             simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             simpleView.Remove += (DataGridView dgv) =>
@@ -354,6 +376,7 @@ namespace CourseWork
             Operations.cont.HouseSet.Load();
             HouseForm.Source = Operations.cont.HouseSet.Local.ToBindingList();
             Changer<OPHouse> changer = new Changer<OPHouse>(EntityTypes.House);
+            changer.owner = this;
             HouseForm.Add += changer.Add;
             HouseForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
             HouseForm.Remove += (DataGridView dgv) =>

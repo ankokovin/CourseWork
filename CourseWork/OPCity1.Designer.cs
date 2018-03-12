@@ -30,11 +30,12 @@
         {
             this.AddCityButton = new System.Windows.Forms.Button();
             this.CityNameTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AddCityButton
             // 
-            this.AddCityButton.Location = new System.Drawing.Point(161, 12);
+            this.AddCityButton.Location = new System.Drawing.Point(161, 31);
             this.AddCityButton.Name = "AddCityButton";
             this.AddCityButton.Size = new System.Drawing.Size(111, 23);
             this.AddCityButton.TabIndex = 3;
@@ -44,15 +45,25 @@
             // 
             // CityNameTextBox
             // 
-            this.CityNameTextBox.Location = new System.Drawing.Point(12, 12);
+            this.CityNameTextBox.Location = new System.Drawing.Point(12, 34);
             this.CityNameTextBox.Name = "CityNameTextBox";
             this.CityNameTextBox.Size = new System.Drawing.Size(143, 20);
             this.CityNameTextBox.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 18);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Название города";
             // 
             // OPCity1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(284, 66);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.AddCityButton);
             this.Controls.Add(this.CityNameTextBox);
             this.Name = "OPCity1";
@@ -65,5 +76,6 @@
 
         private System.Windows.Forms.Button AddCityButton;
         private System.Windows.Forms.TextBox CityNameTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

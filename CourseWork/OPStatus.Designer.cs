@@ -30,11 +30,12 @@
         {
             this.AddStatusButton = new System.Windows.Forms.Button();
             this.StatusTextBox = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // AddStatusButton
             // 
-            this.AddStatusButton.Location = new System.Drawing.Point(161, 12);
+            this.AddStatusButton.Location = new System.Drawing.Point(161, 44);
             this.AddStatusButton.Name = "AddStatusButton";
             this.AddStatusButton.Size = new System.Drawing.Size(111, 23);
             this.AddStatusButton.TabIndex = 5;
@@ -44,15 +45,25 @@
             // 
             // StatusTextBox
             // 
-            this.StatusTextBox.Location = new System.Drawing.Point(12, 12);
+            this.StatusTextBox.Location = new System.Drawing.Point(12, 44);
             this.StatusTextBox.Name = "StatusTextBox";
             this.StatusTextBox.Size = new System.Drawing.Size(143, 20);
             this.StatusTextBox.TabIndex = 4;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(99, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Название статуса";
+            // 
             // OPStatus
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(284, 47);
+            this.ClientSize = new System.Drawing.Size(284, 76);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.AddStatusButton);
             this.Controls.Add(this.StatusTextBox);
             this.Name = "OPStatus";
@@ -65,5 +76,6 @@
 
         private System.Windows.Forms.Button AddStatusButton;
         private System.Windows.Forms.TextBox StatusTextBox;
+        private System.Windows.Forms.Label label1;
     }
 }

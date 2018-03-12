@@ -242,6 +242,9 @@
     <EmbeddedResource Include="OPCity1.resx">
       <DependentUpon>OPCity1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OPCustomer.resx">
+      <DependentUpon>OPCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OPHouse.resx">
       <DependentUpon>OPHouse.cs</DependentUpon>
     </EmbeddedResource>
@@ -251,8 +254,20 @@
     <EmbeddedResource Include="OPMeterType.resx">
       <DependentUpon>OPMeterType.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OPOrder.resx">
+      <DependentUpon>OPOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPOrderEntry.resx">
+      <DependentUpon>OPOrderEntry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPPerson.resx">
+      <DependentUpon>OPPerson.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OPStatus.resx">
       <DependentUpon>OPStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OPStavka.resx">
+      <DependentUpon>OPStavka.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OPStreet.resx">
       <DependentUpon>OPStreet.cs</DependentUpon>

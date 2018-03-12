@@ -562,7 +562,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeOrder(int Id, User user,Customer customer, Address address, out string Res)
+        public static bool ChangeOrder(int Id,Customer customer, Address address, out string Res)
         {
             try
             {
@@ -574,9 +574,8 @@ namespace CourseWork
                 }
                 a.Address = address;
                 a.Customer = customer;
-                a.User = user;
                 cont.SaveChanges();
-                Res = "Изменение дома успешно";
+                Res = "Изменение заказа успешно";
                 return true;
             }
             catch (Exception e)
@@ -943,7 +942,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeStavka(int Id, string Name,MeterType meterType,Person person, out string Res)
+        public static bool ChangeStavka(int Id,MeterType meterType,Person person, out string Res)
         {
             try
             {

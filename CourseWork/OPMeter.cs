@@ -18,8 +18,8 @@ namespace CourseWork
 
         private void OPMeter_Load(object sender, EventArgs e)
         {
-            Operations.cont.MeterSet.Load();
-            dataGridView1.DataSource = Operations.cont.MeterSet.Local.ToBindingList();
+            Operations.cont.MeterTypeSet.Load();
+            dataGridView1.DataSource = Operations.cont.MeterTypeSet.Local.ToBindingList();
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -27,11 +27,36 @@ namespace CourseWork
         }
         protected override void Act()
         {
-            base.Act();
+            int index = dataGridView1.SelectedRows[0].Index;
+            int id = 0;
+            bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1, "Id"), index].Value.ToString(), out id);
+            if (!ok) return;
+            if (ActionMode == ActionMode.Add)
+            {
+                if (Operations.AddMeter(textBox1.Text, Operations.FindMeterType(id), out string Res))
+                    Close();
+                MessageBox.Show(Res);
+            }
+            else
+            {
+                if (Operations.ChangeMeter(Id, textBox1.Text, Operations.FindMeterType(id), out string Res))
+                    Close();
+                MessageBox.Show(Res);
+            }
         }
         public override void Change(object obj)
         {
-            base.Change(obj);
+            ActionMode = ActionMode.Change;
+            if (obj is Meter m)
+            {
+                textBox1.Text = m.Name;
+            }
+            button1.Text = "Изменить прибор учёта";
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Act();
         }
     }
 }

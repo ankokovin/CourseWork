@@ -33,6 +33,7 @@
             this.ActButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -51,14 +52,14 @@
             // 
             // StreetTextBox
             // 
-            this.StreetTextBox.Location = new System.Drawing.Point(3, 12);
+            this.StreetTextBox.Location = new System.Drawing.Point(3, 21);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(231, 20);
             this.StreetTextBox.TabIndex = 1;
             // 
             // ActButton
             // 
-            this.ActButton.Location = new System.Drawing.Point(3, 38);
+            this.ActButton.Location = new System.Drawing.Point(3, 47);
             this.ActButton.Name = "ActButton";
             this.ActButton.Size = new System.Drawing.Size(106, 23);
             this.ActButton.TabIndex = 2;
@@ -68,6 +69,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.StreetTextBox);
             this.panel1.Controls.Add(this.ActButton);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
@@ -84,6 +86,15 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(337, 261);
             this.panel2.TabIndex = 4;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 5);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Название улицы";
             // 
             // OPStreet
             // 
@@ -108,5 +119,6 @@
         private System.Windows.Forms.Button ActButton;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label1;
     }
 }

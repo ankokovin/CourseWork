@@ -14,5 +14,22 @@ namespace CourseWork
         {
             InitializeComponent();
         }
+
+        private void OPOrderEntry_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        protected override void Act()
+        {
+
+            if (ActionMode == ActionMode.Add)
+            {
+                if (Operations.AddOrderEntry())
+            }else
+            {
+
+            }
+        }
     }
 }

@@ -54,6 +54,7 @@ namespace CourseWork
                 StreetTextBox.Text = street.Name;
             }
             ActionMode = ActionMode.Change;
+            ActButton.Text = "Изменить улицу";
         }
 
         private void ActButton_Click(object sender, EventArgs e)

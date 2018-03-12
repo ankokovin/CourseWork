@@ -14,5 +14,35 @@ namespace CourseWork
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Act();
+        }
+
+        protected override void Act()
+        {
+            if (ActionMode == ActionMode.Add)
+            {
+                if (Operations.AddPerson(textBox1.Text, out string res))
+                    Close();
+                MessageBox.Show(res);
+            }else
+            {
+                if (Operations.ChangePerson(Id,textBox1.Text, out string res))
+                    Close();
+                MessageBox.Show(res);
+            }
+        }
+
+        public override void Change(object obj)
+        {
+            if (obj is Person p)
+            {
+                textBox1.Text = p.FIO;
+            }
+            ActionMode = ActionMode.Change;
+            button1.Text = "Изменить работника";
+        }
     }
 }

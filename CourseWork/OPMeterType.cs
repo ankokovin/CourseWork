@@ -16,25 +16,41 @@ namespace CourseWork
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Act();
-        }
 
         protected override void Act()
         {
-            base.Act();
+            if (ActionMode == ActionMode.Add)
+            {
+                if (Operations.AddMeterType(textBox1.Text, out string Res))
+                    Close();
+                MessageBox.Show(Res);
+            }
+            else
+            {
+                if (Operations.ChangeMeterType(Id,textBox1.Text, out string Res))
+                    Close();
+                MessageBox.Show(Res);
+            }
         }
 
         public override void Change(object obj)
         {
-            base.Change(obj);
+            ActionMode = ActionMode.Change;
+            if (obj is MeterType mt)
+            {
+                textBox1.Text = mt.Name;
+            }
+            button1.Text = "Изменить тип приборов учёта";
         }
 
         private void OPMeterType_Load(object sender, EventArgs e)
         {
-            Operations.cont.MeterTypeSet.Load();
-            dataGridView1.DataSource = Operations.cont.MeterTypeSet.Local.ToBindingList();
+
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Act();
         }
     }
 }

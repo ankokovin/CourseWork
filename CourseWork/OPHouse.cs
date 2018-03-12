@@ -47,6 +47,7 @@ namespace CourseWork
                 textBox2.Text = h.FlatsCount.ToString();
             }
             ActionMode = ActionMode.Change;
+            button1.Text = "Изменить дом";
         }
 
         private void button1_Click(object sender, EventArgs e)
