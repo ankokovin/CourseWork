@@ -1,8 +1,7 @@
-
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/11/2018 13:46:37
+-- Date Created: 03/13/2018 21:15:02
 -- Generated from EDMX file: C:\Users\user\Documents\GitHub\CourseWork\CourseWork\Model1.edmx
 -- --------------------------------------------------
 
@@ -119,25 +118,25 @@ GO
 
 -- Creating table 'UserSet'
 CREATE TABLE [dbo].[UserSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
     [UserType] int  NOT NULL,
     [Login] nvarchar(max)  NOT NULL,
-    [Password] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Password] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'CustomerSet'
 CREATE TABLE [dbo].[CustomerSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Passport] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Passport] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'PersonSet'
 CREATE TABLE [dbo].[PersonSet] (
-    [FIO] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [FIO] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -151,18 +150,18 @@ GO
 
 -- Creating table 'MeterSet'
 CREATE TABLE [dbo].[MeterSet] (
-    [Name] nvarchar(max)  NOT NULL,
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
     [MeterType_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'OrderEntrySet'
 CREATE TABLE [dbo].[OrderEntrySet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
     [RegNumer] nvarchar(max)  NOT NULL,
     [StartTime] datetime  NOT NULL,
     [EndTime] datetime  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL,
     [Order_Id] int  NOT NULL,
     [Meter_Id] int  NOT NULL,
     [Status_Id] int  NOT NULL
@@ -171,55 +170,55 @@ GO
 
 -- Creating table 'MeterTypeSet'
 CREATE TABLE [dbo].[MeterTypeSet] (
-    [Name] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'StatusSet'
 CREATE TABLE [dbo].[StatusSet] (
-    [Name] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'CitySet'
 CREATE TABLE [dbo].[CitySet] (
-    [Name] nvarchar(max)  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL
 );
 GO
 
 -- Creating table 'StreetSet'
 CREATE TABLE [dbo].[StreetSet] (
-    [Name] nvarchar(max)  NOT NULL,
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
     [City_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'HouseSet'
 CREATE TABLE [dbo].[HouseSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
     [Number] nvarchar(max)  NOT NULL,
     [FlatsCount] int  NOT NULL,
-    [Id] int IDENTITY(1,1) NOT NULL,
     [Street_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'AddressSet'
 CREATE TABLE [dbo].[AddressSet] (
-    [Flat] int  NOT NULL,
     [Id] int IDENTITY(1,1) NOT NULL,
+    [Flat] int  NOT NULL,
     [House_Id] int  NOT NULL
 );
 GO
 
 -- Creating table 'CustomerSet_Company'
 CREATE TABLE [dbo].[CustomerSet_Company] (
+    [Id] int  NOT NULL,
     [CompanyName] nvarchar(max)  NOT NULL,
-    [INN] nvarchar(max)  NOT NULL,
-    [Id] int  NOT NULL
+    [INN] nvarchar(max)  NOT NULL
 );
 GO
 
@@ -321,7 +320,7 @@ ADD CONSTRAINT [FK_CustomerOrder]
     FOREIGN KEY ([Customer_Id])
     REFERENCES [dbo].[CustomerSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CustomerOrder'
@@ -336,7 +335,7 @@ ADD CONSTRAINT [FK_UserOrder]
     FOREIGN KEY ([User_Id])
     REFERENCES [dbo].[UserSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_UserOrder'
@@ -351,7 +350,7 @@ ADD CONSTRAINT [FK_PersonWorker]
     FOREIGN KEY ([Person_Id])
     REFERENCES [dbo].[PersonSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_PersonWorker'
@@ -366,7 +365,7 @@ ADD CONSTRAINT [FK_OrderOrderEntry]
     FOREIGN KEY ([Order_Id])
     REFERENCES [dbo].[OrderSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_OrderOrderEntry'
@@ -381,7 +380,7 @@ ADD CONSTRAINT [FK_MeterOrderEntry]
     FOREIGN KEY ([Meter_Id])
     REFERENCES [dbo].[MeterSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MeterOrderEntry'
@@ -396,7 +395,7 @@ ADD CONSTRAINT [FK_MeterTypeMeter]
     FOREIGN KEY ([MeterType_Id])
     REFERENCES [dbo].[MeterTypeSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MeterTypeMeter'
@@ -411,7 +410,7 @@ ADD CONSTRAINT [FK_MeterTypeStavka]
     FOREIGN KEY ([MeterType_Id])
     REFERENCES [dbo].[MeterTypeSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_MeterTypeStavka'
@@ -426,7 +425,7 @@ ADD CONSTRAINT [FK_StatusOrderEntry]
     FOREIGN KEY ([Status_Id])
     REFERENCES [dbo].[StatusSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StatusOrderEntry'
@@ -441,7 +440,7 @@ ADD CONSTRAINT [FK_CityStreet]
     FOREIGN KEY ([City_Id])
     REFERENCES [dbo].[CitySet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CityStreet'
@@ -456,7 +455,7 @@ ADD CONSTRAINT [FK_HouseAddress]
     FOREIGN KEY ([House_Id])
     REFERENCES [dbo].[HouseSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_HouseAddress'
@@ -471,7 +470,7 @@ ADD CONSTRAINT [FK_AddressOrder]
     FOREIGN KEY ([Address_Id])
     REFERENCES [dbo].[AddressSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_AddressOrder'
@@ -486,7 +485,7 @@ ADD CONSTRAINT [FK_StreetHouse]
     FOREIGN KEY ([Street_Id])
     REFERENCES [dbo].[StreetSet]
         ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_StreetHouse'
@@ -503,7 +502,12 @@ ADD CONSTRAINT [FK_Company_inherits_Customer]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
-
+-- -------------------------------------------------
+-- ADDING SUPERUSER
+-- -------------------------------------------------
+INSERT INTO [dbo].[UserSet] (Login,Password,UserType)
+	VALUES ('root','123qwe',0);
+GO
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

@@ -189,7 +189,9 @@
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="CustomerOrder">
-    <End Role="Customer" Type="Model1.Store.CustomerSet" Multiplicity="1" />
+    <End Role="Customer" Type="Model1.Store.CustomerSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Order" Type="Model1.Store.OrderSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Customer">
@@ -201,7 +203,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="UserOrder">
-    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1" />
+    <End Role="User" Type="Model1.Store.UserSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Order" Type="Model1.Store.OrderSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="User">
@@ -213,7 +217,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="PersonWorker">
-    <End Role="Person" Type="Model1.Store.PersonSet" Multiplicity="1" />
+    <End Role="Person" Type="Model1.Store.PersonSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Worker" Type="Model1.Store.StavkaSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Person">
@@ -225,7 +231,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="OrderOrderEntry">
-    <End Role="Order" Type="Model1.Store.OrderSet" Multiplicity="1" />
+    <End Role="Order" Type="Model1.Store.OrderSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OrderEntry" Type="Model1.Store.OrderEntrySet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Order">
@@ -237,7 +245,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MeterOrderEntry">
-    <End Role="Meter" Type="Model1.Store.MeterSet" Multiplicity="1" />
+    <End Role="Meter" Type="Model1.Store.MeterSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OrderEntry" Type="Model1.Store.OrderEntrySet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Meter">
@@ -249,7 +259,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MeterTypeMeter">
-    <End Role="MeterType" Type="Model1.Store.MeterTypeSet" Multiplicity="1" />
+    <End Role="MeterType" Type="Model1.Store.MeterTypeSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Meter" Type="Model1.Store.MeterSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MeterType">
@@ -261,7 +273,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="MeterTypeStavka">
-    <End Role="MeterType" Type="Model1.Store.MeterTypeSet" Multiplicity="1" />
+    <End Role="MeterType" Type="Model1.Store.MeterTypeSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Stavka" Type="Model1.Store.StavkaSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="MeterType">
@@ -273,7 +287,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StatusOrderEntry">
-    <End Role="Status" Type="Model1.Store.StatusSet" Multiplicity="1" />
+    <End Role="Status" Type="Model1.Store.StatusSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="OrderEntry" Type="Model1.Store.OrderEntrySet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Status">
@@ -285,7 +301,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CityStreet">
-    <End Role="City" Type="Model1.Store.CitySet" Multiplicity="1" />
+    <End Role="City" Type="Model1.Store.CitySet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Street" Type="Model1.Store.StreetSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="City">
@@ -297,7 +315,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="HouseAddress">
-    <End Role="House" Type="Model1.Store.HouseSet" Multiplicity="1" />
+    <End Role="House" Type="Model1.Store.HouseSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Address" Type="Model1.Store.AddressSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="House">
@@ -309,7 +329,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="AddressOrder">
-    <End Role="Address" Type="Model1.Store.AddressSet" Multiplicity="1" />
+    <End Role="Address" Type="Model1.Store.AddressSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="Order" Type="Model1.Store.OrderSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Address">
@@ -321,7 +343,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="StreetHouse">
-    <End Role="Street" Type="Model1.Store.StreetSet" Multiplicity="1" />
+    <End Role="Street" Type="Model1.Store.StreetSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="House" Type="Model1.Store.HouseSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Street">
@@ -427,20 +451,20 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="UserType" Type="Model1.UserType" Nullable="false" />
           <Property Name="Login" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.UserOrder" FromRole="User" ToRole="Order" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Customer" Abstract="false">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.CustomerOrder" FromRole="Customer" ToRole="Order" />
           <Property Name="Passport" Type="String" Nullable="false" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Company" BaseType="Model1.Customer">
           <Property Name="CompanyName" Nullable="false" Type="String" />
@@ -450,9 +474,9 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="FIO" Type="String" Nullable="false" />
           <NavigationProperty Name="Worker" Relationship="Model1.PersonWorker" FromRole="Person" ToRole="Worker" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Stavka">
           <Key>
@@ -463,15 +487,21 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="CustomerOrder">
-          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="Model1.Customer" Role="Customer" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Order" Role="Order" Multiplicity="*" />
         </Association>
         <Association Name="UserOrder">
-          <End Type="Model1.User" Role="User" Multiplicity="1" />
+          <End Type="Model1.User" Role="User" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Order" Role="Order" Multiplicity="*" />
         </Association>
         <Association Name="PersonWorker">
-          <End Type="Model1.Person" Role="Person" Multiplicity="1" />
+          <End Type="Model1.Person" Role="Person" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Stavka" Role="Worker" Multiplicity="*" />
         </Association>
         <EntityType Name="Meter">
@@ -479,9 +509,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <NavigationProperty Name="OrderEntry" Relationship="Model1.MeterOrderEntry" FromRole="Meter" ToRole="OrderEntry" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="MeterType" Relationship="Model1.MeterTypeMeter" FromRole="Meter" ToRole="MeterType" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="OrderEntry">
           <Key>
@@ -489,18 +519,22 @@
           </Key>
           <NavigationProperty Name="Order" Relationship="Model1.OrderOrderEntry" FromRole="OrderEntry" ToRole="Order" />
           <NavigationProperty Name="Meter" Relationship="Model1.MeterOrderEntry" FromRole="OrderEntry" ToRole="Meter" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="RegNumer" Type="String" Nullable="false" />
           <NavigationProperty Name="Status" Relationship="Model1.StatusOrderEntry" FromRole="OrderEntry" ToRole="Status" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="OrderOrderEntry">
-          <End Type="Model1.Order" Role="Order" Multiplicity="1" />
+          <End Type="Model1.Order" Role="Order" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
         </Association>
         <Association Name="MeterOrderEntry">
-          <End Type="Model1.Meter" Role="Meter" Multiplicity="1" />
+          <End Type="Model1.Meter" Role="Meter" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
         </Association>
         <EntityType Name="MeterType">
@@ -508,24 +542,28 @@
             <PropertyRef Name="Id" />
           </Key>
           <NavigationProperty Name="Meter" Relationship="Model1.MeterTypeMeter" FromRole="MeterType" ToRole="Meter" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Stavka" Relationship="Model1.MeterTypeStavka" FromRole="MeterType" ToRole="Stavka" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="MeterTypeMeter">
-          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
+          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Meter" Role="Meter" Multiplicity="*" />
         </Association>
         <EntityType Name="Status">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="OrderEntry" Relationship="Model1.StatusOrderEntry" FromRole="Status" ToRole="OrderEntry" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="MeterTypeStavka">
-          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" />
+          <End Type="Model1.MeterType" Role="MeterType" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Stavka" Role="Stavka" Multiplicity="*" />
         </Association>
         <EnumType Name="UserType" >
@@ -534,59 +572,69 @@
           <Member Name="Analitic" Value="2" />
         </EnumType>
         <Association Name="StatusOrderEntry">
-          <End Type="Model1.Status" Role="Status" Multiplicity="1" />
+          <End Type="Model1.Status" Role="Status" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
         </Association>
         <EntityType Name="City">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Street" Relationship="Model1.CityStreet" FromRole="City" ToRole="Street" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Street">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <NavigationProperty Name="City" Relationship="Model1.CityStreet" FromRole="Street" ToRole="City" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="House" Relationship="Model1.StreetHouse" FromRole="Street" ToRole="House" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="CityStreet">
-          <End Type="Model1.City" Role="City" Multiplicity="1" />
+          <End Type="Model1.City" Role="City" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Street" Role="Street" Multiplicity="*" />
         </Association>
         <EntityType Name="House">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Number" Type="String" Nullable="false" />
           <Property Name="FlatsCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Model1.HouseAddress" FromRole="House" ToRole="Address" />
           <NavigationProperty Name="Street" Relationship="Model1.StreetHouse" FromRole="House" ToRole="Street" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="Address">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <NavigationProperty Name="House" Relationship="Model1.HouseAddress" FromRole="Address" ToRole="House" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="Flat" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.AddressOrder" FromRole="Address" ToRole="Order" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="HouseAddress">
-          <End Type="Model1.House" Role="House" Multiplicity="1" />
+          <End Type="Model1.House" Role="House" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Address" Role="Address" Multiplicity="*" />
         </Association>
         <Association Name="AddressOrder">
-          <End Type="Model1.Address" Role="Address" Multiplicity="1" />
+          <End Type="Model1.Address" Role="Address" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.Order" Role="Order" Multiplicity="*" />
         </Association>
         <Association Name="StreetHouse">
-          <End Type="Model1.Street" Role="Street" Multiplicity="1" />
+          <End Type="Model1.Street" Role="Street" Multiplicity="1" >
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="Model1.House" Role="House" Multiplicity="*" />
         </Association>
       </Schema>

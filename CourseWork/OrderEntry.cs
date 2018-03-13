@@ -14,10 +14,10 @@ namespace CourseWork
     
     public partial class OrderEntry
     {
+        public int Id { get; set; }
         public string RegNumer { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
-        public int Id { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Meter Meter { get; set; }

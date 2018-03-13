@@ -20,14 +20,13 @@ namespace CourseWork
             this.Order = new HashSet<Order>();
         }
     
+        public int Id { get; set; }
         public UserType UserType { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int Id { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
-
         public override string ToString()
         {
             return Login;

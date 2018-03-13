@@ -20,16 +20,15 @@ namespace CourseWork
             this.House = new HashSet<House>();
         }
     
-        public string Name { get; set; }
         public int Id { get; set; }
+        public string Name { get; set; }
     
         public virtual City City { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<House> House { get; set; }
-        
         public override string ToString()
         {
-            return City+" "+ Name;
+            return City + " " + Name;
         }
     }
 }

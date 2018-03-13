@@ -20,8 +20,8 @@ namespace CourseWork
             this.Worker = new HashSet<Stavka>();
         }
     
-        public string FIO { get; set; }
         public int Id { get; set; }
+        public string FIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Stavka> Worker { get; set; }
