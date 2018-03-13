@@ -1,6 +1,6 @@
 ﻿namespace CourseWork
 {
-    partial class OPCity1
+    partial class OPCity
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -66,7 +66,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddCityButton);
             this.Controls.Add(this.CityNameTextBox);
-            this.Name = "OPCity1";
+            this.Name = "OPCity";
             this.ResumeLayout(false);
             this.PerformLayout();
 

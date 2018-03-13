@@ -18,6 +18,7 @@ namespace CourseWork
 
         private void OPOrderEntry_Load(object sender, EventArgs e)
         {
+
             Operations.cont.OrderSet.Load();
             dataGridView1.DataSource = Operations.cont.OrderSet.Local.ToBindingList();
             Operations.cont.MeterSet.Load();
@@ -42,8 +43,8 @@ namespace CourseWork
             if (!ok) return;
             if (ActionMode == ActionMode.Add)
             {
-                if (Operations.AddOrderEntry(Operations.FindOrder(id1), dateTimePicker1.Value.Date + dateTimePicker3.Value.TimeOfDay,
-                    dateTimePicker2.Value.Date + dateTimePicker4.Value.TimeOfDay, textBox1.Text, Operations.FindMeter(id2),
+                if (Operations.AddOrderEntry(Operations.FindOrder(id1), dateTimePicker1.Value,
+                    dateTimePicker2.Value, textBox1.Text, Operations.FindMeter(id2),
                     Operations.FindStatus(id3), out string Res))
                     Close();
                 MessageBox.Show(Res);
@@ -67,10 +68,8 @@ namespace CourseWork
             button1.Text = "Изменить заказную позицию";
             if (obj is OrderEntry ordEnt)
             {
-                dateTimePicker1.Value = ordEnt.StartTime.Date;
-                dateTimePicker2.Value = ordEnt.EndTime.Date;
-                dateTimePicker3.Value = new DateTime() + ordEnt.StartTime.TimeOfDay;
-                dateTimePicker4.Value = new DateTime() + ordEnt.EndTime.TimeOfDay;
+                dateTimePicker1.Value = ordEnt.StartTime;
+                dateTimePicker2.Value = ordEnt.EndTime;
             }
         }
     }

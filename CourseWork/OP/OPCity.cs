@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace CourseWork
 {
-    public partial class OPCity1 : CourseWork.OP
+    public partial class OPCity : CourseWork.OP
     {
-        public OPCity1()
+        public OPCity()
         {
             InitializeComponent();
         }

@@ -52,6 +52,7 @@ namespace CourseWork
             if (obj is Street street)
             {
                 StreetTextBox.Text = street.Name;
+                Program.SelectId(ref dataGridView1, street.Id);
             }
             ActionMode = ActionMode.Change;
             ActButton.Text = "Изменить улицу";

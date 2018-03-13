@@ -41,11 +41,10 @@ namespace CourseWork
                 bool ok = int.TryParse(dgv[idColomn, index].Value.ToString(), out id);
                 if (!ok) return;
                 T op = new T();
-                Object obj = Find(id);
-                op.Change(obj);
                 op.Id = id;
                 op.Owner = owner;
                 op.Show();
+                op.Change(Find(id));
                 op.FormClosed +=(object obj1, FormClosedEventArgs arg)=> dgv.Refresh(); 
             }
             public object Find(int Id)
@@ -92,7 +91,7 @@ namespace CourseWork
             SimpleView CityForm = new SimpleView();
             Operations.cont.CitySet.Load();
             CityForm.Source = Operations.cont.CitySet.Local.ToBindingList();
-            Changer<OPCity1> changer = new Changer<OPCity1>(EntityTypes.City);
+            Changer<OPCity> changer = new Changer<OPCity>(EntityTypes.City);
             changer.owner = this;
             CityForm.Add += changer.Add;
             CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,Program.FindTitle(dgv,"Id"));

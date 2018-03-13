@@ -56,88 +56,88 @@
   <ItemGroup>
     <Compile Include="ActionMode.cs" />
     <Compile Include="EntityTypes.cs" />
-    <Compile Include="OP.cs">
+    <Compile Include="OP\OP.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OP.Designer.cs">
+    <Compile Include="OP\OP.Designer.cs">
       <DependentUpon>OP.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPAddress.cs">
+    <Compile Include="OP\OPAddress.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPAddress.Designer.cs">
+    <Compile Include="OP\OPAddress.Designer.cs">
       <DependentUpon>OPAddress.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPCity1.cs">
+    <Compile Include="OP\OPCity.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPCity1.Designer.cs">
-      <DependentUpon>OPCity1.cs</DependentUpon>
+    <Compile Include="OP\OPCity.Designer.cs">
+      <DependentUpon>OPCity.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPCustomer.cs">
+    <Compile Include="OP\OPCustomer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPCustomer.Designer.cs">
+    <Compile Include="OP\OPCustomer.Designer.cs">
       <DependentUpon>OPCustomer.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPHouse.cs">
+    <Compile Include="OP\OPHouse.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPHouse.Designer.cs">
+    <Compile Include="OP\OPHouse.Designer.cs">
       <DependentUpon>OPHouse.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPMeter.cs">
+    <Compile Include="OP\OPMeter.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPMeter.Designer.cs">
+    <Compile Include="OP\OPMeter.Designer.cs">
       <DependentUpon>OPMeter.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPMeterType.cs">
+    <Compile Include="OP\OPMeterType.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPMeterType.Designer.cs">
+    <Compile Include="OP\OPMeterType.Designer.cs">
       <DependentUpon>OPMeterType.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPOrder.cs">
+    <Compile Include="OP\OPOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPOrder.Designer.cs">
+    <Compile Include="OP\OPOrder.Designer.cs">
       <DependentUpon>OPOrder.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPOrderEntry.cs">
+    <Compile Include="OP\OPOrderEntry.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPOrderEntry.Designer.cs">
+    <Compile Include="OP\OPOrderEntry.Designer.cs">
       <DependentUpon>OPOrderEntry.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPPerson.cs">
+    <Compile Include="OP\OPPerson.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPPerson.Designer.cs">
+    <Compile Include="OP\OPPerson.Designer.cs">
       <DependentUpon>OPPerson.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPStatus.cs">
+    <Compile Include="OP\OPStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPStatus.Designer.cs">
+    <Compile Include="OP\OPStatus.Designer.cs">
       <DependentUpon>OPStatus.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPStavka.cs">
+    <Compile Include="OP\OPStavka.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPStavka.Designer.cs">
+    <Compile Include="OP\OPStavka.Designer.cs">
       <DependentUpon>OPStavka.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPStreet.cs">
+    <Compile Include="OP\OPStreet.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPStreet.Designer.cs">
+    <Compile Include="OP\OPStreet.Designer.cs">
       <DependentUpon>OPStreet.cs</DependentUpon>
     </Compile>
-    <Compile Include="OPUser1.cs">
+    <Compile Include="OP\OPUser1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OPUser1.Designer.cs">
+    <Compile Include="OP\OPUser1.Designer.cs">
       <DependentUpon>OPUser1.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleView.cs">
@@ -233,46 +233,46 @@
     <Compile Include="UserType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="OP.resx">
+    <EmbeddedResource Include="OP\OP.resx">
       <DependentUpon>OP.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPAddress.resx">
+    <EmbeddedResource Include="OP\OPAddress.resx">
       <DependentUpon>OPAddress.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPCity1.resx">
-      <DependentUpon>OPCity1.cs</DependentUpon>
+    <EmbeddedResource Include="OP\OPCity.resx">
+      <DependentUpon>OPCity.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPCustomer.resx">
+    <EmbeddedResource Include="OP\OPCustomer.resx">
       <DependentUpon>OPCustomer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPHouse.resx">
+    <EmbeddedResource Include="OP\OPHouse.resx">
       <DependentUpon>OPHouse.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPMeter.resx">
+    <EmbeddedResource Include="OP\OPMeter.resx">
       <DependentUpon>OPMeter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPMeterType.resx">
+    <EmbeddedResource Include="OP\OPMeterType.resx">
       <DependentUpon>OPMeterType.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPOrder.resx">
+    <EmbeddedResource Include="OP\OPOrder.resx">
       <DependentUpon>OPOrder.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPOrderEntry.resx">
+    <EmbeddedResource Include="OP\OPOrderEntry.resx">
       <DependentUpon>OPOrderEntry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPPerson.resx">
+    <EmbeddedResource Include="OP\OPPerson.resx">
       <DependentUpon>OPPerson.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPStatus.resx">
+    <EmbeddedResource Include="OP\OPStatus.resx">
       <DependentUpon>OPStatus.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPStavka.resx">
+    <EmbeddedResource Include="OP\OPStavka.resx">
       <DependentUpon>OPStavka.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPStreet.resx">
+    <EmbeddedResource Include="OP\OPStreet.resx">
       <DependentUpon>OPStreet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OPUser1.resx">
+    <EmbeddedResource Include="OP\OPUser1.resx">
       <DependentUpon>OPUser1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SimpleView.resx">

@@ -22,6 +22,25 @@ namespace CourseWork
                 if (dgv.Columns[i].HeaderText == name) return i;
             return -1;
         }
+        /// <summary>
+        /// Выделяет строку <see cref="DataGridView"/> с данным значением Id
+        /// </summary>
+        /// <param name="dgv"><see cref="DataGridView"/> в котором выделяем</param>
+        /// <param name="Id">Идентификационный номер записи выделяемой строки</param>
+        public static void SelectId(ref DataGridView dgv, int Id)
+        {
+            int idColomn = FindTitle(dgv, "Id");
+            dgv.ClearSelection();
+            for (int i = 0; i < dgv.RowCount; ++i)
+            {
+                if (int.TryParse(dgv[idColomn,i].Value.ToString(), out int rId) && rId == Id)
+                {
+                    dgv.Rows[Id].Selected = true;
+                    return;
+                }
+            }
+            
+        }
 
         /// <summary>
         /// Главная точка входа для приложения.
