@@ -90,6 +90,7 @@ namespace CourseWork
         {
             SimpleView CityForm = new SimpleView();
             Operations.cont.CitySet.Load();
+            CityForm.Text = "Города";
             CityForm.Source = Operations.cont.CitySet.Local.ToBindingList();
             Changer<OPCity> changer = new Changer<OPCity>(EntityTypes.City);
             CityForm.CurrentEntity = EntityTypes.City;
@@ -113,6 +114,7 @@ namespace CourseWork
         {
             SimpleView StreetForm = new SimpleView();
             Operations.cont.StreetSet.Load();
+            StreetForm.Text = "Улицы";
             StreetForm.CurrentEntity = EntityTypes.Street;
             StreetForm.Source = Operations.cont.StreetSet.Local.ToBindingList();
             Changer<OPStreet> changer = new Changer<OPStreet>(EntityTypes.Street);
@@ -137,6 +139,7 @@ namespace CourseWork
         {
             SimpleView UserForm = new SimpleView();
             Operations.cont.UserSet.Load();
+            UserForm.Text = "Пользователи";
             UserForm.CurrentEntity = EntityTypes.User;
             UserForm.Source = Operations.cont.UserSet.Local.ToBindingList();
             Changer<OPUser> changer = new Changer<OPUser>(EntityTypes.User);
@@ -165,6 +168,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.AddressSet.Load();
+            simpleView.Text = "Адреса";
             simpleView.CurrentEntity = EntityTypes.Address;
             simpleView.Source = Operations.cont.AddressSet.Local.ToBindingList();
             Changer<OPAddress> changer = new Changer<OPAddress>(EntityTypes.Address);
@@ -188,6 +192,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.MeterSet.Load();
+            simpleView.Text = "Приборы учёта";
             simpleView.Source = Operations.cont.MeterSet.Local.ToBindingList();
             simpleView.CurrentEntity = EntityTypes.Meter;
             Changer<OPMeter> changer = new Changer<OPMeter>(EntityTypes.Meter);
@@ -211,6 +216,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.MeterTypeSet.Load();
+            simpleView.Text = "Типы приборов учёта";
             simpleView.CurrentEntity = EntityTypes.MeterType;
             simpleView.Source = Operations.cont.MeterTypeSet.Local.ToBindingList();
             Changer<OPMeterType> changer = new Changer<OPMeterType>(EntityTypes.MeterType);
@@ -234,6 +240,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.OrderSet.Load();
+            simpleView.Text = "Заказы";
             simpleView.CurrentEntity = EntityTypes.Order;
             simpleView.Source = Operations.cont.OrderSet.Local.ToBindingList();
             Changer<OPOrder> changer = new Changer<OPOrder>(EntityTypes.Order);
@@ -258,6 +265,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.OrderEntrySet.Load();
+            simpleView.Text = "Заказные позиции";
             simpleView.CurrentEntity = EntityTypes.OrderEntry;
             simpleView.Source = Operations.cont.OrderEntrySet.Local.ToBindingList();
             Changer<OPOrderEntry> changer = new Changer<OPOrderEntry>(EntityTypes.OrderEntry);
@@ -282,6 +290,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.StatusSet.Load();
+            simpleView.Text = "Статусы заказных позиций";
             simpleView.CurrentEntity = EntityTypes.Status;
             simpleView.Source = Operations.cont.StatusSet.Local.ToBindingList();
             Changer<OPStatus> changer = new Changer<OPStatus>(EntityTypes.Status);
@@ -305,6 +314,7 @@ namespace CourseWork
         private void CustomerButton_Click(object sender, EventArgs e)
         {
             SimpleView simpleView = new SimpleView();
+            simpleView.Text = "Заказчики";
             Operations.cont.CustomerSet.Load();
             simpleView.CurrentEntity = EntityTypes.Customer;
             simpleView.Source = Operations.cont.CustomerSet.Local.ToBindingList();
@@ -338,6 +348,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.PersonSet.Load();
+            simpleView.Text = "Работники";
             simpleView.CurrentEntity = EntityTypes.Person;
             simpleView.Source = Operations.cont.PersonSet.Local.ToBindingList();
             Changer<OPPerson> changer = new Changer<OPPerson>(EntityTypes.Person);
@@ -362,6 +373,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.StavkaSet.Load();
+            simpleView.Text = "Ставки";
             simpleView.CurrentEntity = EntityTypes.Stavka;
             simpleView.Source = Operations.cont.StavkaSet.Local.ToBindingList();
             Changer<OPStavka> changer = new Changer<OPStavka>(EntityTypes.Stavka);
@@ -386,6 +398,7 @@ namespace CourseWork
         {
             SimpleView HouseForm = new SimpleView();
             Operations.cont.HouseSet.Load();
+            HouseForm.Text = "Дома";
             HouseForm.CurrentEntity = EntityTypes.House;
             HouseForm.Source = Operations.cont.HouseSet.Local.ToBindingList();
             Changer<OPHouse> changer = new Changer<OPHouse>(EntityTypes.House);
@@ -404,6 +417,11 @@ namespace CourseWork
             HouseForm.SetButtonNames("Добавить дом", "Удалить дом", "Изменить дом");
             HouseForm.Show();
 
+        }
+
+        private void AdminForm_Load(object sender, EventArgs e)
+        {
+            Text = CurrentUser.ToString();
         }
     }
 }

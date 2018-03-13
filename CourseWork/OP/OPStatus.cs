@@ -36,8 +36,12 @@ namespace CourseWork
         }
         public override void Change(object obj)
         {
+            Text = "Изменение статуса ";
             if (obj is Status st)
+            {
                 StatusTextBox.Text = st.Name;
+                Text += st + " id:" + st.Id;
+            }
             ActionMode = ActionMode.Change;
             AddStatusButton.Text = "Изменить статус";
         }

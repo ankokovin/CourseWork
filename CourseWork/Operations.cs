@@ -142,12 +142,12 @@ namespace CourseWork
             {
                 if (user.Count > 1)
                     Message += "Несколько пользователей имеют одинаковый логин!";
-                
+                 
                 foreach (User u in user)
                     if (u.Password == Password)
                     {
                         //Login complete
-                        Message += "Вход";
+                        Message += "Успешный вход :"+u;
                         return u;
                     }
                 Message += "Неверный пароль";

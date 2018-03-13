@@ -35,10 +35,12 @@ namespace CourseWork
 
         public override void Change(object obj)
         {
+            Text = "Изменение прибора учёта ";
             ActionMode = ActionMode.Change;
             if (obj is MeterType mt)
             {
                 textBox1.Text = mt.Name;
+                Text += mt + " id:" + mt.Id;
             }
             button1.Text = "Изменить тип приборов учёта";
         }

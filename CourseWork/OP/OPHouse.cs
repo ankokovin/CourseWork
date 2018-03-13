@@ -42,11 +42,13 @@ namespace CourseWork
         }
         public override void Change(object obj)
         {
+            Text = "Изменение дома ";
             if (obj is House h)
             {
                 textBox1.Text = h.Number;
                 textBox2.Text = h.FlatsCount.ToString();
                 Program.SelectId(ref dataGridView1, h.Street.Id);
+                Text += h + " id:" + h.Id;
             }
             ActionMode = ActionMode.Change;
             button1.Text = "Изменить дом";

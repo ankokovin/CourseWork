@@ -59,7 +59,7 @@
             this.label1.TabIndex = 6;
             this.label1.Text = "Название города";
             // 
-            // OPCity1
+            // OPCity
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(284, 66);
@@ -67,6 +67,7 @@
             this.Controls.Add(this.AddCityButton);
             this.Controls.Add(this.CityNameTextBox);
             this.Name = "OPCity";
+            this.Text = "Добавление города";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -67,6 +67,7 @@
             this.Controls.Add(this.AddStatusButton);
             this.Controls.Add(this.StatusTextBox);
             this.Name = "OPStatus";
+            this.Text = "Добавление статуса";
             this.ResumeLayout(false);
             this.PerformLayout();
 

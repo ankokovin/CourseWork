@@ -10,8 +10,6 @@ namespace CourseWork
 
     static class Program
     {
-        
-
         /// <summary>
         /// Заголовки столбцов, которые требуется скрыть при помощи <see cref="HideColumns(ref DataGridView, EntityTypes)"/>
         /// </summary>
@@ -70,7 +68,7 @@ namespace CourseWork
             {
                 if (int.TryParse(dgv[idColomn,i].Value.ToString(), out int rId) && rId == Id)
                 {
-                    dgv.Rows[Id].Selected = true;
+                    dgv.Rows[i].Selected = true;
                     return;
                 }
             }

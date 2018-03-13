@@ -32,10 +32,10 @@
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,6 +83,24 @@
             this.panel2.Size = new System.Drawing.Size(200, 363);
             this.panel2.TabIndex = 4;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 35);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(147, 13);
+            this.label2.TabIndex = 5;
+            this.label2.Text = "Общее количество квартир";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(70, 13);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Номер дома";
+            // 
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(0, 51);
@@ -99,24 +117,6 @@
             this.panel1.Size = new System.Drawing.Size(799, 363);
             this.panel1.TabIndex = 5;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Номер дома";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 35);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(147, 13);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "Общее количество квартир";
-            // 
             // OPHouse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -124,6 +124,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "OPHouse";
+            this.Text = "Добавление дома";
             this.Load += new System.EventHandler(this.OPHouse_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel2.ResumeLayout(false);

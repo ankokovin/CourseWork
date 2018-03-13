@@ -50,9 +50,11 @@ namespace CourseWork
         }
         public override void Change(object obj)
         {
+            Text = "Изменение улицы ";
             if (obj is Street street)
             {
                 StreetTextBox.Text = street.Name;
+                Text += street + " id:" + street.Id;
                 Program.SelectId(ref dataGridView1, street.Id);
             }
             ActionMode = ActionMode.Change;

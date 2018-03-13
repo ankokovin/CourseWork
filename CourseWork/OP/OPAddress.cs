@@ -41,10 +41,12 @@ namespace CourseWork
         public override void Change(object obj)
         {
             ActionMode = ActionMode.Change;
+            Text = "Изменение адреса";
             if (obj is Address adr)
             {
                 textBox1.Text = adr.Flat.ToString();
                 Program.SelectId(ref dataGridView1, adr.House.Id);
+                Text += " " + adr + " id:" + adr.Id;
             }
             button1.Text = "Изменить адрес";
         }

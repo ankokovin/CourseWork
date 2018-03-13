@@ -41,14 +41,14 @@
             // 
             this.LoginTextBox.Location = new System.Drawing.Point(67, 39);
             this.LoginTextBox.Name = "LoginTextBox";
-            this.LoginTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LoginTextBox.Size = new System.Drawing.Size(144, 20);
             this.LoginTextBox.TabIndex = 0;
             // 
             // PasswordTextBox
             // 
             this.PasswordTextBox.Location = new System.Drawing.Point(67, 78);
             this.PasswordTextBox.Name = "PasswordTextBox";
-            this.PasswordTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PasswordTextBox.Size = new System.Drawing.Size(144, 20);
             this.PasswordTextBox.TabIndex = 1;
             // 
             // UserTypeComboBox
@@ -56,7 +56,7 @@
             this.UserTypeComboBox.FormattingEnabled = true;
             this.UserTypeComboBox.Location = new System.Drawing.Point(67, 120);
             this.UserTypeComboBox.Name = "UserTypeComboBox";
-            this.UserTypeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.UserTypeComboBox.Size = new System.Drawing.Size(144, 21);
             this.UserTypeComboBox.TabIndex = 2;
             // 
             // button1
@@ -72,7 +72,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(64, 23);
+            this.label1.Location = new System.Drawing.Point(91, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 13);
             this.label1.TabIndex = 4;
@@ -81,7 +81,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(104, 62);
+            this.label2.Location = new System.Drawing.Point(122, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 5;
@@ -90,16 +90,16 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 104);
+            this.label3.Location = new System.Drawing.Point(94, 104);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 13);
             this.label3.TabIndex = 6;
             this.label3.Text = "Тип пользователя";
             // 
-            // OPUser1
+            // OPUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(284, 240);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -108,6 +108,7 @@
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.LoginTextBox);
             this.Name = "OPUser";
+            this.Text = "Добавление пользователя";
             this.Load += new System.EventHandler(this.OPUser1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -67,6 +67,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Name = "OPMeterType";
+            this.Text = "Добавление типа прибора учёта";
             this.Load += new System.EventHandler(this.OPMeterType_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -97,6 +97,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "OPOrder";
+            this.Text = "Добавление заказа";
             this.Load += new System.EventHandler(this.OPOrder_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

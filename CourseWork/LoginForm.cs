@@ -34,20 +34,17 @@ namespace CourseWork
                         case UserType.Admin:
                             AdminForm adminForm = new AdminForm();
                             adminForm.FormClosed += BackUp;
-                            adminForm.Visible = true;
-                            adminForm.Show();
                             adminForm.CurrentUser = result;
+                            adminForm.Show();
                             break;
                         case UserType.Analitic:
                             AnaliticForm analiticForm = new AnaliticForm();
                             analiticForm.FormClosed += BackUp;
-                            analiticForm.Visible = true;
                             analiticForm.Show();
                             break;
                         case UserType.Operator:
                             OperatorForm operatorForm = new OperatorForm();
                             operatorForm.FormClosed += BackUp;
-                            operatorForm.Visible = true;
                             operatorForm.Show();
                             break;
                     }

@@ -42,11 +42,12 @@ namespace CourseWork
         }
         public override void Change(Object obj)
         {
+            Text = "Изменение пользователя ";
             if (obj is User user)
             {
                 LoginTextBox.Text = user.Login;
                 PasswordTextBox.Text = user.Password;
-                //TODO:
+                Text += user + " id:" + user.Id;
                 UserTypeComboBox.SelectedValue = user.UserType;
             }
             ActionMode = ActionMode.Change;

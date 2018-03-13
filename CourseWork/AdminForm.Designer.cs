@@ -254,6 +254,7 @@
             this.Controls.Add(this.AddressGroupBox);
             this.Name = "AdminForm";
             this.Text = "AdminForm";
+            this.Load += new System.EventHandler(this.AdminForm_Load);
             this.AddressGroupBox.ResumeLayout(false);
             this.MeterGroupBox.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);

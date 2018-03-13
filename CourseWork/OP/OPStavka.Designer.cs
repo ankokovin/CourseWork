@@ -97,6 +97,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "OPStavka";
+            this.Text = "Добавление ставки";
             this.Load += new System.EventHandler(this.OPStavka_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

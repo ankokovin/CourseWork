@@ -145,6 +145,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "OPCustomer";
+            this.Text = "Добавление заказчика";
             this.Load += new System.EventHandler(this.OPCustomer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

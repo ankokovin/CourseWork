@@ -56,6 +56,7 @@ namespace CourseWork
 
         public override void Change(object obj)
         {
+            Text = "Изменение заказчика ";
             ActionMode = ActionMode.Change;
             if (obj is Company com)
             {
@@ -65,6 +66,7 @@ namespace CourseWork
                 textBox3.Text = com.INN;
                 radioButton1.Checked = true;
                 radioButton1.Enabled = false;
+                Text += com + " id:" + com.Id;
             }else if (obj is Customer cus)
             {
                 textBox1.Text = cus.Name;

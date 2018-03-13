@@ -87,6 +87,7 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -105,6 +106,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "OPMeter";
+            this.Text = "Добавление прибора учёта";
             this.Load += new System.EventHandler(this.OPMeter_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

@@ -37,9 +37,11 @@ namespace CourseWork
 
         public override void Change(object obj)
         {
+            Text = "Изменение работника ";
             if (obj is Person p)
             {
                 textBox1.Text = p.FIO;
+                Text += p + " id:" + p.Id;
             }
             ActionMode = ActionMode.Change;
             button1.Text = "Изменить работника";

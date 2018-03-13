@@ -32,8 +32,8 @@
             this.StreetTextBox = new System.Windows.Forms.TextBox();
             this.ActButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -78,15 +78,6 @@
             this.panel1.Size = new System.Drawing.Size(277, 261);
             this.panel1.TabIndex = 3;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dataGridView1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(337, 261);
-            this.panel2.TabIndex = 4;
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -96,6 +87,15 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Название улицы";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dataGridView1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(337, 261);
+            this.panel2.TabIndex = 4;
+            // 
             // OPStreet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -103,6 +103,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "OPStreet";
+            this.Text = "Добавление улицы";
             this.Load += new System.EventHandler(this.OPStreet_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
