@@ -10,6 +10,8 @@ namespace CourseWork
 
     static class Program
     {
+        
+
         /// <summary>
         /// Заголовки столбцов, которые требуется скрыть при помощи <see cref="HideColumns(ref DataGridView, EntityTypes)"/>
         /// </summary>
@@ -81,6 +83,7 @@ namespace CourseWork
         [STAThread]
         static void Main()
         {
+            Operations.AttentionMessage += (s) => MessageBox.Show(s,"Внимание!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());

@@ -12,6 +12,8 @@ namespace CourseWork
         /// Контекст базы данных
         /// </summary>
         public static Model1Container cont = new Model1Container();
+        public delegate bool AttentionMessageHandler(string s);
+        public static event AttentionMessageHandler AttentionMessage;
         #region Users
         /// <summary>
         /// Функция добавления нового пользователя
@@ -93,10 +95,18 @@ namespace CourseWork
                     Res = "Нет пользователя с данным идентификационным номером";
                     return false;
                 }
-                cont.UserSet.Remove(u);
-                cont.SaveChanges();
-                Res = "Пользователь " + u.Login + " успешно удалён";
-                return true;
+                if (u.Order.Count == 0 || AttentionMessage("Вы действительно хотите удалить пользователя" +
+                    u+ "?\n"+u.Order.Count+" заказов а также связанные с ними объекты будут удалены."))
+                {
+                    cont.UserSet.Remove(u);
+                    cont.SaveChanges();
+                    Res = "Пользователь " + u.Login + " успешно удалён";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch(Exception e)
             {
@@ -194,10 +204,18 @@ namespace CourseWork
                     Res = "Город не обнаружен";
                     return false;
                 }
-                cont.CitySet.Remove(c);
-                cont.SaveChanges();
-                Res = "Город " + c.Name +" c id "+id+ " был успешно удалён";
-                return true;
+                if (c.Street.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить город " + c.Name + "?\n" +
+                    c.Street.Count + " улиц и связанные с ними объекты также будут удалены."))
+                {
+                    cont.CitySet.Remove(c);
+                    cont.SaveChanges();
+                    Res = "Город " + c.Name + " c id " + id + " был успешно удалён";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }catch(Exception e)
             {
                 //TODO: обработка
@@ -318,10 +336,18 @@ namespace CourseWork
                     Res = "Нет улицы с заданным идентификационным номером";
                     return false;
                 }
-                cont.StreetSet.Remove(s);
-                cont.SaveChanges();
-                Res = "Удаление успешно";
-                return false;
+                if (s.House.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить улицу " + s + " ?\n" +
+                    s.House.Count + " домов и связанные с ними объекты также будут удалены."))
+                {
+                    cont.StreetSet.Remove(s);
+                    cont.SaveChanges();
+                    Res = "Удаление успешно";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }catch(Exception e)
             {
                 Res = e.Message;
@@ -420,11 +446,19 @@ namespace CourseWork
                     Res = "Нет дома с таким идентификационным номером";
                     return false;
                 }
-                cont.HouseSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаления дома номер " + a.Number +
-                " улицы " + a.Street + " города " + a.Street.City;
-                return true;
+                if (a.Address.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить дом " + a + " ?\n" +
+                   a.Address.Count + " адресов и связанные с ними объекты также будут удалены."))
+                {
+                    cont.HouseSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаления дома номер " + a.Number +
+                    " улицы " + a.Street + " города " + a.Street.City;
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }catch (Exception e)
             {
                 Res = e.Message;
@@ -520,11 +554,19 @@ namespace CourseWork
                     Res = "Нет адреса с таким идентификационным номером";
                     return false;
                 }
-                cont.AddressSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаления квартиры номер"+a.Flat + "дома номер " + a.House.Number +
-                " улицы " + a.House.Street + " города " + a.House.Street.City;
-                return true;
+                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить адрес " + a + " ?\n" +
+                    a.Order.Count + " заказов и связанные с ними объекты также будут удалены."))
+                {
+                    cont.AddressSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаления квартиры номер" + a.Flat + "дома номер " + a.House.Number +
+                    " улицы " + a.House.Street + " города " + a.House.Street.City;
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -595,10 +637,18 @@ namespace CourseWork
                     Res = "Нет заказа с таким идентификационным номером";
                     return false;
                 }
-                cont.OrderSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление заказа";
-                return true;
+                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказ " + a + " ?\n" +
+                    a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
+                {
+                    cont.OrderSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление заказа";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -750,10 +800,19 @@ namespace CourseWork
                     Res = "Нет прибора учёта с таким идентификационным номером";
                     return false;
                 }
-                cont.MeterSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление прибора учёта";
-                return true;
+                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить прибор учёта " + a + " ?\n" +
+                    a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
+                {
+                    cont.MeterSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление прибора учёта";
+                    return true;
+                }
+                else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -826,10 +885,18 @@ namespace CourseWork
                     Res = "Нет статуса с таким идентификационным номером";
                     return false;
                 }
-                cont.StatusSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление статуса";
-                return true;
+                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить статус заказа " + a + " ?\n" +
+                    a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
+                {
+                    cont.StatusSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление статуса";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -902,10 +969,19 @@ namespace CourseWork
                     Res = "Нет типа приборов учёта с таким идентификационным номером";
                     return false;
                 }
-                cont.MeterTypeSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление типа приборов учёта";
-                return true;
+                if ((a.Meter.Count == 0) && (a.Stavka.Count == 0) ||
+                    AttentionMessage("Вы уверены, что хотите удалить тип приборов учёта " + a + " ?\n" +
+                    a.Meter.Count + " приборов учёта и " + a.Stavka.Count + " ставок, а так же связанные с ними объекты также будут удалены."))
+                {
+                    cont.MeterTypeSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление типа приборов учёта";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -1057,10 +1133,18 @@ namespace CourseWork
                     Res = "Нет ФИО с таким идентификационным номером";
                     return false;
                 }
-                cont.PersonSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление ФИО";
-                return true;
+                if (a.Worker.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить работника " + a + " ?\n" +
+                    a.Worker.Count + " ставок и связанные с ними объекты также будут удалены."))
+                {
+                    cont.PersonSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление ФИО";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -1140,10 +1224,18 @@ namespace CourseWork
                     Res = "Данный заказчик является компанией, а не частным лицом";
                     return false;
                 }
-                cont.CustomerSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление прибора учёта";
-                return true;
+                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
+                    a.Order.Count + " заказов будут удалены."))
+                {
+                    cont.CustomerSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление";
+                    return true;
+                }else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -1229,10 +1321,19 @@ namespace CourseWork
                     Res = "Данный заказчик является  не компанией, а частным лицом";
                     return false;
                 }
-                cont.CustomerSet.Remove(a);
-                cont.SaveChanges();
-                Res = "Успешное удаление прибора учёта";
-                return true;
+                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
+     a.Order.Count + " заказов будут удалены."))
+                {
+                    cont.CustomerSet.Remove(a);
+                    cont.SaveChanges();
+                    Res = "Успешное удаление";
+                    return true;
+                }
+                else
+                {
+                    Res = "Удаление отменено";
+                    return false;
+                }
             }
             catch (Exception e)
             {
