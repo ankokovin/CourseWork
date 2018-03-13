@@ -25,6 +25,9 @@ namespace CourseWork
             dataGridView2.DataSource = Operations.cont.MeterSet.Local.ToBindingList();
             Operations.cont.StatusSet.Load();
             dataGridView3.DataSource = Operations.cont.StatusSet.Local.ToBindingList();
+            Program.HideColumns(ref dataGridView1, EntityTypes.Order);
+            Program.HideColumns(ref dataGridView2, EntityTypes.Meter);
+            Program.HideColumns(ref dataGridView3, EntityTypes.Status);
         }
 
         protected override void Act()

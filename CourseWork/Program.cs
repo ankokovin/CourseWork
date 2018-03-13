@@ -11,6 +11,39 @@ namespace CourseWork
     static class Program
     {
         /// <summary>
+        /// Заголовки столбцов, которые требуется скрыть при помощи <see cref="HideColumns(ref DataGridView, EntityTypes)"/>
+        /// </summary>
+        static Dictionary<EntityTypes, List<String>> HideableColumns = new Dictionary<EntityTypes, List<string>>
+            {
+                { EntityTypes.City, new List<string> { "Street" } },
+                { EntityTypes.Street, new List<string>{"House" } },
+                { EntityTypes.House, new List<string>{"Address" } },
+                { EntityTypes.Address, new List<string>{"Order" } },
+                { EntityTypes.MeterType, new List<string>{"Meter","Stavka"} },
+                { EntityTypes.Meter, new List<string>{"OrderEntry" } },
+                { EntityTypes.Order, new List<string>{"OrderEntry" } },
+                { EntityTypes.Status, new List<string>{"OrderEntry" } },
+                { EntityTypes.Customer, new List<string>{"Order" } },
+                { EntityTypes.Person, new List<string>{"Worker" } },
+                { EntityTypes.User, new List<string>{"Order"} }
+            };
+        /// <summary>
+        /// Скрыть столбцы в соответствии с типом сущности и <see cref="HideableColumns"/>
+        /// </summary>
+        /// <param name="dgv">Искомая таблица <see cref="DataGridView"/></param>
+        /// <param name="entity">Тип сущности в таблице</param>
+        public static void HideColumns(ref DataGridView dgv, EntityTypes entity)
+        {
+            if (HideableColumns.ContainsKey(entity))
+            {
+                foreach (string s in HideableColumns[entity])
+                {
+                    dgv.Columns[FindTitle(dgv, s)].Visible = false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Найти номер столбца <see cref="DataGridView"/> с данным заголовком
         /// </summary>
         /// <param name="dgv">Искомый объект</param>
@@ -41,7 +74,7 @@ namespace CourseWork
             }
             
         }
-
+        
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>

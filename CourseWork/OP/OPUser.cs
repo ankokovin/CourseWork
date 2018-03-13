@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace CourseWork
 {
-    public partial class OPUser1 : CourseWork.OP
+    public partial class OPUser : CourseWork.OP
     {
-        public OPUser1()
+        public OPUser()
         {
             InitializeComponent();
         }

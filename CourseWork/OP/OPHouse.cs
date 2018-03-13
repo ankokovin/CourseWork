@@ -20,6 +20,7 @@ namespace CourseWork
         {
             Operations.cont.StreetSet.Load();
             dataGridView1.DataSource = Operations.cont.StreetSet.Local.ToBindingList();
+            Program.HideColumns(ref dataGridView1, EntityTypes.Street);
         }
         protected override void Act()
         {

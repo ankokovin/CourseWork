@@ -22,5 +22,9 @@ namespace CourseWork
         public virtual Order Order { get; set; }
         public virtual Meter Meter { get; set; }
         public virtual Status Status { get; set; }
+        public override string ToString()
+        {
+            return "Order " + Order.Id + ": " + Status + " " + Meter + " " + RegNumer + " " + StartTime + " " + EndTime;
+        }
     }
 }

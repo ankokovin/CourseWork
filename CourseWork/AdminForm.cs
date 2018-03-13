@@ -92,6 +92,7 @@ namespace CourseWork
             Operations.cont.CitySet.Load();
             CityForm.Source = Operations.cont.CitySet.Local.ToBindingList();
             Changer<OPCity> changer = new Changer<OPCity>(EntityTypes.City);
+            CityForm.CurrentEntity = EntityTypes.City;
             changer.owner = this;
             CityForm.Add += changer.Add;
             CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,Program.FindTitle(dgv,"Id"));
@@ -112,6 +113,7 @@ namespace CourseWork
         {
             SimpleView StreetForm = new SimpleView();
             Operations.cont.StreetSet.Load();
+            StreetForm.CurrentEntity = EntityTypes.Street;
             StreetForm.Source = Operations.cont.StreetSet.Local.ToBindingList();
             Changer<OPStreet> changer = new Changer<OPStreet>(EntityTypes.Street);
             changer.owner = this;
@@ -135,8 +137,9 @@ namespace CourseWork
         {
             SimpleView UserForm = new SimpleView();
             Operations.cont.UserSet.Load();
+            UserForm.CurrentEntity = EntityTypes.User;
             UserForm.Source = Operations.cont.UserSet.Local.ToBindingList();
-            Changer<OPUser1> changer = new Changer<OPUser1>(EntityTypes.User);
+            Changer<OPUser> changer = new Changer<OPUser>(EntityTypes.User);
             changer.owner = this;
             UserForm.Add += changer.Add;
             UserForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
@@ -162,6 +165,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.AddressSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Address;
             simpleView.Source = Operations.cont.AddressSet.Local.ToBindingList();
             Changer<OPAddress> changer = new Changer<OPAddress>(EntityTypes.Address);
             changer.owner = this;
@@ -185,6 +189,7 @@ namespace CourseWork
             SimpleView simpleView = new SimpleView();
             Operations.cont.MeterSet.Load();
             simpleView.Source = Operations.cont.MeterSet.Local.ToBindingList();
+            simpleView.CurrentEntity = EntityTypes.Meter;
             Changer<OPMeter> changer = new Changer<OPMeter>(EntityTypes.Meter);
             changer.owner = this;
             simpleView.Add += changer.Add;
@@ -206,6 +211,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.MeterTypeSet.Load();
+            simpleView.CurrentEntity = EntityTypes.MeterType;
             simpleView.Source = Operations.cont.MeterTypeSet.Local.ToBindingList();
             Changer<OPMeterType> changer = new Changer<OPMeterType>(EntityTypes.MeterType);
             changer.owner = this;
@@ -228,6 +234,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.OrderSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Order;
             simpleView.Source = Operations.cont.OrderSet.Local.ToBindingList();
             Changer<OPOrder> changer = new Changer<OPOrder>(EntityTypes.Order);
             changer.owner = this;
@@ -251,6 +258,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.OrderEntrySet.Load();
+            simpleView.CurrentEntity = EntityTypes.OrderEntry;
             simpleView.Source = Operations.cont.OrderEntrySet.Local.ToBindingList();
             Changer<OPOrderEntry> changer = new Changer<OPOrderEntry>(EntityTypes.OrderEntry);
             changer.owner = this;
@@ -274,6 +282,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.StatusSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Status;
             simpleView.Source = Operations.cont.StatusSet.Local.ToBindingList();
             Changer<OPStatus> changer = new Changer<OPStatus>(EntityTypes.Status);
             changer.owner = this;
@@ -297,6 +306,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.CustomerSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Customer;
             simpleView.Source = Operations.cont.CustomerSet.Local.ToBindingList();
             Changer<OPCustomer> changer = new Changer<OPCustomer>(EntityTypes.Customer);
             changer.owner = this;
@@ -328,6 +338,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.PersonSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Person;
             simpleView.Source = Operations.cont.PersonSet.Local.ToBindingList();
             Changer<OPPerson> changer = new Changer<OPPerson>(EntityTypes.Person);
             changer.owner = this;
@@ -351,6 +362,7 @@ namespace CourseWork
         {
             SimpleView simpleView = new SimpleView();
             Operations.cont.StavkaSet.Load();
+            simpleView.CurrentEntity = EntityTypes.Stavka;
             simpleView.Source = Operations.cont.StavkaSet.Local.ToBindingList();
             Changer<OPStavka> changer = new Changer<OPStavka>(EntityTypes.Stavka);
             changer.owner = this;
@@ -374,6 +386,7 @@ namespace CourseWork
         {
             SimpleView HouseForm = new SimpleView();
             Operations.cont.HouseSet.Load();
+            HouseForm.CurrentEntity = EntityTypes.House;
             HouseForm.Source = Operations.cont.HouseSet.Local.ToBindingList();
             Changer<OPHouse> changer = new Changer<OPHouse>(EntityTypes.House);
             changer.owner = this;

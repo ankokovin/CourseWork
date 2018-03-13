@@ -18,5 +18,9 @@ namespace CourseWork
     
         public virtual Person Person { get; set; }
         public virtual MeterType MeterType { get; set; }
+        public override string ToString()
+        {
+            return Person + " " + MeterType;
+        }
     }
 }

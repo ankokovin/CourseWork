@@ -22,6 +22,8 @@ namespace CourseWork
             Operations.cont.CustomerSet.Load();
             dataGridView1.DataSource = Operations.cont.AddressSet.Local.ToBindingList();
             dataGridView2.DataSource = Operations.cont.CustomerSet.Local.ToBindingList();
+            Program.HideColumns(ref dataGridView1, EntityTypes.Address);
+            Program.HideColumns(ref dataGridView2, EntityTypes.Customer);
         }
 
         protected override void Act()

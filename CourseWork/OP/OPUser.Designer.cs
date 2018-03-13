@@ -1,6 +1,6 @@
 ﻿namespace CourseWork
 {
-    partial class OPUser1
+    partial class OPUser
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -107,7 +107,7 @@
             this.Controls.Add(this.UserTypeComboBox);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.LoginTextBox);
-            this.Name = "OPUser1";
+            this.Name = "OPUser";
             this.Load += new System.EventHandler(this.OPUser1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

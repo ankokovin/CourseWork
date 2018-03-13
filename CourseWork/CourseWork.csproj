@@ -134,11 +134,11 @@
     <Compile Include="OP\OPStreet.Designer.cs">
       <DependentUpon>OPStreet.cs</DependentUpon>
     </Compile>
-    <Compile Include="OP\OPUser1.cs">
+    <Compile Include="OP\OPUser.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OP\OPUser1.Designer.cs">
-      <DependentUpon>OPUser1.cs</DependentUpon>
+    <Compile Include="OP\OPUser.Designer.cs">
+      <DependentUpon>OPUser.cs</DependentUpon>
     </Compile>
     <Compile Include="SimpleView.cs">
       <SubType>Form</SubType>
@@ -272,8 +272,8 @@
     <EmbeddedResource Include="OP\OPStreet.resx">
       <DependentUpon>OPStreet.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OP\OPUser1.resx">
-      <DependentUpon>OPUser1.cs</DependentUpon>
+    <EmbeddedResource Include="OP\OPUser.resx">
+      <DependentUpon>OPUser.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SimpleView.resx">
       <DependentUpon>SimpleView.cs</DependentUpon>
