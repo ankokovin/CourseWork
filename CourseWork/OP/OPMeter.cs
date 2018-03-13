@@ -50,6 +50,7 @@ namespace CourseWork
             if (obj is Meter m)
             {
                 textBox1.Text = m.Name;
+                Program.SelectId(ref dataGridView1, m.MeterType.Id);
             }
             button1.Text = "Изменить прибор учёта";
         }

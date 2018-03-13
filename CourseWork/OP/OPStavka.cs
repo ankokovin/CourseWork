@@ -53,6 +53,11 @@ namespace CourseWork
         {
             ActionMode = ActionMode.Add;
             button1.Text = "Изменить ставку";
+            if (obj is Stavka st)
+            {
+                Program.SelectId(ref dataGridView1, st.Person.Id);
+                Program.SelectId(ref dataGridView2, st.MeterType.Id);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

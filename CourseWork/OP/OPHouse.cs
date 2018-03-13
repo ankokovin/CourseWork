@@ -45,6 +45,7 @@ namespace CourseWork
             {
                 textBox1.Text = h.Number;
                 textBox2.Text = h.FlatsCount.ToString();
+                Program.SelectId(ref dataGridView1, h.Street.Id);
             }
             ActionMode = ActionMode.Change;
             button1.Text = "Изменить дом";

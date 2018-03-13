@@ -42,7 +42,10 @@ namespace CourseWork
         {
             ActionMode = ActionMode.Change;
             if (obj is Address adr)
+            {
                 textBox1.Text = adr.Flat.ToString();
+                Program.SelectId(ref dataGridView1, adr.House.Id);
+            }
             button1.Text = "Изменить адрес";
         }
 

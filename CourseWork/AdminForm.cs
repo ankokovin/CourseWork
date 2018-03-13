@@ -45,7 +45,7 @@ namespace CourseWork
                 op.Owner = owner;
                 op.Show();
                 op.Change(Find(id));
-                op.FormClosed +=(object obj1, FormClosedEventArgs arg)=> dgv.Refresh(); 
+                op.FormClosed +=(object obj, FormClosedEventArgs arg)=> dgv.Refresh(); 
             }
             public object Find(int Id)
             {

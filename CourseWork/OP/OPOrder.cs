@@ -53,6 +53,11 @@ namespace CourseWork
         {
             ActionMode = ActionMode.Change;
             button1.Text = "Изменить заказ";
+            if (obj is Order ord)
+            {
+                Program.SelectId(ref dataGridView1, ord.Address.Id);
+                Program.SelectId(ref dataGridView2, ord.Customer.Id);
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
