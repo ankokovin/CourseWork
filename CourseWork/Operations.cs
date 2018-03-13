@@ -635,7 +635,7 @@ namespace CourseWork
         }
 
         public static bool ChangeOrderEntry(int Id, Order order, DateTime startTime, DateTime endTime, 
-            Status status, string RegNumber,Meter meter, out string Res)
+             string RegNumber,Meter meter, Status status, out string Res)
         {
             try
             {

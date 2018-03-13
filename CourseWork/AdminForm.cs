@@ -31,6 +31,7 @@ namespace CourseWork
             public void Add()
             {
                 T op = new T();
+                op.Owner = owner;
                 op.Show();
             }
             public void Change(DataGridView dgv, int idColomn)
