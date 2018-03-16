@@ -428,7 +428,34 @@ namespace CourseWork
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-           
+            try
+            {
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    XMLQuery.Serialize(saveFileDialog1.OpenFile());
+                    MessageBox.Show("База данных сохранена");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void LoadButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    XMLQuery.Deserialize(openFileDialog1.OpenFile());
+                    MessageBox.Show("Загрузка завершена");
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

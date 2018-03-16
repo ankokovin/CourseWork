@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
+using System.Xml;
 
 namespace CourseWork
 {
     /// <summary>
     /// Операции, выполняемые над базой данных
     /// </summary>
-    static class Operations
+    public static partial class Operations
     {
         /// <summary>
         /// Контекст базы данных
@@ -22,7 +24,7 @@ namespace CourseWork
         /// <param name="Login">Логин пользователя</param>
         /// <param name="Password">Пароль пользователя</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddUser(UserType userType, string Login, string Password,out string Res)
+        public static bool AddUser(UserType userType, string Login, string Password,out string Res,bool save=true)
         {
             try
             { 
@@ -39,7 +41,7 @@ namespace CourseWork
                     UserType = userType
                 };
                 cont.UserSet.Add(user);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Пользователь " + Login + " успешно добавлен";
                 return true;
             }
@@ -59,7 +61,7 @@ namespace CourseWork
         /// <param name="Password">Пароль</param>
         /// <param name="Res">Сообщение результата изменения</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeUser(int Id, UserType userType, string Login, string Password, out string Res)
+        public static bool ChangeUser(int Id, UserType userType, string Login, string Password, out string Res, bool save=true)
         {
             if ((from u in cont.UserSet where u.Login == Login select u).Count() > 1)
             {
@@ -75,7 +77,7 @@ namespace CourseWork
             a.Login = Login;
             a.Password = Password;
             a.UserType = userType;
-            cont.SaveChanges();
+            if (save) cont.SaveChanges();
             Res = "Изменение успешно";
             return true;
         }
@@ -85,7 +87,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер пользователя</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveUser(int id, out string Res)
+        public static bool RemoveUser(int id, out string Res, bool save=true)
         {
             try
             {
@@ -99,7 +101,7 @@ namespace CourseWork
                     u+ "?\n"+u.Order.Count+" заказов а также связанные с ними объекты будут удалены."))
                 {
                     cont.UserSet.Remove(u);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Пользователь " + u.Login + " успешно удалён";
                     return true;
                 }else
@@ -163,7 +165,7 @@ namespace CourseWork
         /// <param name="Name">Название города</param>
         /// <param name="Res">Сообщение о результате</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddCity(string Name, out string Res)
+        public static bool AddCity(string Name, out string Res, bool save=true)
         {
             try
             {
@@ -177,7 +179,7 @@ namespace CourseWork
                     Name = Name
                 };
                 cont.CitySet.Add(city);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Город " + Name + " был добавлен успешно";
                 return true;
             }
@@ -194,7 +196,7 @@ namespace CourseWork
         /// <param name="id">Идентификатор города</param>
         /// <param name="Res">Сообщение о результате</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveCity(int id, out string Res)
+        public static bool RemoveCity(int id, out string Res, bool save=true)
         {
             try
             {
@@ -208,7 +210,7 @@ namespace CourseWork
                     c.Street.Count + " улиц и связанные с ними объекты также будут удалены."))
                 {
                     cont.CitySet.Remove(c);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Город " + c.Name + " c id " + id + " был успешно удалён";
                     return true;
                 }else
@@ -230,7 +232,7 @@ namespace CourseWork
         /// <param name="Name">Новое имя города</param>
         /// <param name="Res">Сообщение о результате</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeCity(int id, string Name, out string Res)
+        public static bool ChangeCity(int id, string Name, out string Res, bool save=true)
         {
             try
             {
@@ -246,7 +248,7 @@ namespace CourseWork
                     return false;
                 }
                 a.Name = Name;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение успешно";
                 return true;
             }catch (Exception e)
@@ -270,7 +272,7 @@ namespace CourseWork
         /// <param name="city">Город</param>
         /// <param name="Res">Сообщение результата добавления</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddStreet(string Name, City city, out string Res)
+        public static bool AddStreet(string Name, City city, out string Res, bool save=true)
         {
             try
             {
@@ -283,7 +285,7 @@ namespace CourseWork
                 street.Name = Name;
                 street.City = city;
                 cont.StreetSet.Add(street);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Улица была добавлена успешно";
                 return true;
             }
@@ -301,7 +303,7 @@ namespace CourseWork
         /// <param name="city">Город</param>
         /// <param name="Res">Сообщение результата изменения</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeStreet(int id, string Name, City city, out string Res)
+        public static bool ChangeStreet(int id, string Name, City city, out string Res, bool save=true)
         {
             if ((from s in cont.StreetSet where s.City.Id == city.Id && s.Name == Name select s).FirstOrDefault() != null)
             {
@@ -316,7 +318,7 @@ namespace CourseWork
             }
             a.Name = Name;
             a.City = city;
-            cont.SaveChanges();
+            if (save) cont.SaveChanges();
             Res = "Изменение успешно";
             return true;
         }
@@ -326,7 +328,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveStreet(int id, out string Res)
+        public static bool RemoveStreet(int id, out string Res, bool save=true)
         {
             try
             {
@@ -340,7 +342,7 @@ namespace CourseWork
                     s.House.Count + " домов и связанные с ними объекты также будут удалены."))
                 {
                     cont.StreetSet.Remove(s);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Удаление успешно";
                     return true;
                 }else
@@ -370,7 +372,7 @@ namespace CourseWork
         /// <param name="street">Улица</param>
         /// <param name="Res">Сообщение результата добавления</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddHouse(string Number, Street street, out string Res)
+        public static bool AddHouse(string Number, Street street, out string Res, bool save=true)
         {
             try
             {
@@ -383,7 +385,7 @@ namespace CourseWork
                 house.Street = street;
                 house.Number = Number;
                 cont.HouseSet.Add(house);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -402,7 +404,7 @@ namespace CourseWork
         /// <param name="street">Улица</param>
         /// <param name="Res">Сообщение результата изменения</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeHouse(int id, string Number, Street street, out string Res)
+        public static bool ChangeHouse(int id, string Number, Street street, out string Res, bool save=true)
         {
             try
             {
@@ -419,7 +421,7 @@ namespace CourseWork
                 }
                 a.Street = street;
                 a.Number = Number;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
             }catch(Exception e)
@@ -434,7 +436,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер дома</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveHouse(int id, out string Res)
+        public static bool RemoveHouse(int id, out string Res, bool save=true)
         {
             try
             {
@@ -448,7 +450,7 @@ namespace CourseWork
                    a.Address.Count + " адресов и связанные с ними объекты также будут удалены."))
                 {
                     cont.HouseSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаления дома номер " + a.Number +
                     " улицы " + a.Street + " города " + a.Street.City;
                     return true;
@@ -478,7 +480,7 @@ namespace CourseWork
         /// <param name="house">Дом</param>
         /// <param name="Res">Сообщение результата добавления</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddAddress(int Flat, House house, out string Res)
+        public static bool AddAddress(int Flat, House house, out string Res, bool save=true)
         {
             try
             {
@@ -491,7 +493,7 @@ namespace CourseWork
                 address.Flat = Flat;
                 address.House = house;
                 cont.AddressSet.Add(address);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }catch(Exception e)
@@ -508,7 +510,7 @@ namespace CourseWork
         /// <param name="house">Дом</param>
         /// <param name="Res">Сообщение результата изменения</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeAddress(int id, int Flat, House house, out string Res)
+        public static bool ChangeAddress(int id, int Flat, House house, out string Res, bool save=true)
         {
             try
             {
@@ -526,7 +528,7 @@ namespace CourseWork
                 }
                 a.Flat = Flat;
                 a.House = house;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
             }
@@ -542,7 +544,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер адреса</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveAddress(int id, out string Res)
+        public static bool RemoveAddress(int id, out string Res, bool save=true)
         {
             try
             {
@@ -556,7 +558,7 @@ namespace CourseWork
                     a.Order.Count + " заказов и связанные с ними объекты также будут удалены."))
                 {
                     cont.AddressSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаления квартиры номер" + a.Flat + "дома номер " + a.House.Number +
                     " улицы " + a.House.Street + " города " + a.House.Street.City;
                     return true;
@@ -581,8 +583,8 @@ namespace CourseWork
         #endregion Address
         #endregion Адреса
         #region Order
-        
-        public static bool AddOrder(User user,Customer customer,Address address, out string Res)
+
+        public static bool AddOrder(User user,Customer customer,Address address, out string Res, bool save=true)
         {
             try
             {
@@ -591,7 +593,7 @@ namespace CourseWork
                 order.Address = address;
                 order.User = user;
                 cont.OrderSet.Add(order);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -602,7 +604,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeOrder(int Id,Customer customer, Address address, out string Res)
+        public static bool ChangeOrder(int Id,Customer customer, Address address, out string Res, bool save=true)
         {
             try
             {
@@ -614,7 +616,7 @@ namespace CourseWork
                 }
                 a.Address = address;
                 a.Customer = customer;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение заказа успешно";
                 return true;
             }
@@ -625,7 +627,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveOrder(int id,out string Res)
+        public static bool RemoveOrder(int id,out string Res, bool save=true)
         {
             try
             {
@@ -639,7 +641,7 @@ namespace CourseWork
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.OrderSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление заказа";
                     return true;
                 }else
@@ -659,7 +661,7 @@ namespace CourseWork
         #endregion Order
         #region OrderEntry
         public static bool AddOrderEntry(Order order,DateTime startTime, DateTime endTime
-            ,string RegNumber,Meter meter, Person person,Status status, out string Res)
+            ,string RegNumber,Meter meter, Person person,Status status, out string Res, bool save=true)
         {
             try
             {
@@ -674,7 +676,7 @@ namespace CourseWork
                     orderEntry.Status = status;
                     orderEntry.Person = person;
                     cont.OrderEntrySet.Add(orderEntry);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное добавление заказа";
                     return true;
                 }else
@@ -691,7 +693,7 @@ namespace CourseWork
         }
 
         public static bool ChangeOrderEntry(int Id, Order order, DateTime startTime, DateTime endTime, 
-             string RegNumber,Meter meter, Person person, Status status, out string Res)
+             string RegNumber,Meter meter, Person person, Status status, out string Res, bool save=true)
         {
             try
             {
@@ -710,7 +712,7 @@ namespace CourseWork
                     a.EndTime = endTime;
                     a.Status = status;
                     a.Person = person;
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Изменение заказной позиции успешно";
                     return true;
                 }else
@@ -726,7 +728,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveOrderEntry(int id, out string Res)
+        public static bool RemoveOrderEntry(int id, out string Res, bool save=true)
         {
             try
             {
@@ -737,7 +739,7 @@ namespace CourseWork
                     return false;
                 }
                 cont.OrderEntrySet.Remove(a);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное удаление заказной позиции";
                 return true;
             }
@@ -752,7 +754,7 @@ namespace CourseWork
         #endregion OrderEntry
         #region Meter
 
-        public static bool AddMeter(string Name,MeterType meterType, out string Res)
+        public static bool AddMeter(string Name,MeterType meterType, out string Res, bool save=true)
         {
             try
             {
@@ -765,7 +767,7 @@ namespace CourseWork
                 meter.Name = Name;
                 meter.MeterType = meterType;
                 cont.MeterSet.Add(meter);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -776,7 +778,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeMeter(int Id, string Name,MeterType meterType, out string Res)
+        public static bool ChangeMeter(int Id, string Name,MeterType meterType, out string Res, bool save=true)
         {
             try
             {
@@ -793,7 +795,7 @@ namespace CourseWork
                 }
                 a.Name = Name;
                 a.MeterType = meterType;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
             }
@@ -804,7 +806,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveMeter(int id, out string Res)
+        public static bool RemoveMeter(int id, out string Res, bool save=true)
         {
             try
             {
@@ -818,7 +820,7 @@ namespace CourseWork
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.MeterSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление прибора учёта";
                     return true;
                 }
@@ -839,7 +841,7 @@ namespace CourseWork
         #endregion Meter
         #region Status
 
-        public static bool AddStatus(string Name, out string Res)
+        public static bool AddStatus(string Name, out string Res, bool save=true)
         {
             try
             {
@@ -851,7 +853,7 @@ namespace CourseWork
                 Status status = new Status();
                 status.Name = Name;
                 cont.StatusSet.Add(status);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -862,7 +864,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeStatus(int Id, string Name, out string Res)
+        public static bool ChangeStatus(int Id, string Name, out string Res, bool save=true)
         {
             try
             {
@@ -878,7 +880,7 @@ namespace CourseWork
                     return false;
                 }
                 a.Name = Name;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение статуса успешно";
                 return true;
             }
@@ -889,7 +891,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveStatus(int id, out string Res)
+        public static bool RemoveStatus(int id, out string Res, bool save=true)
         {
             try
             {
@@ -903,7 +905,7 @@ namespace CourseWork
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.StatusSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление статуса";
                     return true;
                 }else
@@ -923,7 +925,7 @@ namespace CourseWork
         #endregion Status
         #region MeterType
 
-        public static bool AddMeterType(string Name, out string Res)
+        public static bool AddMeterType(string Name, out string Res, bool save=true)
         {
             try
             {
@@ -935,7 +937,7 @@ namespace CourseWork
                 MeterType meterType = new MeterType();
                 meterType.Name = Name;
                 cont.MeterTypeSet.Add(meterType);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -946,7 +948,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeMeterType(int Id, string Name, out string Res)
+        public static bool ChangeMeterType(int Id, string Name, out string Res, bool save=true)
         {
             try
             {
@@ -962,7 +964,7 @@ namespace CourseWork
                     return false;
                 }
                 a.Name = Name;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение прибора учёта успешно";
                 return true;
             }
@@ -973,7 +975,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveMeterType(int id, out string Res)
+        public static bool RemoveMeterType(int id, out string Res, bool save=true)
         {
             try
             {
@@ -988,7 +990,7 @@ namespace CourseWork
                     a.Meter.Count + " приборов учёта и " + a.Stavka.Count + " ставок, а так же связанные с ними объекты также будут удалены."))
                 {
                     cont.MeterTypeSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление типа приборов учёта";
                     return true;
                 }else
@@ -1008,7 +1010,7 @@ namespace CourseWork
         #endregion MeterType
         #region Stavka
 
-        public static bool AddStavka(MeterType meterType,Person person, out string Res)
+        public static bool AddStavka(MeterType meterType,Person person, out string Res, bool save=true)
         {
             try
             {
@@ -1021,7 +1023,7 @@ namespace CourseWork
                 stavka.MeterType = meterType;
                 stavka.Person = person;
                 cont.StavkaSet.Add(stavka);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -1032,7 +1034,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeStavka(int Id,MeterType meterType,Person person, out string Res)
+        public static bool ChangeStavka(int Id,MeterType meterType,Person person, out string Res, bool save=true)
         {
             try
             {
@@ -1049,7 +1051,7 @@ namespace CourseWork
                 }
                 a.MeterType = meterType;
                 a.Person = person;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение ставки успешно";
                 return true;
             }
@@ -1060,7 +1062,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveStavka(int id, out string Res)
+        public static bool RemoveStavka(int id, out string Res, bool save=true)
         {
             try
             {
@@ -1071,7 +1073,7 @@ namespace CourseWork
                     return false;
                 }
                 cont.StavkaSet.Remove(a);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное удаление ставки";
                 return true;
             }
@@ -1083,11 +1085,10 @@ namespace CourseWork
         }
 
         public static Stavka FindStavka(int id) => (from o in cont.StavkaSet where o.Id == id select o).FirstOrDefault();
-
         #endregion Stavka
         #region Person
 
-        public static bool AddPerson(string FIO, out string Res)
+        public static bool AddPerson(string FIO, out string Res, bool save=true)
         {
             try
             {
@@ -1099,7 +1100,7 @@ namespace CourseWork
                 Person person = new Person();
                 person.FIO = FIO;
                 cont.PersonSet.Add(person);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -1110,7 +1111,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangePerson(int Id, string FIO, out string Res)
+        public static bool ChangePerson(int Id, string FIO, out string Res, bool save=true)
         {
             try
             {
@@ -1126,7 +1127,7 @@ namespace CourseWork
                     return false;
                 }
                 a.FIO = FIO;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение ФИО успешно";
                 return true;
             }
@@ -1137,7 +1138,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemovePerson(int id, out string Res)
+        public static bool RemovePerson(int id, out string Res, bool save=true)
         {
             try
             {
@@ -1151,7 +1152,7 @@ namespace CourseWork
                     a.Stavka.Count + " ставок и связанные с ними объекты также будут удалены."))
                 {
                     cont.PersonSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление ФИО";
                     return true;
                 }else
@@ -1171,7 +1172,7 @@ namespace CourseWork
         #endregion Person
         #region Customer
 
-        public static bool AddCustomer(string Name, string Passport, out string Res)
+        public static bool AddCustomer(string Name, string Passport, out string Res, bool save=true)
         {
             try
             {
@@ -1184,7 +1185,7 @@ namespace CourseWork
                 customer.Name = Name;
                 customer.Passport = Passport;
                 cont.CustomerSet.Add(customer);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -1195,7 +1196,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeCustomer(int Id, string Name, string Passport, out string Res)
+        public static bool ChangeCustomer(int Id, string Name, string Passport, out string Res, bool save=true)
         {
             try
             {
@@ -1212,7 +1213,7 @@ namespace CourseWork
                 }
                 a.Passport = Passport;
                 a.Name = Name;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
             }
@@ -1223,7 +1224,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveCustomer(int id, out string Res)
+        public static bool RemoveCustomer(int id, out string Res, bool save=true)
         {
             try
             {
@@ -1242,7 +1243,7 @@ namespace CourseWork
                     a.Order.Count + " заказов будут удалены."))
                 {
                     cont.CustomerSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление";
                     return true;
                 }else
@@ -1262,7 +1263,7 @@ namespace CourseWork
         #endregion Customer
         #region Company
 
-        public static bool AddCompany(string Name, string Passport,string CompanyName,string INN,  out string Res)
+        public static bool AddCompany(string Name, string Passport,string CompanyName,string INN,  out string Res, bool save=true)
         {
             try
             {
@@ -1278,7 +1279,7 @@ namespace CourseWork
                 company.INN = INN;
                 company.CompanyName = CompanyName;
                 cont.CustomerSet.Add(company);
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
             }
@@ -1289,7 +1290,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeCompany(int Id, string Name, string Passport, string CompanyName, string INN, out string Res)
+        public static bool ChangeCompany(int Id, string Name, string Passport, string CompanyName, string INN, out string Res, bool save=true)
         {
 
             try
@@ -1307,7 +1308,7 @@ namespace CourseWork
                 }
                 a.Passport = Passport;
                 a.Name = Name;
-                cont.SaveChanges();
+                if (save) cont.SaveChanges();
                 Res = "Изменение компании успешно";
                 return true;
             }
@@ -1319,7 +1320,7 @@ namespace CourseWork
 
         }
 
-        public static bool RemoveCompany(int id, out string Res)
+        public static bool RemoveCompany(int id, out string Res, bool save=true)
         {
 
             try
@@ -1339,7 +1340,7 @@ namespace CourseWork
      a.Order.Count + " заказов будут удалены."))
                 {
                     cont.CustomerSet.Remove(a);
-                    cont.SaveChanges();
+                    if (save) cont.SaveChanges();
                     Res = "Успешное удаление";
                     return true;
                 }
@@ -1358,5 +1359,45 @@ namespace CourseWork
 
         public static Company FindCompany(int id) => (from o in cont.CustomerSet where o.Id == id select o).FirstOrDefault() as Company;
         #endregion Company
+        static public Dictionary<EntityTypes, int> NextId;
+        static public void InicializeNextId()
+        {
+            NextId = new Dictionary<EntityTypes, int>();
+            AddUser(UserType.Operator, "", "", out string res0);
+            NextId[EntityTypes.User] = (from p in cont.UserSet where p.Login.Length == 0 select p.Id).First();
+            AddCity("", out string Res);
+            NextId[EntityTypes.City] = (from p in cont.CitySet where p.Name.Length == 0 select p.Id).First();
+            AddStreet("",FindCity(NextId[EntityTypes.City]), out string Res1);
+            NextId[EntityTypes.Street] = (from p in cont.StreetSet where p.Name.Length == 0 select p.Id).First();
+            AddHouse("", FindStreet(NextId[EntityTypes.Street]), out string Res2);
+            NextId[EntityTypes.House] = (from p in cont.HouseSet where p.Number.Length == 0 select p.Id).First();
+            AddAddress(-1, FindHouse(NextId[EntityTypes.House]), out string res4);
+            NextId[EntityTypes.Address] = (from p in cont.AddressSet where p.Flat == -1 select p.Id).First();
+            AddCustomer("", "", out string res5);
+            NextId[EntityTypes.Customer] = (from p in cont.CustomerSet where p.Name.Length == 0 select p.Id).First();
+            AddPerson("", out string res6);
+            NextId[EntityTypes.Person] = (from p in cont.PersonSet where p.FIO.Length == 0 select p.Id).First();
+            AddMeterType("", out string res7);
+            NextId[EntityTypes.MeterType] = (from p in cont.MeterTypeSet where p.Name.Length == 0 select p.Id).First();
+            AddMeter("", Operations.FindMeterType(NextId[EntityTypes.MeterType]), out string res8);
+            NextId[EntityTypes.Meter] = (from p in cont.MeterSet where p.Name.Length == 0 select p.Id).First();
+            AddStavka(Operations.FindMeterType(NextId[EntityTypes.MeterType]), FindPerson(NextId[EntityTypes.Person]), out string res9);
+            int mt = NextId[EntityTypes.MeterType];
+            NextId[EntityTypes.Stavka] = (from p in cont.StavkaSet where p.MeterType.Id ==mt  select p.Id).First();
+            AddOrder(FindUser(NextId[EntityTypes.User]), FindCustomer(NextId[EntityTypes.Customer]), FindAddress(NextId[EntityTypes.Address]), out string res10);
+            int ad = NextId[EntityTypes.Address];
+            NextId[EntityTypes.Order] = (from p in cont.OrderSet where p.Address.Id ==  ad select p.Id).First();
+            AddStatus("", out string Res10);
+            NextId[EntityTypes.Status] = (from p in cont.StatusSet where p.Name.Length == 0 select p.Id).First();
+            AddOrderEntry(FindOrder(NextId[EntityTypes.Order]), new DateTime(), new DateTime(), "", FindMeter(NextId[EntityTypes.Meter]), FindPerson(NextId[EntityTypes.Person]),
+                FindStatus(NextId[EntityTypes.Status]), out string res11);
+            NextId[EntityTypes.OrderEntry] = (from p in cont.OrderEntrySet where p.RegNumer.Length == 0 select p.Id).First();
+            RemoveCity(NextId[EntityTypes.City],out string res12);
+            RemoveUser(NextId[EntityTypes.User], out string res13);
+            RemoveMeterType(NextId[EntityTypes.MeterType], out string res14);
+            RemovePerson(NextId[EntityTypes.Person], out string res15);
+            RemoveCustomer(NextId[EntityTypes.Customer], out string res16);
+            RemoveStatus(NextId[EntityTypes.Status], out string res17);
+        }
     }
 }

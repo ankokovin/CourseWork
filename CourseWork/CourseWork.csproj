@@ -234,6 +234,7 @@
     <Compile Include="UserType.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="XMLQuery.cs" />
     <EmbeddedResource Include="OP\OP.resx">
       <DependentUpon>OP.cs</DependentUpon>
     </EmbeddedResource>

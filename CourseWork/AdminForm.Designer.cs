@@ -49,6 +49,8 @@
             this.SaveButton = new System.Windows.Forms.Button();
             this.LoadButton = new System.Windows.Forms.Button();
             this.XmlGroupBox = new System.Windows.Forms.GroupBox();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.AddressGroupBox.SuspendLayout();
             this.MeterGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -263,6 +265,7 @@
             this.LoadButton.TabIndex = 10;
             this.LoadButton.Text = "Загрузить из XML";
             this.LoadButton.UseVisualStyleBackColor = true;
+            this.LoadButton.Click += new System.EventHandler(this.LoadButton_Click);
             // 
             // XmlGroupBox
             // 
@@ -274,6 +277,15 @@
             this.XmlGroupBox.TabIndex = 11;
             this.XmlGroupBox.TabStop = false;
             this.XmlGroupBox.Text = "XML";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "XML|*.xml";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "XML|*.xml";
             // 
             // AdminForm
             // 
@@ -323,5 +335,7 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button LoadButton;
         private System.Windows.Forms.GroupBox XmlGroupBox;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
