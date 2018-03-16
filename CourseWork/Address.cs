@@ -26,9 +26,5 @@ namespace CourseWork
         public virtual House House { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Order { get; set; }
-        public override string ToString()
-        {
-            return House.ToString() + " " + Flat;
-        }
     }
 }

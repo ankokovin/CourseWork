@@ -46,11 +46,15 @@
             this.WorkerGroupBox = new System.Windows.Forms.GroupBox();
             this.StavkaButton = new System.Windows.Forms.Button();
             this.PersonButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.LoadButton = new System.Windows.Forms.Button();
+            this.XmlGroupBox = new System.Windows.Forms.GroupBox();
             this.AddressGroupBox.SuspendLayout();
             this.MeterGroupBox.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.CustomerGroupBox.SuspendLayout();
             this.WorkerGroupBox.SuspendLayout();
+            this.XmlGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // AddCityButton
@@ -241,11 +245,42 @@
             this.PersonButton.UseVisualStyleBackColor = true;
             this.PersonButton.Click += new System.EventHandler(this.PersonButton_Click);
             // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(6, 19);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(124, 23);
+            this.SaveButton.TabIndex = 9;
+            this.SaveButton.Text = "Сохранить в XML";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
+            // 
+            // LoadButton
+            // 
+            this.LoadButton.Location = new System.Drawing.Point(6, 45);
+            this.LoadButton.Name = "LoadButton";
+            this.LoadButton.Size = new System.Drawing.Size(124, 23);
+            this.LoadButton.TabIndex = 10;
+            this.LoadButton.Text = "Загрузить из XML";
+            this.LoadButton.UseVisualStyleBackColor = true;
+            // 
+            // XmlGroupBox
+            // 
+            this.XmlGroupBox.Controls.Add(this.SaveButton);
+            this.XmlGroupBox.Controls.Add(this.LoadButton);
+            this.XmlGroupBox.Location = new System.Drawing.Point(297, 12);
+            this.XmlGroupBox.Name = "XmlGroupBox";
+            this.XmlGroupBox.Size = new System.Drawing.Size(136, 74);
+            this.XmlGroupBox.TabIndex = 11;
+            this.XmlGroupBox.TabStop = false;
+            this.XmlGroupBox.Text = "XML";
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 261);
+            this.ClientSize = new System.Drawing.Size(496, 261);
+            this.Controls.Add(this.XmlGroupBox);
             this.Controls.Add(this.WorkerGroupBox);
             this.Controls.Add(this.CustomerGroupBox);
             this.Controls.Add(this.groupBox2);
@@ -260,6 +295,7 @@
             this.groupBox2.ResumeLayout(false);
             this.CustomerGroupBox.ResumeLayout(false);
             this.WorkerGroupBox.ResumeLayout(false);
+            this.XmlGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -284,5 +320,8 @@
         private System.Windows.Forms.GroupBox WorkerGroupBox;
         private System.Windows.Forms.Button StavkaButton;
         private System.Windows.Forms.Button PersonButton;
+        private System.Windows.Forms.Button SaveButton;
+        private System.Windows.Forms.Button LoadButton;
+        private System.Windows.Forms.GroupBox XmlGroupBox;
     }
 }

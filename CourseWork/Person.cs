@@ -17,17 +17,16 @@ namespace CourseWork
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Person()
         {
-            this.Worker = new HashSet<Stavka>();
+            this.Stavka = new HashSet<Stavka>();
+            this.OrderEntry = new HashSet<OrderEntry>();
         }
     
         public int Id { get; set; }
         public string FIO { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stavka> Worker { get; set; }
-        public override string ToString()
-        {
-            return FIO;
-        }
+        public virtual ICollection<Stavka> Stavka { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<OrderEntry> OrderEntry { get; set; }
     }
 }

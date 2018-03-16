@@ -27,9 +27,5 @@ namespace CourseWork
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrderEntry> OrderEntry { get; set; }
         public virtual Address Address { get; set; }
-        public override string ToString()
-        {
-            return Id + " " + Customer + " " + Address + " " + OrderEntry.Count + " " + User;
-        }
     }
 }

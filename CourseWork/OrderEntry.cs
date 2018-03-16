@@ -18,13 +18,11 @@ namespace CourseWork
         public string RegNumer { get; set; }
         public System.DateTime StartTime { get; set; }
         public System.DateTime EndTime { get; set; }
+        public Nullable<int> PersonId { get; set; }
     
         public virtual Order Order { get; set; }
         public virtual Meter Meter { get; set; }
         public virtual Status Status { get; set; }
-        public override string ToString()
-        {
-            return "Order " + Order.Id + ": " + Status + " " + Meter + " " + RegNumer + " " + StartTime + " " + EndTime;
-        }
+        public virtual Person Person { get; set; }
     }
 }

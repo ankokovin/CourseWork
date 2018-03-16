@@ -16,9 +16,5 @@ namespace CourseWork
     {
         public string CompanyName { get; set; }
         public string INN { get; set; }
-        public override string ToString()
-        {
-            return base.ToString() + " " + CompanyName + " " + INN;
-        }
     }
 }

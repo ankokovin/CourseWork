@@ -22,14 +22,9 @@ namespace CourseWork
     
         public int Id { get; set; }
         public string Number { get; set; }
-        public int FlatsCount { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Address> Address { get; set; }
         public virtual Street Street { get; set; }
-        public override string ToString()
-        {
-            return Street.ToString() + " " + Number;
-        }
     }
 }

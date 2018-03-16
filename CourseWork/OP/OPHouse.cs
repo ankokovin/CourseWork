@@ -30,12 +30,12 @@ namespace CourseWork
             if (!ok) return;
             if (ActionMode == ActionMode.Add)
             {
-                if (Operations.AddHouse(textBox1.Text, int.Parse(textBox2.Text), Operations.FindStreet(id), out string Res))
+                if (Operations.AddHouse(textBox1.Text, Operations.FindStreet(id), out string Res))
                     Close();
                 MessageBox.Show(Res);
             }else
             {
-                if (Operations.ChangeHouse(Id,textBox1.Text, int.Parse(textBox2.Text), Operations.FindStreet(id), out string Res))
+                if (Operations.ChangeHouse(Id,textBox1.Text, Operations.FindStreet(id), out string Res))
                     Close();
                 MessageBox.Show(Res);
             }
@@ -46,7 +46,6 @@ namespace CourseWork
             if (obj is House h)
             {
                 textBox1.Text = h.Number;
-                textBox2.Text = h.FlatsCount.ToString();
                 Program.SelectId(ref dataGridView1, h.Street.Id);
                 Text += h + " id:" + h.Id;
             }

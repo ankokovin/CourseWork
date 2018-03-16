@@ -370,7 +370,7 @@ namespace CourseWork
         /// <param name="street">Улица</param>
         /// <param name="Res">Сообщение результата добавления</param>
         /// <returns>Результат добавления</returns>
-        public static bool AddHouse(string Number,int FlatsCount, Street street, out string Res)
+        public static bool AddHouse(string Number, Street street, out string Res)
         {
             try
             {
@@ -382,7 +382,6 @@ namespace CourseWork
                 House house = new House();
                 house.Street = street;
                 house.Number = Number;
-                house.FlatsCount = FlatsCount;
                 cont.HouseSet.Add(house);
                 cont.SaveChanges();
                 Res = "Успешное добавление";
@@ -403,7 +402,7 @@ namespace CourseWork
         /// <param name="street">Улица</param>
         /// <param name="Res">Сообщение результата изменения</param>
         /// <returns>Результат изменения</returns>
-        public static bool ChangeHouse(int id, string Number, int FlatsCount, Street street, out string Res)
+        public static bool ChangeHouse(int id, string Number, Street street, out string Res)
         {
             try
             {
@@ -420,7 +419,6 @@ namespace CourseWork
                 }
                 a.Street = street;
                 a.Number = Number;
-                a.FlatsCount = FlatsCount;
                 cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
@@ -661,21 +659,29 @@ namespace CourseWork
         #endregion Order
         #region OrderEntry
         public static bool AddOrderEntry(Order order,DateTime startTime, DateTime endTime
-            ,string RegNumber,Meter meter,Status status, out string Res)
+            ,string RegNumber,Meter meter, Person person,Status status, out string Res)
         {
             try
             {
-                OrderEntry orderEntry = new OrderEntry();
-                orderEntry.Order = order;
-                orderEntry.StartTime = startTime;
-                orderEntry.EndTime = endTime;
-                orderEntry.Meter = meter;
-                orderEntry.RegNumer = RegNumber;
-                orderEntry.Status = status;
-                cont.OrderEntrySet.Add(orderEntry);
-                cont.SaveChanges();
-                Res = "Успешное добавление заказа";
-                return true;
+                if (person==null || (from s in person.Stavka where s.MeterType == meter.MeterType select s).Any())
+                {
+                    OrderEntry orderEntry = new OrderEntry();
+                    orderEntry.Order = order;
+                    orderEntry.StartTime = startTime;
+                    orderEntry.EndTime = endTime;
+                    orderEntry.Meter = meter;
+                    orderEntry.RegNumer = RegNumber;
+                    orderEntry.Status = status;
+                    orderEntry.Person = person;
+                    cont.OrderEntrySet.Add(orderEntry);
+                    cont.SaveChanges();
+                    Res = "Успешное добавление заказа";
+                    return true;
+                }else
+                {
+                    Res = "Данный работник не имеет необходимой ставки";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -685,7 +691,7 @@ namespace CourseWork
         }
 
         public static bool ChangeOrderEntry(int Id, Order order, DateTime startTime, DateTime endTime, 
-             string RegNumber,Meter meter, Status status, out string Res)
+             string RegNumber,Meter meter, Person person, Status status, out string Res)
         {
             try
             {
@@ -695,15 +701,23 @@ namespace CourseWork
                     Res = "Нет заказной позиции с данным идентификационным номером";
                     return false;
                 }
-                a.Meter = meter;
-                a.Order = order;
-                a.RegNumer = RegNumber;
-                a.StartTime = startTime;
-                a.EndTime = endTime;
-                a.Status = status;
-                cont.SaveChanges();
-                Res = "Изменение заказной позиции успешно";
-                return true;
+                if ((from s in person.Stavka where s.MeterType == meter.MeterType select s).Any())
+                {
+                    a.Meter = meter;
+                    a.Order = order;
+                    a.RegNumer = RegNumber;
+                    a.StartTime = startTime;
+                    a.EndTime = endTime;
+                    a.Status = status;
+                    a.Person = person;
+                    cont.SaveChanges();
+                    Res = "Изменение заказной позиции успешно";
+                    return true;
+                }else
+                {
+                    Res = "Данный работник не имеет необходимой ставки";
+                    return false;
+                }
             }
             catch (Exception e)
             {
@@ -1133,8 +1147,8 @@ namespace CourseWork
                     Res = "Нет ФИО с таким идентификационным номером";
                     return false;
                 }
-                if (a.Worker.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить работника " + a + " ?\n" +
-                    a.Worker.Count + " ставок и связанные с ними объекты также будут удалены."))
+                if (a.Stavka.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить работника " + a + " ?\n" +
+                    a.Stavka.Count + " ставок и связанные с ними объекты также будут удалены."))
                 {
                     cont.PersonSet.Remove(a);
                     cont.SaveChanges();

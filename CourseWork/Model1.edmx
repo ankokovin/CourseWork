@@ -68,6 +68,10 @@
       <End Role="Street" EntitySet="StreetSet" />
       <End Role="House" EntitySet="HouseSet" />
     </AssociationSet>
+    <AssociationSet Name="PersonOrderEntry" Association="Model1.Store.PersonOrderEntry">
+      <End Role="Person" EntitySet="PersonSet" />
+      <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+    </AssociationSet>
     <AssociationSet Name="FK_Company_inherits_Customer" Association="Model1.Store.FK_Company_inherits_Customer">
       <End Role="Customer" EntitySet="CustomerSet" />
       <End Role="Company" EntitySet="CustomerSet_Company" />
@@ -86,25 +90,25 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserType" Type="int" Nullable="false" />
     <Property Name="Login" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Passport" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="PersonSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FIO" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="StavkaSet">
     <Key>
@@ -118,18 +122,19 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="MeterType_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="OrderEntrySet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RegNumer" Type="nvarchar(max)" Nullable="false" />
     <Property Name="StartTime" Type="datetime" Nullable="false" />
     <Property Name="EndTime" Type="datetime" Nullable="false" />
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PersonId" Type="int" Nullable="true" />
     <Property Name="Order_Id" Type="int" Nullable="false" />
     <Property Name="Meter_Id" Type="int" Nullable="false" />
     <Property Name="Status_Id" Type="int" Nullable="false" />
@@ -138,46 +143,45 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="StatusSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="CitySet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="StreetSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="City_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="HouseSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="FlatsCount" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Number" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Street_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="AddressSet">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Flat" Type="int" Nullable="false" />
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Flat" Type="int" Nullable="false" />
     <Property Name="House_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CustomerSet_Company">
@@ -356,6 +360,20 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="PersonOrderEntry">
+    <End Role="Person" Type="Model1.Store.PersonSet" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderEntry" Type="Model1.Store.OrderEntrySet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Person">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderEntry">
+        <PropertyRef Name="PersonId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Company_inherits_Customer">
     <End Role="Customer" Type="Model1.Store.CustomerSet" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -436,6 +454,10 @@
             <End Role="Street" EntitySet="StreetSet" />
             <End Role="House" EntitySet="HouseSet" />
           </AssociationSet>
+          <AssociationSet Name="PersonOrderEntry" Association="Model1.PersonOrderEntry">
+            <End Role="Person" EntitySet="PersonSet" />
+            <End Role="OrderEntry" EntitySet="OrderEntrySet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Order">
           <Key>
@@ -476,7 +498,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="FIO" Type="String" Nullable="false" />
-          <NavigationProperty Name="Worker" Relationship="Model1.PersonWorker" FromRole="Person" ToRole="Worker" />
+          <NavigationProperty Name="Stavka" Relationship="Model1.PersonWorker" FromRole="Person" ToRole="Worker" />
+          <NavigationProperty Name="OrderEntry" Relationship="Model1.PersonOrderEntry" FromRole="Person" ToRole="OrderEntry" />
         </EntityType>
         <EntityType Name="Stavka">
           <Key>
@@ -524,6 +547,8 @@
           <NavigationProperty Name="Status" Relationship="Model1.StatusOrderEntry" FromRole="OrderEntry" ToRole="Status" />
           <Property Name="StartTime" Type="DateTime" Nullable="false" />
           <Property Name="EndTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Person" Relationship="Model1.PersonOrderEntry" FromRole="OrderEntry" ToRole="Person" />
+          <Property Name="PersonId" Type="Int32" Nullable="true" />
         </EntityType>
         <Association Name="OrderOrderEntry">
           <End Type="Model1.Order" Role="Order" Multiplicity="1" >
@@ -606,7 +631,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
           <Property Name="Number" Type="String" Nullable="false" />
-          <Property Name="FlatsCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Address" Relationship="Model1.HouseAddress" FromRole="House" ToRole="Address" />
           <NavigationProperty Name="Street" Relationship="Model1.StreetHouse" FromRole="House" ToRole="Street" />
         </EntityType>
@@ -636,6 +660,20 @@
             <OnDelete Action="Cascade" />
           </End>
           <End Type="Model1.House" Role="House" Multiplicity="*" />
+        </Association>
+        <Association Name="PersonOrderEntry">
+          <End Type="Model1.Person" Role="Person" Multiplicity="0..1" >
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Model1.OrderEntry" Role="OrderEntry" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Person">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderEntry">
+              <PropertyRef Name="PersonId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -706,6 +744,7 @@
           <ScalarProperty Name="RegNumer" ColumnName="RegNumer" />
           <ScalarProperty Name="StartTime" ColumnName="StartTime" />
           <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -746,7 +785,6 @@
         <MappingFragment StoreEntitySet="HouseSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Number" ColumnName="Number" />
-          <ScalarProperty Name="FlatsCount" ColumnName="FlatsCount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

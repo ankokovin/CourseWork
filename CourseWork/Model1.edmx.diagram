@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="4.875" PointY="0.5" />
         <EntityTypeShape EntityType="Model1.Company" PointX="4.875" PointY="2.625" Width="1.5" />
-        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="3.25" PointY="5.125" />
+        <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="5" PointY="5" />
         <EntityTypeShape EntityType="Model1.Stavka" Width="1.5" PointX="4.875" PointY="7.5" />
         <AssociationConnector Association="Model1.CustomerOrder" />
         <AssociationConnector Association="Model1.UserOrder" />
@@ -32,6 +32,7 @@
         <AssociationConnector Association="Model1.HouseAddress" />
         <AssociationConnector Association="Model1.AddressOrder" />
         <AssociationConnector Association="Model1.StreetHouse" />
+        <AssociationConnector Association="Model1.PersonOrderEntry" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

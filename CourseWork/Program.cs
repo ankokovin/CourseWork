@@ -22,9 +22,10 @@ namespace CourseWork
                 { EntityTypes.MeterType, new List<string>{"Meter","Stavka"} },
                 { EntityTypes.Meter, new List<string>{"OrderEntry" } },
                 { EntityTypes.Order, new List<string>{"OrderEntry" } },
+                { EntityTypes.OrderEntry, new List<string>{"PersonId"} },
                 { EntityTypes.Status, new List<string>{"OrderEntry" } },
                 { EntityTypes.Customer, new List<string>{"Order" } },
-                { EntityTypes.Person, new List<string>{"Worker" } },
+                { EntityTypes.Person, new List<string>{"Stavka","OrderEntry" } },
                 { EntityTypes.User, new List<string>{"Order"} }
             };
         /// <summary>
@@ -40,6 +41,15 @@ namespace CourseWork
                 {
                     dgv.Columns[FindTitle(dgv, s)].Visible = false;
                 }
+            }
+        }
+
+        public static void HideRows(ref DataGridView dgv, Predicate<DataGridViewRow> predicate)
+        {
+            dgv.CurrentCell = null;
+            for (int i = 0; i < dgv.RowCount; ++i)
+            {
+                dgv.Rows[i].Visible = predicate(dgv.Rows[i]);
             }
         }
 

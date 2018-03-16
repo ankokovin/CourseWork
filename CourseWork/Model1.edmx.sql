@@ -1,7 +1,8 @@
+
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/13/2018 21:15:02
+-- Date Created: 03/16/2018 14:41:20
 -- Generated from EDMX file: C:\Users\user\Documents\GitHub\CourseWork\CourseWork\Model1.edmx
 -- --------------------------------------------------
 
@@ -51,6 +52,9 @@ IF OBJECT_ID(N'[dbo].[FK_AddressOrder]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_StreetHouse]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[HouseSet] DROP CONSTRAINT [FK_StreetHouse];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PersonOrderEntry]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderEntrySet] DROP CONSTRAINT [FK_PersonOrderEntry];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Company_inherits_Customer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CustomerSet_Company] DROP CONSTRAINT [FK_Company_inherits_Customer];
@@ -162,6 +166,7 @@ CREATE TABLE [dbo].[OrderEntrySet] (
     [RegNumer] nvarchar(max)  NOT NULL,
     [StartTime] datetime  NOT NULL,
     [EndTime] datetime  NOT NULL,
+    [PersonId] int  NULL,
     [Order_Id] int  NOT NULL,
     [Meter_Id] int  NOT NULL,
     [Status_Id] int  NOT NULL
@@ -201,7 +206,6 @@ GO
 CREATE TABLE [dbo].[HouseSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Number] nvarchar(max)  NOT NULL,
-    [FlatsCount] int  NOT NULL,
     [Street_Id] int  NOT NULL
 );
 GO
@@ -216,9 +220,9 @@ GO
 
 -- Creating table 'CustomerSet_Company'
 CREATE TABLE [dbo].[CustomerSet_Company] (
-    [Id] int  NOT NULL,
     [CompanyName] nvarchar(max)  NOT NULL,
-    [INN] nvarchar(max)  NOT NULL
+    [INN] nvarchar(max)  NOT NULL,
+    [Id] int  NOT NULL
 );
 GO
 
@@ -492,6 +496,21 @@ GO
 CREATE INDEX [IX_FK_StreetHouse]
 ON [dbo].[HouseSet]
     ([Street_Id]);
+GO
+
+-- Creating foreign key on [PersonId] in table 'OrderEntrySet'
+ALTER TABLE [dbo].[OrderEntrySet]
+ADD CONSTRAINT [FK_PersonOrderEntry]
+    FOREIGN KEY ([PersonId])
+    REFERENCES [dbo].[PersonSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_PersonOrderEntry'
+CREATE INDEX [IX_FK_PersonOrderEntry]
+ON [dbo].[OrderEntrySet]
+    ([PersonId]);
 GO
 
 -- Creating foreign key on [Id] in table 'CustomerSet_Company'
