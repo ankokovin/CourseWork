@@ -45,6 +45,7 @@ namespace CourseWork
                         case UserType.Operator:
                             OperatorForm operatorForm = new OperatorForm();
                             operatorForm.FormClosed += BackUp;
+                            operatorForm.CurrentUser = result;
                             operatorForm.Show();
                             break;
                     }

@@ -23,6 +23,7 @@ namespace CourseWork
 
         static public void Deserialize(Stream s)
         {
+            Serialize(new FileStream("backup.xml",FileMode.Create));
             using (StreamReader sr = new StreamReader(s))
             {
                 LessCont lessCont = (LessCont)xmlSerializer.Deserialize(sr);
@@ -35,55 +36,55 @@ namespace CourseWork
     [XmlRoot(ElementName = "Address")]
     public class _Address
     {
-        public int Id;
-        public int Flat;
-        public int HouseId;
+        public int Id { get; set; }
+        public int Flat { get; set; }
+        public int HouseId { get; set; }
         public static  _Address Trans(Address address) => new _Address { Id = address.Id, Flat = address.Flat, HouseId=address.House.Id};
     }
     [Serializable]
     [XmlRoot(ElementName = "House")]
     public class _House
     {
-        public string Number;
-        public int Id;
-        public int StreetId;
+        public string Number { get; set; }
+        public int Id { get; set; }
+        public int StreetId { get; set; }
         public static _House Trans(House house) => new _House { Id = house.Id, Number = house.Number, StreetId = house.Street.Id};
     }
     [Serializable]
     [XmlRoot(ElementName = "Street")]
     public class _Street
     {
-        public int Id;
-        public string Name;
-        public int CityId;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int CityId { get; set; }
         public static _Street Trans(Street street) => new _Street { Id = street.Id, Name = street.Name, CityId = street.City.Id};
     }
     [Serializable]
     [XmlRoot(ElementName = "City")]
     public class _City
     {
-        public int Id;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static _City Trans(City city) => new _City { Id = city.Id, Name = city.Name};
     }
     [Serializable]
     [XmlRoot(ElementName = "User")]
     public class _User
     {
-        public int Id;
-        public string Login;
-        public string Password;
-        public UserType UserType;
+        public int Id { get; set; }
+        public string Login { get; set; }
+        public string Password { get; set; }
+        public UserType UserType { get; set; }
         public static _User Trans(User user)=> new _User { Id = user.Id,Login = user.Login, Password=user.Password, UserType = user.UserType};
     }
     [Serializable]
     [XmlRoot(ElementName = "Order")]
     public class _Order
     {
-        public int Id;
-        public int AddressId;
-        public int CustomerId;
-        public int UserId;
+        public int Id { get; set; }
+        public int AddressId { get; set; }
+        public int CustomerId { get; set; }
+        public int UserId { get; set; }
         public static _Order Trans(Order order)=> new _Order { Id = order.Id, AddressId = order.Address.Id, CustomerId = order.Customer.Id, UserId=order.User.Id};
     }
     [Serializable]
@@ -91,9 +92,9 @@ namespace CourseWork
     [XmlInclude(typeof(_Company))]
     public class _Customer
     {
-        public int Id;
-        public string Name;
-        public string Passport;
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Passport { get; set; }
         public static _Customer Trans(Customer customer)
         {
             if (customer is Company c)
@@ -115,21 +116,21 @@ namespace CourseWork
     [XmlRoot(ElementName = "Company")]
     public class _Company : _Customer
     {
-        public string CompanyName;
-        public string INN;
+        public string CompanyName { get; set; }
+        public string INN { get; set; }
     }
     [Serializable]
     [XmlRoot(ElementName = "OrderEntry")]
     public class _OrderEntry
     {
-        public int Id;
-        public int OrderId;
-        public int StatusId;
-        public int MeterId;
-        public int? PersonId;
-        public DateTime startTime;
-        public DateTime endTime;
-        public string RegNum;
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int StatusId { get; set; }
+        public int MeterId { get; set; }
+        public int? PersonId { get; set; }
+        public DateTime? startTime { get; set; }
+        public DateTime? endTime { get; set; }
+        public string RegNum { get; set; }
         public static _OrderEntry Trans(OrderEntry orderEntry) => 
             new _OrderEntry { Id=orderEntry.Id, MeterId = orderEntry.Meter.Id, OrderId = orderEntry.Order.Id, PersonId = orderEntry.PersonId, StatusId = orderEntry.Status.Id,
             startTime = orderEntry.StartTime, endTime = orderEntry.EndTime, RegNum = orderEntry.RegNumer};
@@ -138,42 +139,42 @@ namespace CourseWork
     [XmlRoot(ElementName = "Meter")]
     public class _Meter
     {
-        public int Id;
-        public int MeterTypeId;
-        public string Name;
+        public int Id { get; set; }
+        public int MeterTypeId { get; set; }
+        public string Name { get; set; }
         public static _Meter Trans(Meter meter) => new _Meter { Id = meter.Id, Name = meter.Name, MeterTypeId = meter.MeterType.Id};
     }
     [Serializable]
     [XmlRoot(ElementName = "MeterType")]
     public class _MeterType
     {
-        public int Id;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static _MeterType Trans(MeterType meter) => new _MeterType { Id = meter.Id, Name = meter.Name};
     }
     [Serializable]
     [XmlRoot(ElementName = "Status")]
     public class _Status
     {
-        public int Id;
-        public string Name;
+        public int Id { get; set; }
+        public string Name { get; set; }
         public static _Status Trans(Status status)=> new _Status { Id = status.Id, Name = status.Name};
     }
     [Serializable]
     [XmlRoot(ElementName = "Person")]
     public class _Person
     {
-        public int Id;
-        public string FIO;
+        public int Id { get; set; }
+        public string FIO { get; set; }
         public static _Person Trans(Person person)=> new _Person { Id = person.Id, FIO = person.FIO};
     }
     [Serializable]
     [XmlRoot(ElementName = "Stavka")]
     public class _Stavka
     {
-        public int Id;
-        public int PersonId;
-        public int MeterTypeId;
+        public int Id { get; set; }
+        public int PersonId { get; set; }
+        public int MeterTypeId { get; set; }
         public static _Stavka Trans(Stavka stavka)=> new _Stavka { Id = stavka.Id, MeterTypeId = stavka.MeterType.Id, PersonId = stavka.Person.Id};
     }
     [Serializable]
@@ -195,18 +196,31 @@ namespace CourseWork
             CitySet = new List<_City>(Operations.cont.CitySet.Count());
             UserSet = new List<_User>(Operations.cont.UserSet.Count());
         }
+        [XmlArrayItem(ElementName ="Order")]
         public List<_Order> OrderSet;
+        [XmlArrayItem(ElementName = "OrderEntry")]
         public  List<_OrderEntry> OrderEntrySet;
+        [XmlArrayItem(ElementName = "Status")]
         public  List<_Status> StatusSet;
+        [XmlArrayItem(ElementName = "Customer")]
         public  List<_Customer> CustomerSet;
+        [XmlArrayItem(ElementName = "Meter")]
         public  List<_Meter> MeterSet;
+        [XmlArrayItem(ElementName = "MeterType")]
         public  List<_MeterType> MeterTypeSet;
+        [XmlArrayItem(ElementName = "Stavka")]
         public  List<_Stavka> StavkaSet;
+        [XmlArrayItem(ElementName = "Person")]
         public  List<_Person> PersonSet;
+        [XmlArrayItem(ElementName = "Address")]
         public  List<_Address> AddressSet;
+        [XmlArrayItem(ElementName = "House")]
         public  List<_House> HouseSet;
+        [XmlArrayItem(ElementName = "Street")]
         public  List<_Street> StreetSet;
+        [XmlArrayItem(ElementName = "City")]
         public  List<_City> CitySet;
+        [XmlArrayItem(ElementName = "User")]
         public List<_User> UserSet;
         public void Create()
         {
@@ -346,8 +360,8 @@ namespace CourseWork
                 int cid = CustomerIndices[o.CustomerId];
                 int aid = AddressesIndices[o.AddressId];
                 Operations.AddOrder(Operations.FindUser(uid), Operations.FindCustomer(cid),
-                      Operations.FindAddress(aid), out string Res);
-                    OrderIndices.Add(o.Id, ++idx);
+                      Operations.FindAddress(aid), out string Res,++idx);
+                    OrderIndices.Add(o.Id, idx);
             }
             Dictionary<int, int> StatusIndices = new Dictionary<int, int>();
             idx = Operations.NextId[EntityTypes.Status];

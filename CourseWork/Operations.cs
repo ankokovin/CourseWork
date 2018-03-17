@@ -87,7 +87,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер пользователя</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveUser(int id, out string Res, bool save=true)
+        public static bool RemoveUser(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -97,7 +97,7 @@ namespace CourseWork
                     Res = "Нет пользователя с данным идентификационным номером";
                     return false;
                 }
-                if (u.Order.Count == 0 || AttentionMessage("Вы действительно хотите удалить пользователя" +
+                if (u.Order.Count == 0 ||!check||AttentionMessage("Вы действительно хотите удалить пользователя" +
                     u+ "?\n"+u.Order.Count+" заказов а также связанные с ними объекты будут удалены."))
                 {
                     cont.UserSet.Remove(u);
@@ -196,7 +196,7 @@ namespace CourseWork
         /// <param name="id">Идентификатор города</param>
         /// <param name="Res">Сообщение о результате</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveCity(int id, out string Res, bool save=true)
+        public static bool RemoveCity(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -206,7 +206,7 @@ namespace CourseWork
                     Res = "Город не обнаружен";
                     return false;
                 }
-                if (c.Street.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить город " + c.Name + "?\n" +
+                if (c.Street.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить город " + c.Name + "?\n" +
                     c.Street.Count + " улиц и связанные с ними объекты также будут удалены."))
                 {
                     cont.CitySet.Remove(c);
@@ -328,7 +328,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveStreet(int id, out string Res, bool save=true)
+        public static bool RemoveStreet(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -338,7 +338,7 @@ namespace CourseWork
                     Res = "Нет улицы с заданным идентификационным номером";
                     return false;
                 }
-                if (s.House.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить улицу " + s + " ?\n" +
+                if (s.House.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить улицу " + s + " ?\n" +
                     s.House.Count + " домов и связанные с ними объекты также будут удалены."))
                 {
                     cont.StreetSet.Remove(s);
@@ -436,7 +436,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер дома</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveHouse(int id, out string Res, bool save=true)
+        public static bool RemoveHouse(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -446,7 +446,7 @@ namespace CourseWork
                     Res = "Нет дома с таким идентификационным номером";
                     return false;
                 }
-                if (a.Address.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить дом " + a + " ?\n" +
+                if (a.Address.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить дом " + a + " ?\n" +
                    a.Address.Count + " адресов и связанные с ними объекты также будут удалены."))
                 {
                     cont.HouseSet.Remove(a);
@@ -544,7 +544,7 @@ namespace CourseWork
         /// <param name="id">Идентификационный номер адреса</param>
         /// <param name="Res">Сообщение результата удаления</param>
         /// <returns>Результат удаления</returns>
-        public static bool RemoveAddress(int id, out string Res, bool save=true)
+        public static bool RemoveAddress(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -554,7 +554,7 @@ namespace CourseWork
                     Res = "Нет адреса с таким идентификационным номером";
                     return false;
                 }
-                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить адрес " + a + " ?\n" +
+                if (a.Order.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить адрес " + a + " ?\n" +
                     a.Order.Count + " заказов и связанные с ними объекты также будут удалены."))
                 {
                     cont.AddressSet.Remove(a);
@@ -583,8 +583,7 @@ namespace CourseWork
         #endregion Address
         #endregion Адреса
         #region Order
-
-        public static bool AddOrder(User user,Customer customer,Address address, out string Res, bool save=true)
+        public static bool AddOrder(User user,Customer customer,Address address, out string Res,int? id=null, bool save=true)
         {
             try
             {
@@ -592,6 +591,7 @@ namespace CourseWork
                 order.Customer = customer;
                 order.Address = address;
                 order.User = user;
+                order.Id = id == null ? ((from p in cont.OrderSet select p ).Any()?(from p in cont.OrderSet select p.Id).Max() + 1 : 1): (int)id;
                 cont.OrderSet.Add(order);
                 if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
@@ -627,7 +627,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveOrder(int id,out string Res, bool save=true)
+        public static bool RemoveOrder(int id,out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -637,7 +637,7 @@ namespace CourseWork
                     Res = "Нет заказа с таким идентификационным номером";
                     return false;
                 }
-                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказ " + a + " ?\n" +
+                if (a.OrderEntry.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить заказ " + a + " ?\n" +
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.OrderSet.Remove(a);
@@ -660,7 +660,7 @@ namespace CourseWork
         public static Order FindOrder(int id) => (from o in cont.OrderSet where o.Id == id select o).FirstOrDefault();
         #endregion Order
         #region OrderEntry
-        public static bool AddOrderEntry(Order order,DateTime startTime, DateTime endTime
+        public static bool AddOrderEntry(Order order,DateTime? startTime, DateTime? endTime
             ,string RegNumber,Meter meter, Person person,Status status, out string Res, bool save=true)
         {
             try
@@ -692,7 +692,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeOrderEntry(int Id, Order order, DateTime startTime, DateTime endTime, 
+        public static bool ChangeOrderEntry(int Id, Order order, DateTime? startTime, DateTime? endTime, 
              string RegNumber,Meter meter, Person person, Status status, out string Res, bool save=true)
         {
             try
@@ -728,7 +728,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveOrderEntry(int id, out string Res, bool save=true)
+        public static bool RemoveOrderEntry(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -806,7 +806,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveMeter(int id, out string Res, bool save=true)
+        public static bool RemoveMeter(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -816,7 +816,7 @@ namespace CourseWork
                     Res = "Нет прибора учёта с таким идентификационным номером";
                     return false;
                 }
-                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить прибор учёта " + a + " ?\n" +
+                if (a.OrderEntry.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить прибор учёта " + a + " ?\n" +
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.MeterSet.Remove(a);
@@ -891,7 +891,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveStatus(int id, out string Res, bool save=true)
+        public static bool RemoveStatus(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -901,7 +901,7 @@ namespace CourseWork
                     Res = "Нет статуса с таким идентификационным номером";
                     return false;
                 }
-                if (a.OrderEntry.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить статус заказа " + a + " ?\n" +
+                if (a.OrderEntry.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить статус заказа " + a + " ?\n" +
                     a.OrderEntry.Count + " заказных позиций и связанные с ними объекты также будут удалены."))
                 {
                     cont.StatusSet.Remove(a);
@@ -975,7 +975,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveMeterType(int id, out string Res, bool save=true)
+        public static bool RemoveMeterType(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -985,7 +985,7 @@ namespace CourseWork
                     Res = "Нет типа приборов учёта с таким идентификационным номером";
                     return false;
                 }
-                if ((a.Meter.Count == 0) && (a.Stavka.Count == 0) ||
+                if ((a.Meter.Count == 0) && (a.Stavka.Count == 0) || !check||
                     AttentionMessage("Вы уверены, что хотите удалить тип приборов учёта " + a + " ?\n" +
                     a.Meter.Count + " приборов учёта и " + a.Stavka.Count + " ставок, а так же связанные с ними объекты также будут удалены."))
                 {
@@ -1062,7 +1062,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveStavka(int id, out string Res, bool save=true)
+        public static bool RemoveStavka(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -1138,7 +1138,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemovePerson(int id, out string Res, bool save=true)
+        public static bool RemovePerson(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -1148,7 +1148,7 @@ namespace CourseWork
                     Res = "Нет ФИО с таким идентификационным номером";
                     return false;
                 }
-                if (a.Stavka.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить работника " + a + " ?\n" +
+                if (a.Stavka.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить работника " + a + " ?\n" +
                     a.Stavka.Count + " ставок и связанные с ними объекты также будут удалены."))
                 {
                     cont.PersonSet.Remove(a);
@@ -1224,7 +1224,7 @@ namespace CourseWork
             }
         }
 
-        public static bool RemoveCustomer(int id, out string Res, bool save=true)
+        public static bool RemoveCustomer(int id, out string Res, bool save=true, bool check = true)
         {
             try
             {
@@ -1239,7 +1239,7 @@ namespace CourseWork
                     Res = "Данный заказчик является компанией, а не частным лицом";
                     return false;
                 }
-                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
+                if (a.Order.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
                     a.Order.Count + " заказов будут удалены."))
                 {
                     cont.CustomerSet.Remove(a);
@@ -1320,7 +1320,7 @@ namespace CourseWork
 
         }
 
-        public static bool RemoveCompany(int id, out string Res, bool save=true)
+        public static bool RemoveCompany(int id, out string Res, bool save=true, bool check = true)
         {
 
             try
@@ -1336,7 +1336,7 @@ namespace CourseWork
                     Res = "Данный заказчик является  не компанией, а частным лицом";
                     return false;
                 }
-                if (a.Order.Count == 0 || AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
+                if (a.Order.Count == 0 ||!check|| AttentionMessage("Вы уверены, что хотите удалить заказчика " + a + " ?\n" +
      a.Order.Count + " заказов будут удалены."))
                 {
                     cont.CustomerSet.Remove(a);
@@ -1389,15 +1389,15 @@ namespace CourseWork
             NextId[EntityTypes.Order] = (from p in cont.OrderSet where p.Address.Id ==  ad select p.Id).First();
             AddStatus("", out string Res10);
             NextId[EntityTypes.Status] = (from p in cont.StatusSet where p.Name.Length == 0 select p.Id).First();
-            AddOrderEntry(FindOrder(NextId[EntityTypes.Order]), new DateTime(), new DateTime(), "", FindMeter(NextId[EntityTypes.Meter]), FindPerson(NextId[EntityTypes.Person]),
+            AddOrderEntry(FindOrder(NextId[EntityTypes.Order]),null, null, "", FindMeter(NextId[EntityTypes.Meter]), FindPerson(NextId[EntityTypes.Person]),
                 FindStatus(NextId[EntityTypes.Status]), out string res11);
             NextId[EntityTypes.OrderEntry] = (from p in cont.OrderEntrySet where p.RegNumer.Length == 0 select p.Id).First();
-            RemoveCity(NextId[EntityTypes.City],out string res12);
-            RemoveUser(NextId[EntityTypes.User], out string res13);
-            RemoveMeterType(NextId[EntityTypes.MeterType], out string res14);
-            RemovePerson(NextId[EntityTypes.Person], out string res15);
-            RemoveCustomer(NextId[EntityTypes.Customer], out string res16);
-            RemoveStatus(NextId[EntityTypes.Status], out string res17);
+            RemoveCity(NextId[EntityTypes.City],out string res12,check:false);
+            RemoveUser(NextId[EntityTypes.User], out string res13, check: false);
+            RemoveMeterType(NextId[EntityTypes.MeterType], out string res14, check: false);
+            RemovePerson(NextId[EntityTypes.Person], out string res15, check: false);
+            RemoveCustomer(NextId[EntityTypes.Customer], out string res16, check: false);
+            RemoveStatus(NextId[EntityTypes.Status], out string res17, check: false);
         }
     }
 }

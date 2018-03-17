@@ -59,7 +59,6 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
             this.label3.Location = new System.Drawing.Point(9, 148);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(99, 13);
@@ -69,7 +68,6 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Enabled = false;
             this.label4.Location = new System.Drawing.Point(9, 109);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(125, 13);

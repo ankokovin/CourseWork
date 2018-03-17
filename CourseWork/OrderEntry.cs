@@ -16,8 +16,8 @@ namespace CourseWork
     {
         public int Id { get; set; }
         public string RegNumer { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public System.DateTime EndTime { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
         public Nullable<int> PersonId { get; set; }
     
         public virtual Order Order { get; set; }

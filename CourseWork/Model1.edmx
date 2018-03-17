@@ -81,7 +81,7 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="Customer_Id" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="Address_Id" Type="int" Nullable="false" />
@@ -132,8 +132,8 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RegNumer" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="StartTime" Type="datetime" Nullable="false" />
-    <Property Name="EndTime" Type="datetime" Nullable="false" />
+    <Property Name="StartTime" Type="datetime" Nullable="true" />
+    <Property Name="EndTime" Type="datetime" Nullable="true" />
     <Property Name="PersonId" Type="int" Nullable="true" />
     <Property Name="Order_Id" Type="int" Nullable="false" />
     <Property Name="Meter_Id" Type="int" Nullable="false" />
@@ -467,7 +467,7 @@
           <NavigationProperty Name="User" Relationship="Model1.UserOrder" FromRole="Order" ToRole="User" />
           <NavigationProperty Name="OrderEntry" Relationship="Model1.OrderOrderEntry" FromRole="Order" ToRole="OrderEntry" />
           <NavigationProperty Name="Address" Relationship="Model1.AddressOrder" FromRole="Order" ToRole="Address" />
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -545,8 +545,8 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Name="RegNumer" Type="String" Nullable="false" />
           <NavigationProperty Name="Status" Relationship="Model1.StatusOrderEntry" FromRole="OrderEntry" ToRole="Status" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" />
-          <Property Name="EndTime" Type="DateTime" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="true" />
+          <Property Name="EndTime" Type="DateTime" Nullable="true" />
           <NavigationProperty Name="Person" Relationship="Model1.PersonOrderEntry" FromRole="OrderEntry" ToRole="Person" />
           <Property Name="PersonId" Type="Int32" Nullable="true" />
         </EntityType>

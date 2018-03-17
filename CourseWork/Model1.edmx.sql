@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/16/2018 14:41:20
+-- Date Created: 03/17/2018 19:20:49
 -- Generated from EDMX file: C:\Users\user\Documents\GitHub\CourseWork\CourseWork\Model1.edmx
 -- --------------------------------------------------
 
@@ -113,7 +113,7 @@ GO
 
 -- Creating table 'OrderSet'
 CREATE TABLE [dbo].[OrderSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] int  NOT NULL,
     [Customer_Id] int  NOT NULL,
     [User_Id] int  NOT NULL,
     [Address_Id] int  NOT NULL
@@ -164,8 +164,8 @@ GO
 CREATE TABLE [dbo].[OrderEntrySet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [RegNumer] nvarchar(max)  NOT NULL,
-    [StartTime] datetime  NOT NULL,
-    [EndTime] datetime  NOT NULL,
+    [StartTime] datetime  NULL,
+    [EndTime] datetime  NULL,
     [PersonId] int  NULL,
     [Order_Id] int  NOT NULL,
     [Meter_Id] int  NOT NULL,
