@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/17/2018 19:20:49
+-- Date Created: 03/17/2018 22:23:23
 -- Generated from EDMX file: C:\Users\user\Documents\GitHub\CourseWork\CourseWork\Model1.edmx
 -- --------------------------------------------------
 
@@ -163,7 +163,7 @@ GO
 -- Creating table 'OrderEntrySet'
 CREATE TABLE [dbo].[OrderEntrySet] (
     [Id] int IDENTITY(1,1) NOT NULL,
-    [RegNumer] nvarchar(max)  NOT NULL,
+    [RegNumer] nvarchar(max)  NULL,
     [StartTime] datetime  NULL,
     [EndTime] datetime  NULL,
     [PersonId] int  NULL,
@@ -522,11 +522,17 @@ ADD CONSTRAINT [FK_Company_inherits_Customer]
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 -- -------------------------------------------------
--- ADDING SUPERUSER
+-- Records
 -- -------------------------------------------------
+-- root
 INSERT INTO [dbo].[UserSet] (Login,Password,UserType)
 	VALUES ('root','123qwe',0);
 GO
+-- status
+INSERT INTO [dbo].[StatusSet] (Name)
+	VALUES ('Принят');
+INSERT INTO [dbo].[StatusSet] (Name)
+	VALUES ('Готов');
 -- --------------------------------------------------
 -- Script has ended
 -- --------------------------------------------------

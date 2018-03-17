@@ -131,7 +131,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RegNumer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RegNumer" Type="nvarchar(max)" Nullable="true" />
     <Property Name="StartTime" Type="datetime" Nullable="true" />
     <Property Name="EndTime" Type="datetime" Nullable="true" />
     <Property Name="PersonId" Type="int" Nullable="true" />
@@ -543,7 +543,7 @@
           <NavigationProperty Name="Order" Relationship="Model1.OrderOrderEntry" FromRole="OrderEntry" ToRole="Order" />
           <NavigationProperty Name="Meter" Relationship="Model1.MeterOrderEntry" FromRole="OrderEntry" ToRole="Meter" />
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
-          <Property Name="RegNumer" Type="String" Nullable="false" />
+          <Property Name="RegNumer" Type="String" Nullable="true" />
           <NavigationProperty Name="Status" Relationship="Model1.StatusOrderEntry" FromRole="OrderEntry" ToRole="Status" />
           <Property Name="StartTime" Type="DateTime" Nullable="true" />
           <Property Name="EndTime" Type="DateTime" Nullable="true" />

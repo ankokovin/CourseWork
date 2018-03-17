@@ -52,6 +52,11 @@ namespace CourseWork
             BindingSource bindingSource = new BindingSource(OrderEntryList,null);
             OrderEntryDataGridView.DataSource = bindingSource;
             Program.HidaColumns(ref OrderEntryDataGridView, new List<string> { "Id","OrderId","StatusId","RegNum","PersonId"});
+            Operations.cont.OrderSet.Load();
+            Operations.cont.OrderEntrySet.Load();
+            COrderDataGridView.DataSource = Operations.cont.OrderSet.Local.ToBindingList();
+            Program.HideColumns(ref COrderDataGridView, EntityTypes.Order);
+            COrderDataGridView.ClearSelection();
         }
 
         private BindingList<_OrderEntry> OrderEntryList;
@@ -102,7 +107,7 @@ namespace CourseWork
         {
             if (StreetChanged)
             {
- 
+                if (city == null) return;
                         StreetChanged = false;
                         street = (from s in streets where s.Name == StreetTextBox.Text select s).FirstOrDefault();
                         if (street == null) return;
@@ -119,7 +124,7 @@ namespace CourseWork
         {
             if (HouseChanged)
             {
-
+                if (city == null || street == null) return;
                         HouseChanged = false;
                         house = (from s in houses where s.Number == StreetTextBox.Text select s).FirstOrDefault();
                         if (house == null) return;
@@ -149,10 +154,11 @@ namespace CourseWork
             }
             else
             {
-                if (BCompany)
-                    customer = Operations.FindCustomer(int.Parse(CustomerDataGridView[Program.FindTitle(CustomerDataGridView, "Id"), CustomerDataGridView.SelectedRows[0].Index].Value.ToString()));
+                int id = int.Parse(CustomerDataGridView[Program.FindTitle(CustomerDataGridView, "Id"), CustomerDataGridView.SelectedRows[0].Index].Value.ToString());
+                if (!BCompany)
+                    customer = Operations.FindCustomer(id);
                 else
-                    customer = Operations.FindCompany(int.Parse(CustomerDataGridView[Program.FindTitle(CustomerDataGridView, "Id"), CustomerDataGridView.SelectedRows[0].Index].Value.ToString()));
+                    customer = Operations.FindCompany(id);
             }
             if (city == null)
             {
@@ -176,8 +182,9 @@ namespace CourseWork
             Operations.AddOrder(CurrentUser, customer, address, out string res, out Order order);
             foreach (_OrderEntry o in OrderEntryList)
             {
-                Operations.AddOrderEntry(order, o.startTime, o.endTime, o.RegNum, Operations.FindMeter(o.MeterId), null, Operations.FindStatus(0), out string Res2);
+                Operations.AddOrderEntry(order, o.startTime, o.endTime, o.RegNum, Operations.FindMeter(o.MeterId), null, Operations.FindStatus(1), out string Res2);
             }
+            MessageBox.Show("Успешно добавлен заказ №" + order.Id);
         }
         bool BCompany = false;
 
@@ -210,14 +217,63 @@ namespace CourseWork
             }
         }
 
-        private void radioButton2_Click(object sender, EventArgs e)
+        private void button3_Click(object sender, EventArgs e)
         {
-
+            switch (OrderEntryDataGridView.SelectedCells[0].OwningColumn.HeaderText)
+            {
+                case "startTime":
+                    OrderEntryList[OrderEntryDataGridView.SelectedCells[0].RowIndex].startTime = dateTimePicker1.Value as DateTime?;
+                    break;
+                case "endTime":
+                    OrderEntryList[OrderEntryDataGridView.SelectedCells[0].RowIndex].endTime = dateTimePicker1.Value as DateTime?;
+                    break;
+            }
         }
 
-        private void radioButton3_Click(object sender, EventArgs e)
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
+            if (radioButton2.Checked)
+            {
+                NameTextBox.Visible = true;
+                PassportTextBox.Visible = true;
+                INNTextBox.Visible = true;
+                CompanyNameTextBox.Visible = true;
+                CustomerDataGridView.Visible = false;
+            }else
+            {
+                NameTextBox.Visible = false;
+                PassportTextBox.Visible = false;
+                INNTextBox.Visible = false;
+                CompanyNameTextBox.Visible = false;
+                CustomerDataGridView.Visible = true;
+            }
+        }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (COrderEntryDataGridView.SelectedRows.Count > 0)
+            {
+                int id = int.Parse(COrderEntryDataGridView[Program.FindTitle(COrderEntryDataGridView, "Id"), COrderEntryDataGridView.SelectedRows[0].Index].Value.ToString());
+                OrderEntry orderEntry = (from o in CurrentOrder.OrderEntry where o.Id == id select o).First();
+                OPOrderEntry oPOrderEntry = new OPOrderEntry();
+                oPOrderEntry.FormClosed += (object s, FormClosedEventArgs args) => COrderEntryDataGridView.Refresh();
+                oPOrderEntry.Show();
+                oPOrderEntry.Change(orderEntry);
+                oPOrderEntry.Id = id;
+            }
+        }
+        Order CurrentOrder;
+        private void COrderDataGridView_SelectionChanged(object sender, EventArgs e)
+        {
+            if (COrderDataGridView.SelectedRows.Count > 0)
+            {
+                int id = int.Parse(COrderDataGridView[Program.FindTitle(COrderDataGridView, "Id"), COrderDataGridView.SelectedRows[0].Index].Value.ToString());
+                CurrentOrder = (from o in Operations.cont.OrderSet where o.Id == id select o).First();
+                BindingList<OrderEntry> bindingList = new BindingList<OrderEntry>(CurrentOrder.OrderEntry.ToList());
+                COrderEntryDataGridView.DataSource = bindingList;
+                COrderEntryDataGridView.Refresh();
+                COrderEntryDataGridView.ClearSelection();
+            }
         }
     }
 }

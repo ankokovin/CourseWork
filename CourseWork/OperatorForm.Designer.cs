@@ -30,6 +30,10 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CustomerTabPage = new System.Windows.Forms.TabPage();
+            this.CompanyCheckBox = new System.Windows.Forms.CheckBox();
+            this.CustomerDataGridView = new System.Windows.Forms.DataGridView();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,21 +57,40 @@
             this.button1 = new System.Windows.Forms.Button();
             this.MeterDataGridView = new System.Windows.Forms.DataGridView();
             this.label9 = new System.Windows.Forms.Label();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.OrderEntryDataGridView = new System.Windows.Forms.DataGridView();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.CustomerDataGridView = new System.Windows.Forms.DataGridView();
-            this.CompanyCheckBox = new System.Windows.Forms.CheckBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.AddOrderTabPage = new System.Windows.Forms.TabPage();
+            this.ChangeOrderTabPage = new System.Windows.Forms.TabPage();
+            this.COrderDataGridView = new System.Windows.Forms.DataGridView();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.COrderEntryDataGridView = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.CustomerTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
             this.AddressTabPage.SuspendLayout();
             this.OrderEntryTabPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MeterDataGridView)).BeginInit();
+            this.tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.OrderEntryDataGridView)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
+            this.tabControl2.SuspendLayout();
+            this.AddOrderTabPage.SuspendLayout();
+            this.ChangeOrderTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).BeginInit();
+            this.tableLayoutPanel4.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.COrderEntryDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -75,10 +98,10 @@
             this.tabControl1.Controls.Add(this.CustomerTabPage);
             this.tabControl1.Controls.Add(this.AddressTabPage);
             this.tabControl1.Controls.Add(this.OrderEntryTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(6, 6);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(734, 413);
+            this.tabControl1.Size = new System.Drawing.Size(734, 423);
             this.tabControl1.TabIndex = 0;
             // 
             // CustomerTabPage
@@ -98,11 +121,64 @@
             this.CustomerTabPage.Location = new System.Drawing.Point(4, 22);
             this.CustomerTabPage.Name = "CustomerTabPage";
             this.CustomerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CustomerTabPage.Size = new System.Drawing.Size(726, 387);
+            this.CustomerTabPage.Size = new System.Drawing.Size(726, 397);
             this.CustomerTabPage.TabIndex = 0;
             this.CustomerTabPage.Text = "Заказчик";
             this.CustomerTabPage.UseVisualStyleBackColor = true;
             this.CustomerTabPage.UseWaitCursor = true;
+            // 
+            // CompanyCheckBox
+            // 
+            this.CompanyCheckBox.AutoSize = true;
+            this.CompanyCheckBox.Location = new System.Drawing.Point(27, 264);
+            this.CompanyCheckBox.Name = "CompanyCheckBox";
+            this.CompanyCheckBox.Size = new System.Drawing.Size(93, 17);
+            this.CompanyCheckBox.TabIndex = 12;
+            this.CompanyCheckBox.Text = "Организация";
+            this.CompanyCheckBox.UseVisualStyleBackColor = true;
+            this.CompanyCheckBox.UseWaitCursor = true;
+            this.CompanyCheckBox.CheckedChanged += new System.EventHandler(this.radioButton1_Click);
+            // 
+            // CustomerDataGridView
+            // 
+            this.CustomerDataGridView.AllowUserToAddRows = false;
+            this.CustomerDataGridView.AllowUserToDeleteRows = false;
+            this.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomerDataGridView.Location = new System.Drawing.Point(187, 64);
+            this.CustomerDataGridView.MultiSelect = false;
+            this.CustomerDataGridView.Name = "CustomerDataGridView";
+            this.CustomerDataGridView.ReadOnly = true;
+            this.CustomerDataGridView.RowHeadersVisible = false;
+            this.CustomerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CustomerDataGridView.Size = new System.Drawing.Size(533, 304);
+            this.CustomerDataGridView.TabIndex = 11;
+            this.CustomerDataGridView.UseWaitCursor = true;
+            this.CustomerDataGridView.Visible = false;
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(187, 41);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(103, 17);
+            this.radioButton3.TabIndex = 10;
+            this.radioButton3.Text = "Существующий";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.UseWaitCursor = true;
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(23, 41);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(59, 17);
+            this.radioButton2.TabIndex = 9;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Новый";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.UseWaitCursor = true;
+            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label4
             // 
@@ -191,7 +267,7 @@
             this.AddressTabPage.Location = new System.Drawing.Point(4, 22);
             this.AddressTabPage.Name = "AddressTabPage";
             this.AddressTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddressTabPage.Size = new System.Drawing.Size(726, 387);
+            this.AddressTabPage.Size = new System.Drawing.Size(726, 397);
             this.AddressTabPage.TabIndex = 1;
             this.AddressTabPage.Text = "Адрес";
             this.AddressTabPage.UseVisualStyleBackColor = true;
@@ -281,7 +357,7 @@
             this.OrderEntryTabPage.Controls.Add(this.tableLayoutPanel1);
             this.OrderEntryTabPage.Location = new System.Drawing.Point(4, 22);
             this.OrderEntryTabPage.Name = "OrderEntryTabPage";
-            this.OrderEntryTabPage.Size = new System.Drawing.Size(726, 387);
+            this.OrderEntryTabPage.Size = new System.Drawing.Size(726, 397);
             this.OrderEntryTabPage.TabIndex = 2;
             this.OrderEntryTabPage.Text = "Заказные позиции";
             this.OrderEntryTabPage.UseVisualStyleBackColor = true;
@@ -292,13 +368,13 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.OrderEntryDataGridView, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel3, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 387);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 397);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -315,12 +391,12 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 315F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(357, 381);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(357, 391);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 349);
+            this.button1.Location = new System.Drawing.Point(3, 359);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(230, 23);
             this.button1.TabIndex = 0;
@@ -333,7 +409,7 @@
             this.MeterDataGridView.AllowUserToAddRows = false;
             this.MeterDataGridView.AllowUserToDeleteRows = false;
             this.MeterDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MeterDataGridView.Location = new System.Drawing.Point(3, 34);
+            this.MeterDataGridView.Location = new System.Drawing.Point(3, 44);
             this.MeterDataGridView.MultiSelect = false;
             this.MeterDataGridView.Name = "MeterDataGridView";
             this.MeterDataGridView.ReadOnly = true;
@@ -351,20 +427,58 @@
             this.label9.TabIndex = 4;
             this.label9.Text = "Счётчики";
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.dateTimePicker1, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.OrderEntryDataGridView, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.button3, 0, 2);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(366, 3);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 3;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.30471F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.695291F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(357, 391);
+            this.tableLayoutPanel3.TabIndex = 4;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "d.MM.yyyy HH:m";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 334);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 10;
+            // 
             // OrderEntryDataGridView
             // 
             this.OrderEntryDataGridView.AllowUserToAddRows = false;
             this.OrderEntryDataGridView.AllowUserToDeleteRows = false;
             this.OrderEntryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrderEntryDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.OrderEntryDataGridView.Location = new System.Drawing.Point(366, 3);
+            this.OrderEntryDataGridView.Location = new System.Drawing.Point(3, 3);
             this.OrderEntryDataGridView.Name = "OrderEntryDataGridView";
-            this.OrderEntryDataGridView.Size = new System.Drawing.Size(357, 381);
+            this.OrderEntryDataGridView.ReadOnly = true;
+            this.OrderEntryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.OrderEntryDataGridView.Size = new System.Drawing.Size(351, 325);
             this.OrderEntryDataGridView.TabIndex = 3;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(3, 369);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(123, 19);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "Изменить время";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(4, 415);
+            this.button2.Location = new System.Drawing.Point(8, 435);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(236, 23);
             this.button2.TabIndex = 1;
@@ -372,69 +486,144 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // radioButton2
+            // tabControl2
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Checked = true;
-            this.radioButton2.Location = new System.Drawing.Point(23, 41);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(59, 17);
-            this.radioButton2.TabIndex = 9;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Новый";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.UseWaitCursor = true;
-            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            this.tabControl2.Controls.Add(this.AddOrderTabPage);
+            this.tabControl2.Controls.Add(this.ChangeOrderTabPage);
+            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(799, 490);
+            this.tabControl2.TabIndex = 2;
             // 
-            // radioButton3
+            // AddOrderTabPage
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(187, 41);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(103, 17);
-            this.radioButton3.TabIndex = 10;
-            this.radioButton3.Text = "Существующий";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.UseWaitCursor = true;
-            this.radioButton3.Click += new System.EventHandler(this.radioButton3_Click);
+            this.AddOrderTabPage.Controls.Add(this.tabControl1);
+            this.AddOrderTabPage.Controls.Add(this.button2);
+            this.AddOrderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.AddOrderTabPage.Name = "AddOrderTabPage";
+            this.AddOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AddOrderTabPage.Size = new System.Drawing.Size(791, 464);
+            this.AddOrderTabPage.TabIndex = 0;
+            this.AddOrderTabPage.Text = "Добавление заказа";
+            this.AddOrderTabPage.UseVisualStyleBackColor = true;
             // 
-            // CustomerDataGridView
+            // ChangeOrderTabPage
             // 
-            this.CustomerDataGridView.AllowUserToAddRows = false;
-            this.CustomerDataGridView.AllowUserToDeleteRows = false;
-            this.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.CustomerDataGridView.Location = new System.Drawing.Point(187, 64);
-            this.CustomerDataGridView.Name = "CustomerDataGridView";
-            this.CustomerDataGridView.ReadOnly = true;
-            this.CustomerDataGridView.RowHeadersVisible = false;
-            this.CustomerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CustomerDataGridView.Size = new System.Drawing.Size(533, 212);
-            this.CustomerDataGridView.TabIndex = 11;
+            this.ChangeOrderTabPage.Controls.Add(this.button4);
+            this.ChangeOrderTabPage.Controls.Add(this.tableLayoutPanel4);
+            this.ChangeOrderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.ChangeOrderTabPage.Name = "ChangeOrderTabPage";
+            this.ChangeOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.ChangeOrderTabPage.Size = new System.Drawing.Size(791, 464);
+            this.ChangeOrderTabPage.TabIndex = 1;
+            this.ChangeOrderTabPage.Text = "Изменение заказов";
+            this.ChangeOrderTabPage.UseVisualStyleBackColor = true;
             // 
-            // CompanyCheckBox
+            // COrderDataGridView
             // 
-            this.CompanyCheckBox.AutoSize = true;
-            this.CompanyCheckBox.Location = new System.Drawing.Point(23, 273);
-            this.CompanyCheckBox.Name = "CompanyCheckBox";
-            this.CompanyCheckBox.Size = new System.Drawing.Size(93, 17);
-            this.CompanyCheckBox.TabIndex = 12;
-            this.CompanyCheckBox.Text = "Организация";
-            this.CompanyCheckBox.UseVisualStyleBackColor = true;
-            this.CompanyCheckBox.CheckedChanged += new System.EventHandler(this.radioButton1_Click);
+            this.COrderDataGridView.AllowUserToAddRows = false;
+            this.COrderDataGridView.AllowUserToDeleteRows = false;
+            this.COrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.COrderDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.COrderDataGridView.Location = new System.Drawing.Point(0, 16);
+            this.COrderDataGridView.MultiSelect = false;
+            this.COrderDataGridView.Name = "COrderDataGridView";
+            this.COrderDataGridView.ReadOnly = true;
+            this.COrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.COrderDataGridView.Size = new System.Drawing.Size(385, 335);
+            this.COrderDataGridView.TabIndex = 0;
+            this.COrderDataGridView.SelectionChanged += new System.EventHandler(this.COrderDataGridView_SelectionChanged);
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 6);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(782, 357);
+            this.tableLayoutPanel4.TabIndex = 1;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.COrderDataGridView);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(385, 351);
+            this.panel1.TabIndex = 2;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Заказы";
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label11);
+            this.panel2.Controls.Add(this.COrderEntryDataGridView);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(394, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(385, 351);
+            this.panel2.TabIndex = 3;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 13);
+            this.label11.TabIndex = 1;
+            this.label11.Text = "Заказные позиции";
+            // 
+            // COrderEntryDataGridView
+            // 
+            this.COrderEntryDataGridView.AllowUserToAddRows = false;
+            this.COrderEntryDataGridView.AllowUserToDeleteRows = false;
+            this.COrderEntryDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.COrderEntryDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.COrderEntryDataGridView.Location = new System.Drawing.Point(0, 16);
+            this.COrderEntryDataGridView.MultiSelect = false;
+            this.COrderEntryDataGridView.Name = "COrderEntryDataGridView";
+            this.COrderEntryDataGridView.ReadOnly = true;
+            this.COrderEntryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.COrderEntryDataGridView.Size = new System.Drawing.Size(385, 335);
+            this.COrderEntryDataGridView.TabIndex = 0;
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(8, 369);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(774, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Изменить заказную позицию";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // OperatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(746, 440);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(815, 502);
+            this.Controls.Add(this.tabControl2);
             this.Name = "OperatorForm";
             this.Text = "OperatorForm";
             this.Load += new System.EventHandler(this.OperatorForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.CustomerTabPage.ResumeLayout(false);
             this.CustomerTabPage.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).EndInit();
             this.AddressTabPage.ResumeLayout(false);
             this.AddressTabPage.PerformLayout();
             this.OrderEntryTabPage.ResumeLayout(false);
@@ -442,8 +631,18 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MeterDataGridView)).EndInit();
+            this.tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.OrderEntryDataGridView)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).EndInit();
+            this.tabControl2.ResumeLayout(false);
+            this.AddOrderTabPage.ResumeLayout(false);
+            this.ChangeOrderTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).EndInit();
+            this.tableLayoutPanel4.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.COrderEntryDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -481,5 +680,19 @@
         private System.Windows.Forms.RadioButton radioButton2;
         private System.Windows.Forms.DataGridView CustomerDataGridView;
         private System.Windows.Forms.CheckBox CompanyCheckBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage AddOrderTabPage;
+        private System.Windows.Forms.TabPage ChangeOrderTabPage;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridView COrderEntryDataGridView;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView COrderDataGridView;
     }
 }
