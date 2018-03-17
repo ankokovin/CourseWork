@@ -38,7 +38,7 @@ namespace CourseWork
             if (!ok) return;
             if (ActionMode == ActionMode.Add)
             {
-                if (Operations.AddOrder((Owner as AdminForm).CurrentUser,Operations.FindCustomer(id2), Operations.FindAddress(id1), out string Res))
+                if (Operations.AddOrder((Owner as AdminForm).CurrentUser,Operations.FindCustomer(id2), Operations.FindAddress(id1), out string Res,out Order order))
                     Close();
                 MessageBox.Show(Res);
             }

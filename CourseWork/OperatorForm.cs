@@ -28,13 +28,18 @@ namespace CourseWork
         bool StreetChanged = true;
         bool HouseChanged = true;
         bool AddressChanged = true;
+        BindingList<Customer> CustomerBindingList;
+        BindingList<Company> CompanyBindingList;
         private void OperatorForm_Load(object sender, EventArgs e)
         {
-            var a = tabControl1.TabPages[0];
-            tabControl1.TabPages.Remove(a);
-            tabControl1.TabPages.Add(a);
             Text = CurrentUser.Login;
             Operations.cont.CustomerSet.Load();
+            var customers = from c in Operations.cont.CustomerSet where !(c is Company) select c;
+            var companies = from c in Operations.cont.CustomerSet where c is Company select c as Company;
+            CustomerBindingList = new BindingList<Customer>(customers.ToList());
+            CompanyBindingList = new BindingList<Company>(companies.ToList());
+            CustomerDataGridView.DataSource = CustomerBindingList;
+            Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer);
             Operations.cont.MeterSet.Load();
             cities = (from c in Operations.cont.CitySet select c);
             MessageBox.Show("Loaded");
@@ -46,7 +51,7 @@ namespace CourseWork
             OrderEntryList = new BindingList<_OrderEntry>();
             BindingSource bindingSource = new BindingSource(OrderEntryList,null);
             OrderEntryDataGridView.DataSource = bindingSource;
-            
+            Program.HidaColumns(ref OrderEntryDataGridView, new List<string> { "Id","OrderId","StatusId","RegNum","PersonId"});
         }
 
         private BindingList<_OrderEntry> OrderEntryList;
@@ -59,11 +64,12 @@ namespace CourseWork
 
             OrderEntryDataGridView.Refresh();
         }
+        City city;
         private void StreetTextBox_Enter(object sender, EventArgs e)
         {
             if (CityChanged) {
                 CityChanged = false;
-                   City city = (from c in cities where c.Name == CityTextBox.Text select c).FirstOrDefault();
+                   city = (from c in cities where c.Name == CityTextBox.Text select c).FirstOrDefault();
                    if (city == null) return;
                    streets = city.Street;
                    AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
@@ -91,14 +97,14 @@ namespace CourseWork
         {
             AddressChanged = true;
         }
-
+        Street street;
         private void HouseTextBox_Enter(object sender, EventArgs e)
         {
             if (StreetChanged)
             {
  
                         StreetChanged = false;
-                        Street street = (from s in streets where s.Name == StreetTextBox.Text select s).FirstOrDefault();
+                        street = (from s in streets where s.Name == StreetTextBox.Text select s).FirstOrDefault();
                         if (street == null) return;
                         houses = street.House;
                         AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
@@ -108,14 +114,14 @@ namespace CourseWork
                 
             }
         }
-
+        House house;
         private void AddressTextBox_Enter(object sender, EventArgs e)
         {
             if (HouseChanged)
             {
 
                         HouseChanged = false;
-                        House house = (from s in houses where s.Number == StreetTextBox.Text select s).FirstOrDefault();
+                        house = (from s in houses where s.Number == StreetTextBox.Text select s).FirstOrDefault();
                         if (house == null) return;
                         addresses = house.Address;
                         AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
@@ -125,22 +131,91 @@ namespace CourseWork
                
             }
         }
+        Address address;
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            if (radioButton1.Checked)
+            Customer customer;
+            if (radioButton2.Checked)
             {
-                textBox3.Enabled = true;
-                textBox4.Enabled = true;
+                if (BCompany) {
+                    Operations.AddCustomer(NameTextBox.Text,PassportTextBox.Text,out string Res);
+                    customer = (from c in Operations.cont.CustomerSet where !(c is Company) && c.Passport == PassportTextBox.Text select c).First();
+                }else
+                {
+                    Operations.AddCompany(NameTextBox.Text, PassportTextBox.Text, CompanyNameTextBox.Text, INNTextBox.Text, out string Res);
+                    customer = (from c in Operations.cont.CustomerSet where c is Company && (c as Company).INN == INNTextBox.Text select c).First();
+                }
             }
             else
             {
-                textBox3.Enabled = false;
-                textBox4.Enabled = false;
+                if (BCompany)
+                    customer = Operations.FindCustomer(int.Parse(CustomerDataGridView[Program.FindTitle(CustomerDataGridView, "Id"), CustomerDataGridView.SelectedRows[0].Index].Value.ToString()));
+                else
+                    customer = Operations.FindCompany(int.Parse(CustomerDataGridView[Program.FindTitle(CustomerDataGridView, "Id"), CustomerDataGridView.SelectedRows[0].Index].Value.ToString()));
+            }
+            if (city == null)
+            {
+                Operations.AddCity(CityTextBox.Text, out string Res);
+                city = (from p in Operations.cont.CitySet where p.Name == CityTextBox.Text select p).First();
+            }
+            if (street == null)
+            {
+                Operations.AddStreet(StreetTextBox.Text, city, out string Res1);
+                street = (from p in city.Street where p.Name == StreetTextBox.Text select p).First();
+            }
+            if (house == null)
+            {
+                Operations.AddHouse(HouseTextBox.Text, street, out string res2);
+                house = (from p in street.House where p.Number == HouseTextBox.Text select p).First();
+            }
+            if (address == null) {
+                Operations.AddAddress(int.Parse(AddressTextBox.Text), house, out string Res4);
+                address = (from p in house.Address where p.Flat == int.Parse(AddressTextBox.Text) select p).First();
+            }
+            Operations.AddOrder(CurrentUser, customer, address, out string res, out Order order);
+            foreach (_OrderEntry o in OrderEntryList)
+            {
+                Operations.AddOrderEntry(order, o.startTime, o.endTime, o.RegNum, Operations.FindMeter(o.MeterId), null, Operations.FindStatus(0), out string Res2);
+            }
+        }
+        bool BCompany = false;
+
+        private void radioButton1_Click(object sender, EventArgs e)
+        {
+            if (BCompany)
+            {
+                BCompany = false;
+                CompanyNameTextBox.Enabled = false;
+                INNTextBox.Enabled = false;
+                CustomerDataGridView.DataSource = CustomerBindingList;
+                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer);
+               
+            }
+            else
+            {
+                BCompany = true;
+                CompanyNameTextBox.Enabled = true;
+                INNTextBox.Enabled = true;
+                CustomerDataGridView.DataSource = CompanyBindingList;
+                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Company);
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void AddressTextBox_Leave(object sender, EventArgs e)
+        {
+            if (house!=null)
+            {
+                address = (from p in house.Address where p.Flat == int.Parse(AddressTextBox.Text) select p).FirstOrDefault();
+            }
+        }
+
+        private void radioButton2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_Click(object sender, EventArgs e)
         {
 
         }

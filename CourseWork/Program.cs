@@ -25,6 +25,7 @@ namespace CourseWork
                 { EntityTypes.OrderEntry, new List<string>{"PersonId"} },
                 { EntityTypes.Status, new List<string>{"OrderEntry" } },
                 { EntityTypes.Customer, new List<string>{"Order" } },
+                { EntityTypes.Company, new List<string>{"Order" } },
                 { EntityTypes.Person, new List<string>{"Stavka","OrderEntry" } },
                 { EntityTypes.User, new List<string>{"Order"} }
             };
@@ -36,11 +37,16 @@ namespace CourseWork
         public static void HideColumns(ref DataGridView dgv, EntityTypes entity)
         {
             if (HideableColumns.ContainsKey(entity))
+            { 
+                HidaColumns(ref dgv, HideableColumns[entity]);
+            }
+        }
+
+        public static void HidaColumns(ref DataGridView dgv, ICollection<string> names)
+        {
+            foreach(string s in names)
             {
-                foreach (string s in HideableColumns[entity])
-                {
-                    dgv.Columns[FindTitle(dgv, s)].Visible = false;
-                }
+                dgv.Columns[FindTitle(dgv, s)].Visible = false;
             }
         }
 

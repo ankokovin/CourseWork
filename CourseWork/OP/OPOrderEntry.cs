@@ -90,8 +90,8 @@ namespace CourseWork
             button1.Text = "Изменить заказную позицию";
             if (obj is OrderEntry ordEnt)
             {
-                dateTimePicker1.Value = ordEnt.StartTime;
-                dateTimePicker2.Value = ordEnt.EndTime;
+                dateTimePicker1.Value = ordEnt.StartTime!=null ? (DateTime)ordEnt.StartTime: dateTimePicker1.Value;
+                dateTimePicker2.Value = ordEnt.EndTime != null ? (DateTime)ordEnt.EndTime : dateTimePicker2.Value;
                 Program.SelectId(ref dataGridView1, ordEnt.Order.Id);
                 Program.SelectId(ref dataGridView2, ordEnt.Meter.Id);
                 Program.SelectId(ref dataGridView3, ordEnt.Status.Id);

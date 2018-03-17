@@ -583,7 +583,7 @@ namespace CourseWork
         #endregion Address
         #endregion Адреса
         #region Order
-        public static bool AddOrder(User user,Customer customer,Address address, out string Res,int? id=null, bool save=true)
+        public static bool AddOrder(User user,Customer customer,Address address, out string Res, out Order result,int? id=null, bool save=true)
         {
             try
             {
@@ -592,7 +592,7 @@ namespace CourseWork
                 order.Address = address;
                 order.User = user;
                 order.Id = id == null ? ((from p in cont.OrderSet select p ).Any()?(from p in cont.OrderSet select p.Id).Max() + 1 : 1): (int)id;
-                cont.OrderSet.Add(order);
+                result = cont.OrderSet.Add(order);
                 if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
@@ -600,6 +600,7 @@ namespace CourseWork
             catch (Exception e)
             {
                 Res = e.Message;
+                result = null;
                 return false;
             }
         }
@@ -1384,7 +1385,7 @@ namespace CourseWork
             AddStavka(Operations.FindMeterType(NextId[EntityTypes.MeterType]), FindPerson(NextId[EntityTypes.Person]), out string res9);
             int mt = NextId[EntityTypes.MeterType];
             NextId[EntityTypes.Stavka] = (from p in cont.StavkaSet where p.MeterType.Id ==mt  select p.Id).First();
-            AddOrder(FindUser(NextId[EntityTypes.User]), FindCustomer(NextId[EntityTypes.Customer]), FindAddress(NextId[EntityTypes.Address]), out string res10);
+            AddOrder(FindUser(NextId[EntityTypes.User]), FindCustomer(NextId[EntityTypes.Customer]), FindAddress(NextId[EntityTypes.Address]), out string res10, out Order order);
             int ad = NextId[EntityTypes.Address];
             NextId[EntityTypes.Order] = (from p in cont.OrderSet where p.Address.Id ==  ad select p.Id).First();
             AddStatus("", out string Res10);

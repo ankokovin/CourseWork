@@ -30,15 +30,14 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CustomerTabPage = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.INNTextBox = new System.Windows.Forms.TextBox();
+            this.CompanyNameTextBox = new System.Windows.Forms.TextBox();
+            this.PassportTextBox = new System.Windows.Forms.TextBox();
+            this.NameTextBox = new System.Windows.Forms.TextBox();
             this.AddressTabPage = new System.Windows.Forms.TabPage();
             this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.HouseTextBox = new System.Windows.Forms.TextBox();
@@ -53,9 +52,13 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.MeterDataGridView = new System.Windows.Forms.DataGridView();
-            this.button2 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.OrderEntryDataGridView = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
+            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.CustomerDataGridView = new System.Windows.Forms.DataGridView();
+            this.CompanyCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.CustomerTabPage.SuspendLayout();
             this.AddressTabPage.SuspendLayout();
@@ -64,6 +67,7 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MeterDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderEntryDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -79,15 +83,18 @@
             // 
             // CustomerTabPage
             // 
-            this.CustomerTabPage.Controls.Add(this.textBox3);
-            this.CustomerTabPage.Controls.Add(this.textBox4);
-            this.CustomerTabPage.Controls.Add(this.label3);
+            this.CustomerTabPage.Controls.Add(this.CompanyCheckBox);
+            this.CustomerTabPage.Controls.Add(this.CustomerDataGridView);
+            this.CustomerTabPage.Controls.Add(this.radioButton3);
+            this.CustomerTabPage.Controls.Add(this.radioButton2);
             this.CustomerTabPage.Controls.Add(this.label4);
-            this.CustomerTabPage.Controls.Add(this.radioButton1);
-            this.CustomerTabPage.Controls.Add(this.textBox2);
-            this.CustomerTabPage.Controls.Add(this.textBox1);
+            this.CustomerTabPage.Controls.Add(this.label3);
             this.CustomerTabPage.Controls.Add(this.label2);
             this.CustomerTabPage.Controls.Add(this.label1);
+            this.CustomerTabPage.Controls.Add(this.INNTextBox);
+            this.CustomerTabPage.Controls.Add(this.CompanyNameTextBox);
+            this.CustomerTabPage.Controls.Add(this.PassportTextBox);
+            this.CustomerTabPage.Controls.Add(this.NameTextBox);
             this.CustomerTabPage.Location = new System.Drawing.Point(4, 22);
             this.CustomerTabPage.Name = "CustomerTabPage";
             this.CustomerTabPage.Padding = new System.Windows.Forms.Padding(3);
@@ -97,94 +104,79 @@
             this.CustomerTabPage.UseVisualStyleBackColor = true;
             this.CustomerTabPage.UseWaitCursor = true;
             // 
-            // textBox3
+            // label4
             // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Location = new System.Drawing.Point(277, 249);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(177, 20);
-            this.textBox3.TabIndex = 19;
-            this.textBox3.UseWaitCursor = true;
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Location = new System.Drawing.Point(276, 210);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(178, 20);
-            this.textBox4.TabIndex = 18;
-            this.textBox4.UseWaitCursor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(24, 332);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "ИНН";
+            this.label4.UseWaitCursor = true;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
-            this.label3.Location = new System.Drawing.Point(273, 233);
+            this.label3.Location = new System.Drawing.Point(24, 293);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(99, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "ИНН организации";
+            this.label3.Size = new System.Drawing.Size(125, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Название организации";
             this.label3.UseWaitCursor = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Enabled = false;
-            this.label4.Location = new System.Drawing.Point(273, 194);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(125, 13);
-            this.label4.TabIndex = 16;
-            this.label4.Text = "Название организации";
-            this.label4.UseWaitCursor = true;
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(275, 175);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(92, 17);
-            this.radioButton1.TabIndex = 14;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Организация";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.UseWaitCursor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(276, 149);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(178, 20);
-            this.textBox2.TabIndex = 13;
-            this.textBox2.UseWaitCursor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(275, 110);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 20);
-            this.textBox1.TabIndex = 12;
-            this.textBox1.UseWaitCursor = true;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(272, 133);
+            this.label2.Location = new System.Drawing.Point(24, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(91, 13);
-            this.label2.TabIndex = 11;
+            this.label2.TabIndex = 6;
             this.label2.Text = "Номер паспорта";
             this.label2.UseWaitCursor = true;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(272, 94);
+            this.label1.Location = new System.Drawing.Point(24, 72);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "ФИО заказчика";
+            this.label1.Size = new System.Drawing.Size(131, 13);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Фамилия Имя Отчество";
             this.label1.UseWaitCursor = true;
+            // 
+            // INNTextBox
+            // 
+            this.INNTextBox.Enabled = false;
+            this.INNTextBox.Location = new System.Drawing.Point(27, 348);
+            this.INNTextBox.Name = "INNTextBox";
+            this.INNTextBox.Size = new System.Drawing.Size(100, 20);
+            this.INNTextBox.TabIndex = 3;
+            this.INNTextBox.UseWaitCursor = true;
+            // 
+            // CompanyNameTextBox
+            // 
+            this.CompanyNameTextBox.Enabled = false;
+            this.CompanyNameTextBox.Location = new System.Drawing.Point(27, 309);
+            this.CompanyNameTextBox.Name = "CompanyNameTextBox";
+            this.CompanyNameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.CompanyNameTextBox.TabIndex = 2;
+            this.CompanyNameTextBox.UseWaitCursor = true;
+            // 
+            // PassportTextBox
+            // 
+            this.PassportTextBox.Location = new System.Drawing.Point(27, 128);
+            this.PassportTextBox.Name = "PassportTextBox";
+            this.PassportTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PassportTextBox.TabIndex = 1;
+            this.PassportTextBox.UseWaitCursor = true;
+            // 
+            // NameTextBox
+            // 
+            this.NameTextBox.Location = new System.Drawing.Point(27, 88);
+            this.NameTextBox.Name = "NameTextBox";
+            this.NameTextBox.Size = new System.Drawing.Size(100, 20);
+            this.NameTextBox.TabIndex = 0;
+            this.NameTextBox.UseWaitCursor = true;
             // 
             // AddressTabPage
             // 
@@ -199,7 +191,7 @@
             this.AddressTabPage.Location = new System.Drawing.Point(4, 22);
             this.AddressTabPage.Name = "AddressTabPage";
             this.AddressTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddressTabPage.Size = new System.Drawing.Size(726, 402);
+            this.AddressTabPage.Size = new System.Drawing.Size(726, 387);
             this.AddressTabPage.TabIndex = 1;
             this.AddressTabPage.Text = "Адрес";
             this.AddressTabPage.UseVisualStyleBackColor = true;
@@ -214,6 +206,7 @@
             this.AddressTextBox.TabIndex = 13;
             this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
             this.AddressTextBox.Enter += new System.EventHandler(this.AddressTextBox_Enter);
+            this.AddressTextBox.Leave += new System.EventHandler(this.AddressTextBox_Leave);
             // 
             // HouseTextBox
             // 
@@ -349,16 +342,6 @@
             this.MeterDataGridView.Size = new System.Drawing.Size(351, 309);
             this.MeterDataGridView.TabIndex = 3;
             // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(4, 415);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(236, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Добавить заказ";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -378,6 +361,66 @@
             this.OrderEntryDataGridView.Name = "OrderEntryDataGridView";
             this.OrderEntryDataGridView.Size = new System.Drawing.Size(357, 381);
             this.OrderEntryDataGridView.TabIndex = 3;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(4, 415);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(236, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "Добавить заказ";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // radioButton2
+            // 
+            this.radioButton2.AutoSize = true;
+            this.radioButton2.Checked = true;
+            this.radioButton2.Location = new System.Drawing.Point(23, 41);
+            this.radioButton2.Name = "radioButton2";
+            this.radioButton2.Size = new System.Drawing.Size(59, 17);
+            this.radioButton2.TabIndex = 9;
+            this.radioButton2.TabStop = true;
+            this.radioButton2.Text = "Новый";
+            this.radioButton2.UseVisualStyleBackColor = true;
+            this.radioButton2.UseWaitCursor = true;
+            this.radioButton2.Click += new System.EventHandler(this.radioButton2_Click);
+            // 
+            // radioButton3
+            // 
+            this.radioButton3.AutoSize = true;
+            this.radioButton3.Location = new System.Drawing.Point(187, 41);
+            this.radioButton3.Name = "radioButton3";
+            this.radioButton3.Size = new System.Drawing.Size(103, 17);
+            this.radioButton3.TabIndex = 10;
+            this.radioButton3.Text = "Существующий";
+            this.radioButton3.UseVisualStyleBackColor = true;
+            this.radioButton3.UseWaitCursor = true;
+            this.radioButton3.Click += new System.EventHandler(this.radioButton3_Click);
+            // 
+            // CustomerDataGridView
+            // 
+            this.CustomerDataGridView.AllowUserToAddRows = false;
+            this.CustomerDataGridView.AllowUserToDeleteRows = false;
+            this.CustomerDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.CustomerDataGridView.Location = new System.Drawing.Point(187, 64);
+            this.CustomerDataGridView.Name = "CustomerDataGridView";
+            this.CustomerDataGridView.ReadOnly = true;
+            this.CustomerDataGridView.RowHeadersVisible = false;
+            this.CustomerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.CustomerDataGridView.Size = new System.Drawing.Size(533, 212);
+            this.CustomerDataGridView.TabIndex = 11;
+            // 
+            // CompanyCheckBox
+            // 
+            this.CompanyCheckBox.AutoSize = true;
+            this.CompanyCheckBox.Location = new System.Drawing.Point(23, 273);
+            this.CompanyCheckBox.Name = "CompanyCheckBox";
+            this.CompanyCheckBox.Size = new System.Drawing.Size(93, 17);
+            this.CompanyCheckBox.TabIndex = 12;
+            this.CompanyCheckBox.Text = "Организация";
+            this.CompanyCheckBox.UseVisualStyleBackColor = true;
+            this.CompanyCheckBox.CheckedChanged += new System.EventHandler(this.radioButton1_Click);
             // 
             // OperatorForm
             // 
@@ -400,6 +443,7 @@
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MeterDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.OrderEntryDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -409,15 +453,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage CustomerTabPage;
         private System.Windows.Forms.TabPage AddressTabPage;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
@@ -434,5 +469,17 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DataGridView OrderEntryDataGridView;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox INNTextBox;
+        private System.Windows.Forms.TextBox CompanyNameTextBox;
+        private System.Windows.Forms.TextBox PassportTextBox;
+        private System.Windows.Forms.TextBox NameTextBox;
+        private System.Windows.Forms.RadioButton radioButton3;
+        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.DataGridView CustomerDataGridView;
+        private System.Windows.Forms.CheckBox CompanyCheckBox;
     }
 }

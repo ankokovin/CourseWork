@@ -360,7 +360,7 @@ namespace CourseWork
                 int cid = CustomerIndices[o.CustomerId];
                 int aid = AddressesIndices[o.AddressId];
                 Operations.AddOrder(Operations.FindUser(uid), Operations.FindCustomer(cid),
-                      Operations.FindAddress(aid), out string Res,++idx);
+                      Operations.FindAddress(aid), out string Res,out Order order,++idx);
                     OrderIndices.Add(o.Id, idx);
             }
             Dictionary<int, int> StatusIndices = new Dictionary<int, int>();

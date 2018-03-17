@@ -42,6 +42,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
@@ -55,9 +56,9 @@
             // RemoveButton
             // 
             this.RemoveButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RemoveButton.Location = new System.Drawing.Point(429, 3);
+            this.RemoveButton.Location = new System.Drawing.Point(428, 3);
             this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(174, 65);
+            this.RemoveButton.Size = new System.Drawing.Size(175, 65);
             this.RemoveButton.TabIndex = 2;
             this.RemoveButton.Text = "button3";
             this.RemoveButton.UseVisualStyleBackColor = true;
@@ -68,7 +69,7 @@
             this.ChangeButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ChangeButton.Location = new System.Drawing.Point(172, 3);
             this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(251, 65);
+            this.ChangeButton.Size = new System.Drawing.Size(250, 65);
             this.ChangeButton.TabIndex = 1;
             this.ChangeButton.Text = "button2";
             this.ChangeButton.UseVisualStyleBackColor = true;
@@ -90,7 +91,7 @@
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 39.75659F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 60.24341F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 179F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
             this.tableLayoutPanel1.Controls.Add(this.AddButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.RemoveButton, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.ChangeButton, 1, 0);
