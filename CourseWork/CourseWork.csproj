@@ -67,6 +67,12 @@
     <Compile Include="Customer.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="CustomQueryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustomQueryForm.Designer.cs">
+      <DependentUpon>CustomQueryForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="EntityToString.cs" />
     <Compile Include="EntityTypes.cs" />
     <Compile Include="House.cs">
@@ -235,6 +241,12 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="XMLQuery.cs" />
+    <EmbeddedResource Include="AnaliticForm.resx">
+      <DependentUpon>AnaliticForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomQueryForm.resx">
+      <DependentUpon>CustomQueryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OperatorForm.resx">
       <DependentUpon>OperatorForm.cs</DependentUpon>
     </EmbeddedResource>

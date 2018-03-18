@@ -16,5 +16,11 @@ namespace CourseWork
         {
             InitializeComponent();
         }
+
+        private void CustomQueryButton_Click(object sender, EventArgs e)
+        {
+            CustomQueryForm customQueryForm = new CustomQueryForm();
+            customQueryForm.Show();
+        }
     }
 }
