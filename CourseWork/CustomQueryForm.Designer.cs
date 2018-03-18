@@ -35,8 +35,11 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.OpenButton = new System.Windows.Forms.Button();
+            this.AndButton = new System.Windows.Forms.Button();
+            this.OrButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.ClearButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,8 +96,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.AndButton);
+            this.panel1.Controls.Add(this.OrButton);
             this.panel1.Controls.Add(this.CloseButton);
-            this.panel1.Controls.Add(this.OpenButton);
             this.panel1.Controls.Add(this.comboBox2);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.button1);
@@ -104,29 +108,63 @@
             this.panel1.Size = new System.Drawing.Size(704, 100);
             this.panel1.TabIndex = 5;
             // 
-            // OpenButton
+            // AndButton
             // 
-            this.OpenButton.Location = new System.Drawing.Point(3, 30);
-            this.OpenButton.Name = "OpenButton";
-            this.OpenButton.Size = new System.Drawing.Size(22, 23);
-            this.OpenButton.TabIndex = 5;
-            this.OpenButton.Text = "(";
-            this.OpenButton.UseVisualStyleBackColor = true;
+            this.AndButton.Location = new System.Drawing.Point(3, 30);
+            this.AndButton.Name = "AndButton";
+            this.AndButton.Size = new System.Drawing.Size(22, 23);
+            this.AndButton.TabIndex = 8;
+            this.AndButton.Text = "И";
+            this.AndButton.UseVisualStyleBackColor = true;
+            this.AndButton.Click += new System.EventHandler(this.AndButton_Click);
+            // 
+            // OrButton
+            // 
+            this.OrButton.Location = new System.Drawing.Point(31, 30);
+            this.OrButton.Name = "OrButton";
+            this.OrButton.Size = new System.Drawing.Size(47, 23);
+            this.OrButton.TabIndex = 7;
+            this.OrButton.Text = "Или";
+            this.OrButton.UseVisualStyleBackColor = true;
+            this.OrButton.Click += new System.EventHandler(this.OrButton_Click);
             // 
             // CloseButton
             // 
-            this.CloseButton.Location = new System.Drawing.Point(31, 30);
+            this.CloseButton.Location = new System.Drawing.Point(84, 30);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(22, 23);
             this.CloseButton.TabIndex = 6;
             this.CloseButton.Text = ")";
             this.CloseButton.UseVisualStyleBackColor = true;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(142, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(121, 23);
+            this.button2.TabIndex = 6;
+            this.button2.Text = "Добавить запрос";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // ClearButton
+            // 
+            this.ClearButton.Location = new System.Drawing.Point(269, 14);
+            this.ClearButton.Name = "ClearButton";
+            this.ClearButton.Size = new System.Drawing.Size(121, 23);
+            this.ClearButton.TabIndex = 7;
+            this.ClearButton.Text = "Очистить";
+            this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // CustomQueryForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(728, 296);
+            this.Controls.Add(this.ClearButton);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.comboBox1);
@@ -149,6 +187,9 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button CloseButton;
-        private System.Windows.Forms.Button OpenButton;
+        private System.Windows.Forms.Button AndButton;
+        private System.Windows.Forms.Button OrButton;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button ClearButton;
     }
 }

@@ -1402,25 +1402,24 @@ namespace CourseWork
         }
 
 
-        public static IQueryable<T> SelectUsers<T>(Func<User, bool> predicate, Func<User,T> selector) => (from p in cont.UserSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectOrders<T>(Func<Order, bool> predicate, Func<Order, T> selector) => (from p in cont.OrderSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectOrderEntrys<T>(Func<OrderEntry, bool> predicate, Func<OrderEntry, T> selector) => (from p in cont.OrderEntrySet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectCustomers<T>(Func<Customer, bool> predicate, Func<Customer, T> selector) => (from p in cont.CustomerSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectMeters<T>(Func<Meter, bool> predicate, Func<Meter, T> selector) => (from p in cont.MeterSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectMeterTypes<T>(Func<MeterType, bool> predicate, Func<MeterType, T> selector) => (from p in cont.MeterTypeSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectStavkas<T>(Func<Stavka, bool> predicate, Func<Stavka, T> selector) => (from p in cont.StavkaSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectPersons<T>(Func<Person, bool> predicate, Func<Person, T> selector) => (from p in cont.PersonSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectCitys<T>(Func<City, bool> predicate, Func<City, T> selector) => (from p in cont.CitySet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectStreets<T>(Func<Street, bool> predicate, Func<Street, T> selector) => (from p in cont.StreetSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectHouses<T>(Func<House, bool> predicate, Func<House, T> selector) => (from p in cont.HouseSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectAddresss<T>(Func<Address, bool> predicate, Func<Address, T> selector) => (from p in cont.AddressSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T> SelectStatuss<T>(Func<Status, bool> predicate, Func<Status, T> selector) => (from p in cont.StatusSet.Local where predicate(p) select selector(p)).AsQueryable();
-        public static IQueryable<T1> NextSelect<T1, T2>(Func<T2, bool> predicate, Func<T2, T1> selector, IQueryable<T2> Prev) => (from p in Prev where predicate(p) select selector(p));
-    }
-}
+        public static IEnumerable<T> SelectUsers<T>(Func<User, bool> predicate, Func<User, T> selector) => (from p in cont.UserSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectOrders<T>(Func<Order, bool> predicate, Func<Order, T> selector) => (from p in cont.OrderSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectOrderEntrys<T>(Func<OrderEntry, bool> predicate, Func<OrderEntry, T> selector) => (from p in cont.OrderEntrySet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectCustomers<T>(Func<Customer, bool> predicate, Func<Customer, T> selector) => (from p in cont.CustomerSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectMeters<T>(Func<Meter, bool> predicate, Func<Meter, T> selector) => (from p in cont.MeterSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectMeterTypes<T>(Func<MeterType, bool> predicate, Func<MeterType, T> selector) => (from p in cont.MeterTypeSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectStavkas<T>(Func<Stavka, bool> predicate, Func<Stavka, T> selector) => (from p in cont.StavkaSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectPersons<T>(Func<Person, bool> predicate, Func<Person, T> selector) => (from p in cont.PersonSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectCitys<T>(Func<City, bool> predicate, Func<City, T> selector) => (from p in cont.CitySet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectStreets<T>(Func<Street, bool> predicate, Func<Street, T> selector) => (from p in cont.StreetSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectHouses<T>(Func<House, bool> predicate, Func<House, T> selector) => (from p in cont.HouseSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectAddresss<T>(Func<Address, bool> predicate, Func<Address, T> selector) => (from p in cont.AddressSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T> SelectStatuss<T>(Func<Status, bool> predicate, Func<Status, T> selector) => (from p in cont.StatusSet.Local where predicate(p) select selector(p));
+        public static IEnumerable<T1> NextSelect<T1, T2>(Func<T2, bool> predicate, Func<T2, T1> selector, IEnumerable<T2> Prev) => (from p in Prev where predicate(p) select selector(p));
 
-class Node<T>
-{
-    Func<T, bool> predicate;
-    
+
+       
+
+      
+    }
 }
