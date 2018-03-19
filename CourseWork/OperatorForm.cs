@@ -39,12 +39,12 @@ namespace CourseWork
             CustomerBindingList = new BindingList<Customer>(customers.ToList());
             CompanyBindingList = new BindingList<Company>(companies.ToList());
             CustomerDataGridView.DataSource = CustomerBindingList;
-            Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer);
+            Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer,CurrentUser);
             Operations.cont.MeterSet.Load();
             cities = (from c in Operations.cont.CitySet select c);
             MessageBox.Show("Loaded");
             MeterDataGridView.DataSource = Operations.cont.MeterSet.Local.ToBindingList();
-            Program.HideColumns(ref MeterDataGridView, EntityTypes.Meter);
+            Program.HideColumns(ref MeterDataGridView, EntityTypes.Meter,CurrentUser);
             AutoCompleteStringCollection autoCompleteStringCollection = new AutoCompleteStringCollection();
             autoCompleteStringCollection.AddRange((from c in cities select c.ToString()).ToArray());
             CityTextBox.AutoCompleteCustomSource = autoCompleteStringCollection;
@@ -55,7 +55,7 @@ namespace CourseWork
             Operations.cont.OrderSet.Load();
             Operations.cont.OrderEntrySet.Load();
             COrderDataGridView.DataSource = Operations.cont.OrderSet.Local.ToBindingList();
-            Program.HideColumns(ref COrderDataGridView, EntityTypes.Order);
+            Program.HideColumns(ref COrderDataGridView, EntityTypes.Order,CurrentUser);
             COrderDataGridView.ClearSelection();
         }
 
@@ -144,11 +144,11 @@ namespace CourseWork
             if (radioButton2.Checked)
             {
                 if (BCompany) {
-                    Operations.AddCustomer(NameTextBox.Text,PassportTextBox.Text,out string Res);
+                    Operations.AddCustomer(NameTextBox.Text,PassportTextBox.Text,PhoneNumberTextBox.Text, out string Res);
                     customer = (from c in Operations.cont.CustomerSet where !(c is Company) && c.Passport == PassportTextBox.Text select c).First();
                 }else
                 {
-                    Operations.AddCompany(NameTextBox.Text, PassportTextBox.Text, CompanyNameTextBox.Text, INNTextBox.Text, out string Res);
+                    Operations.AddCompany(NameTextBox.Text, PassportTextBox.Text, PhoneNumberTextBox.Text, CompanyNameTextBox.Text, INNTextBox.Text, out string Res);
                     customer = (from c in Operations.cont.CustomerSet where c is Company && (c as Company).INN == INNTextBox.Text select c).First();
                 }
             }
@@ -196,7 +196,7 @@ namespace CourseWork
                 CompanyNameTextBox.Enabled = false;
                 INNTextBox.Enabled = false;
                 CustomerDataGridView.DataSource = CustomerBindingList;
-                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer);
+                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Customer,CurrentUser);
                
             }
             else
@@ -205,7 +205,7 @@ namespace CourseWork
                 CompanyNameTextBox.Enabled = true;
                 INNTextBox.Enabled = true;
                 CustomerDataGridView.DataSource = CompanyBindingList;
-                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Company);
+                Program.HideColumns(ref CustomerDataGridView, EntityTypes.Company,CurrentUser);
             }
         }
 

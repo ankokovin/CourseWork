@@ -14,6 +14,7 @@ namespace CourseWork
     {
         public int Id;
         public ActionMode ActionMode;
+        public User CurrentUser;
         public OP()
         {
             InitializeComponent();

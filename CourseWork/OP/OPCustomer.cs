@@ -26,13 +26,13 @@ namespace CourseWork
             {
                 if (ActionMode == ActionMode.Add)
                 {
-                    if (Operations.AddCompany(textBox1.Text, textBox2.Text, textBox4.Text, textBox3.Text, out string Res))
+                    if (Operations.AddCompany(textBox1.Text, textBox2.Text,textBox5.Text, textBox4.Text, textBox3.Text, out string Res))
                         Close();
                     MessageBox.Show(Res);
                 }
                 else
                 {
-                    if (Operations.ChangeCompany(Id,textBox1.Text, textBox2.Text, textBox4.Text, textBox3.Text, out string Res))
+                    if (Operations.ChangeCompany(Id,textBox1.Text, textBox2.Text,textBox5.Text, textBox4.Text, textBox3.Text, out string Res))
                         Close();
                     MessageBox.Show(Res);
                 }
@@ -41,13 +41,13 @@ namespace CourseWork
             {
                 if (ActionMode == ActionMode.Add)
                 {
-                    if (Operations.AddCustomer(textBox1.Text, textBox2.Text, out string Res))
+                    if (Operations.AddCustomer(textBox1.Text, textBox2.Text,textBox5.Text, out string Res))
                         Close();
                     MessageBox.Show(Res);
                 }
                 else
                 {
-                    if (Operations.ChangeCustomer(Id, textBox1.Text, textBox2.Text,out string Res))
+                    if (Operations.ChangeCustomer(Id, textBox1.Text, textBox2.Text,textBox5.Text,out string Res))
                         Close();
                     MessageBox.Show(Res);
                 }

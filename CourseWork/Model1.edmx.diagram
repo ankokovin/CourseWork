@@ -8,7 +8,7 @@
         <EntityTypeShape EntityType="Model1.Order" Width="1.5" PointX="2.625" PointY="0.5" />
         <EntityTypeShape EntityType="Model1.User" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="Model1.Customer" Width="1.5" PointX="4.875" PointY="0.5" />
-        <EntityTypeShape EntityType="Model1.Company" PointX="4.875" PointY="2.625" Width="1.5" />
+        <EntityTypeShape EntityType="Model1.Company" PointX="4.875" PointY="2.875" Width="1.5" />
         <EntityTypeShape EntityType="Model1.Person" Width="1.5" PointX="5" PointY="5" />
         <EntityTypeShape EntityType="Model1.Stavka" Width="1.5" PointX="4.875" PointY="7.5" />
         <AssociationConnector Association="Model1.CustomerOrder" />

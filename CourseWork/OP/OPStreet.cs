@@ -20,7 +20,7 @@ namespace CourseWork
         {
             Operations.cont.CitySet.Load();
             dataGridView1.DataSource = Operations.cont.CitySet.Local.ToBindingList();
-            Program.HideColumns(ref dataGridView1, EntityTypes.City);
+            Program.HideColumns(ref dataGridView1, EntityTypes.City, CurrentUser);
         }
         protected override void Act()
         {

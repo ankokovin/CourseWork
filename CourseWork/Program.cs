@@ -34,19 +34,23 @@ namespace CourseWork
         /// </summary>
         /// <param name="dgv">Искомая таблица <see cref="DataGridView"/></param>
         /// <param name="entity">Тип сущности в таблице</param>
-        public static void HideColumns(ref DataGridView dgv, EntityTypes entity)
+        public static void HideColumns(ref DataGridView dgv, EntityTypes entity, User currentUser)
         {
             if (HideableColumns.ContainsKey(entity))
             { 
                 HidaColumns(ref dgv, HideableColumns[entity]);
             }
+            if (entity == EntityTypes.User && currentUser.UserType != UserType.Admin)
+                HidaColumns(ref dgv, new List<String> { "Password" });
         }
 
         public static void HidaColumns(ref DataGridView dgv, ICollection<string> names)
         {
             foreach(string s in names)
             {
-                dgv.Columns[FindTitle(dgv, s)].Visible = false;
+                int col = FindTitle(dgv, s);
+                if (col!=-1)
+                    dgv.Columns[col].Visible = false;
             }
         }
 

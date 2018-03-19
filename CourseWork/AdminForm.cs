@@ -34,6 +34,7 @@ namespace CourseWork
             {
                 T op = new T();
                 op.Owner = owner;
+                op.CurrentUser = owner.CurrentUser;
                 op.Show();
             }
             public void Change(DataGridView dgv, int idColomn)
@@ -44,6 +45,7 @@ namespace CourseWork
                 if (!ok) return;
                 T op = new T();
                 op.Id = id;
+                op.CurrentUser = owner.CurrentUser;
                 op.Owner = owner;
                 op.Show();
                 op.Change(Find(id));
@@ -109,6 +111,7 @@ namespace CourseWork
                 MessageBox.Show(s);
             };
             CityForm.SetButtonNames("Добавить город", "Удалить город", "Изменить город");
+            CityForm.CurrentUser = CurrentUser;
             CityForm.Show();
         }
 
@@ -133,6 +136,7 @@ namespace CourseWork
                 MessageBox.Show(s);
             };
             StreetForm.SetButtonNames("Добавить улицу", "Удалить улицу", "Изменить улицу");
+            StreetForm.CurrentUser = CurrentUser;
             StreetForm.Show();
         }
 
@@ -163,6 +167,7 @@ namespace CourseWork
                 MessageBox.Show(s);
             };
             UserForm.SetButtonNames("Добавить пользователя", "Удалить пользователя", "Изменить пользователя");
+            UserForm.CurrentUser = CurrentUser;
             UserForm.Show();
         }
 
@@ -187,6 +192,7 @@ namespace CourseWork
                 MessageBox.Show(s);
             };
             simpleView.SetButtonNames("Добавить адрес", "Удалить адрес", "Изменить адрес");
+            simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
         }
 
@@ -210,7 +216,7 @@ namespace CourseWork
                 Operations.RemoveMeter(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить прибор учёта", "Удалить прибор учёта", "Изменить прибор учёта");
+            simpleView.SetButtonNames("Добавить прибор учёта", "Удалить прибор учёта", "Изменить прибор учёта"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
         }
 
@@ -234,7 +240,7 @@ namespace CourseWork
                 Operations.RemoveMeterType(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить тип приборов учёта", "Удалить тип приборов учёта", "Изменить тип приборов учёта");
+            simpleView.SetButtonNames("Добавить тип приборов учёта", "Удалить тип приборов учёта", "Изменить тип приборов учёта"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
         }
 
@@ -258,7 +264,7 @@ namespace CourseWork
                 Operations.RemoveOrder(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить заказ", "Удалить заказ", "Изменить заказ");
+            simpleView.SetButtonNames("Добавить заказ", "Удалить заказ", "Изменить заказ"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -283,7 +289,7 @@ namespace CourseWork
                 Operations.RemoveOrderEntry(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить заказную позицию", "Удалить заказную позицию", "Изменить заказную позицию");
+            simpleView.SetButtonNames("Добавить заказную позицию", "Удалить заказную позицию", "Изменить заказную позицию"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -308,7 +314,7 @@ namespace CourseWork
                 Operations.RemoveStatus(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить статус заказа", "Удалить статус заказа", "Изменить статус заказа");
+            simpleView.SetButtonNames("Добавить статус заказа", "Удалить статус заказа", "Изменить статус заказа"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -341,7 +347,7 @@ namespace CourseWork
                     MessageBox.Show(s);
                 }
             };
-            simpleView.SetButtonNames("Добавить заказчика", "Удалить заказчика", "Изменить заказчика");
+            simpleView.SetButtonNames("Добавить заказчика", "Удалить заказчика", "Изменить заказчика"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -366,7 +372,7 @@ namespace CourseWork
                 Operations.RemovePerson(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить работника", "Удалить работника", "Изменить работника");
+            simpleView.SetButtonNames("Добавить работника", "Удалить работника", "Изменить работника"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -391,7 +397,7 @@ namespace CourseWork
                 Operations.RemoveStavka(id, out string s);
                 MessageBox.Show(s);
             };
-            simpleView.SetButtonNames("Добавить ставку", "Удалить ставку", "Изменить ставку");
+            simpleView.SetButtonNames("Добавить ставку", "Удалить ставку", "Изменить ставку"); simpleView.CurrentUser = CurrentUser;
             simpleView.Show();
 
         }
@@ -416,7 +422,7 @@ namespace CourseWork
                 Operations.RemoveAddress(id, out string s);
                 MessageBox.Show(s);
             };
-            HouseForm.SetButtonNames("Добавить дом", "Удалить дом", "Изменить дом");
+            HouseForm.SetButtonNames("Добавить дом", "Удалить дом", "Изменить дом"); HouseForm.CurrentUser = CurrentUser;
             HouseForm.Show();
 
         }

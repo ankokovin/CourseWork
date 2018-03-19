@@ -57,6 +57,7 @@ namespace CourseWork
                 case "Login":
                 case "UserType":
                 case "FIO":
+                case "PhoneNumber":
                     comboBox3.Items.Add("Равно");
                     comboBox3.Items.Add("Неравно");
                     break;
@@ -106,12 +107,14 @@ namespace CourseWork
                 case EntityTypes.Company:
                     comboBox2.Items.Add("Name");
                     comboBox2.Items.Add("Passport");
+                    comboBox2.Items.Add("PhoneNumber");
                     comboBox2.Items.Add("CompanyName");
                     comboBox2.Items.Add("INN");
                     break;
                 case EntityTypes.Customer:
                     comboBox2.Items.Add("Name");
                     comboBox2.Items.Add("Passport");
+                    comboBox2.Items.Add("PhoneNumber");
                     break;
                 case EntityTypes.CustomerOrCompany:
                     comboBox2.Items.Add("Name");
@@ -134,6 +137,7 @@ namespace CourseWork
                     comboBox2.Items.Add("Customer");
                     comboBox2.Items.Add("Company");
                     comboBox2.Items.Add("CustomerOrCompany");
+                    comboBox2.Items.Add("Address");
                     break;
                 case EntityTypes.OrderEntry:
                     comboBox2.Items.Add("Meter");
@@ -234,37 +238,38 @@ namespace CourseWork
         }
         private void NextAddress()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Flat")
             {
                 Func<Address, bool> pred=null;
                 switch (comboBox3.Text)
                 {
                     case "Больше":
-                        pred = (Address a) => a.Flat > int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat>" + textBox1.Text });
+                        pred = (Address a) => a.Flat > int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat>" + copy });
                         break;
                     case "Меньше":
-                        pred = (Address a) => a.Flat < int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat<" + textBox1.Text });
+                        pred = (Address a) => a.Flat < int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat<" + copy });
                         break;
                     case "Равно":
-                        pred = (Address a) => a.Flat == int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat==" + textBox1.Text });
+                        pred = (Address a) => a.Flat == int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat==" + copy });
                         break;
                     case "Небольше":
-                        pred = (Address a) => a.Flat <= int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat<=" + textBox1.Text });
+                        pred = (Address a) => a.Flat <= int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat<=" + copy });
                         break;
                     case "Неменьше":
-                        pred = (Address a) => a.Flat >= int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat>=" + textBox1.Text });
+                        pred = (Address a) => a.Flat >= int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat>=" + copy });
                         break;
                     case "Неравно":
-                        pred = (Address a) => a.Flat != int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat!=" + textBox1.Text });
+                        pred = (Address a) => a.Flat != int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(new TextBox {  ReadOnly = true,Text = "Flat!=" + copy });
                         break;
                 }
-                CurrentCol = Operations.SelectAddresss(pred, (a) => a);
+                CurrentCol = Operations.SelectAddresss(pred);
             }else
             {
                 stack.Push(entityTypes);
@@ -275,35 +280,37 @@ namespace CourseWork
         }
         private void NextCity()
         {
+            string copy = textBox1.Text;
             Func<City, bool> pred = null;
             switch (comboBox3.Text)
             {
                 case "Равно":
-                    pred = (City c) => c.Name == textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text ));
+                    pred = (City c) => c.Name == copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name==" + copy ));
                     break;
                 case "Неравно":
-                    pred = (City c) => c.Name != textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                    pred = (City c) => c.Name != copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
 
                     break;
             }
-            CurrentCol = Operations.SelectCitys(pred, (c) => c);
+            CurrentCol = Operations.SelectCitys(pred);
         }
         private void NextCompany()
         {
+            string copy = textBox1.Text;
             Func<Customer, bool> pred = null;
             if (comboBox2.Text == "Name")
             {
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) =>c is Company &&  c.Name == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                        pred = (Customer c) =>c is Company &&  c.Name == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
                         break;
                     case "Неравно":
-                        pred = (Customer c) => c is Company && c.Name != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                        pred = (Customer c) => c is Company && c.Name != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
 
                         break;
                 }
@@ -312,13 +319,13 @@ namespace CourseWork
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => c is Company && c.Passport == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport==" + textBox1.Text));
+                        pred = (Customer c) => c is Company && c.Passport == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => c is Company && c.Passport != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + textBox1.Text));
+                        pred = (Customer c) => c is Company && c.Passport != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + copy));
                         break;
                 }
             }
@@ -327,13 +334,13 @@ namespace CourseWork
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => c is Company && (c as Company).CompanyName == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("CompanyName==" + textBox1.Text));
+                        pred = (Customer c) => c is Company && (c as Company).CompanyName == copy;
+                        flowLayoutPanel1.Controls.Add(textb("CompanyName==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => c is Company && (c as Company).CompanyName != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("CompanyName!=" + textBox1.Text));
+                        pred = (Customer c) => c is Company && (c as Company).CompanyName != copy;
+                        flowLayoutPanel1.Controls.Add(textb("CompanyName!=" + copy));
 
                         break;
                 }
@@ -343,34 +350,50 @@ namespace CourseWork
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => c is Company && (c as Company).INN == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("INN==" + textBox1.Text));
+                        pred = (Customer c) => c is Company && (c as Company).INN == copy;
+                        flowLayoutPanel1.Controls.Add(textb("INN==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => c is Company && (c as Company).INN != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("INN!=" + textBox1.Text));
+                        pred = (Customer c) => c is Company && (c as Company).INN != copy;
+                        flowLayoutPanel1.Controls.Add(textb("INN!=" + copy));
+
+                        break;
+                }
+            }else if (comboBox2.Text == "PhoneNumber")
+            {
+                switch (comboBox3.Text)
+                {
+                    case "Равно":
+                        pred = (Customer c) => c is Company && c.PhoneNumber == copy;
+                        flowLayoutPanel1.Controls.Add(textb("PhoneNumber==" + copy));
+
+                        break;
+                    case "Неравно":
+                        pred = (Customer c) => c is Company && c.PhoneNumber != copy;
+                        flowLayoutPanel1.Controls.Add(textb("PhoneNumber!=" + copy));
 
                         break;
                 }
             }
-            CurrentCol = Operations.SelectCustomers(pred, (c) => c);
+            CurrentCol = Operations.SelectCustomers(pred);
         }
         private void NextCustomer()
         {
+            string copy = textBox1.Text;
             Func<Customer, bool> pred = null;
             if (comboBox2.Text == "Name")
             {
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => !(c is Company) && c.Name == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                        pred = (Customer c) => !(c is Company) && c.Name == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => !(c is Company) && c.Name != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                        pred = (Customer c) => !(c is Company) && c.Name != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
 
                         break;
                 }
@@ -380,34 +403,35 @@ namespace CourseWork
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => !(c is Company) && c.Passport == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport==" + textBox1.Text ));
+                        pred = (Customer c) => !(c is Company) && c.Passport == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport==" + copy ));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => !(c is Company) && c.Passport != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + textBox1.Text));
+                        pred = (Customer c) => !(c is Company) && c.Passport != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + copy));
 
                         break;
                 }
             }
-            CurrentCol = Operations.SelectCustomers(pred, (c) => c);
+            CurrentCol = Operations.SelectCustomers(pred);
         }
         private void NextCustomerOrCompany()
         {
+            string copy = textBox1.Text;
             Func<Customer, bool> pred = null;
             if (comboBox2.Text == "Name")
             {
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) =>  c.Name == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text ));
+                        pred = (Customer c) =>  c.Name == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name==" + copy ));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) =>  c.Name != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text ));
+                        pred = (Customer c) =>  c.Name != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name!=" + copy ));
 
                         break;
                 }
@@ -417,38 +441,39 @@ namespace CourseWork
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (Customer c) => c.Passport == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport==" + textBox1.Text));
+                        pred = (Customer c) => c.Passport == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Customer c) => c.Passport != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + textBox1.Text));
+                        pred = (Customer c) => c.Passport != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Passport!=" + copy));
 
                         break;                                    
                 }
             }
-            CurrentCol = Operations.SelectCustomers(pred, (c) => c);
+            CurrentCol = Operations.SelectCustomers(pred);
         }
         private void NextHouse()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Number")
             {
                 Func<House, bool> pred = null;
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (a) => a.Number == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Number==" + textBox1.Text));
+                        pred = (a) => a.Number == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Number==" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (a) => a.Number != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Number!=" + textBox1.Text));
+                        pred = (a) => a.Number != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Number!=" + copy));
 
                         break;
                 }
-                CurrentCol = Operations.SelectHouses(pred, (a) => a);
+                CurrentCol = Operations.SelectHouses(pred);
             }else
             {
                 stack.Push(EntityTypes.House);
@@ -460,21 +485,22 @@ namespace CourseWork
         }
         private void NextMeter()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Name")
             {
                 Func<Meter, bool> pred = null;
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (a) => a.Name == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                        pred = (a) => a.Name == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
                         break;
                     case "Неравно":
-                        pred = (a) => a.Name != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                        pred = (a) => a.Name != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
                         break;
                 }
-                CurrentCol = Operations.SelectMeters(pred, (a) => a);
+                CurrentCol = Operations.SelectMeters(pred);
             }
             else
             {
@@ -487,58 +513,60 @@ namespace CourseWork
         }
         private void NextMeterType()
         {
+            string copy = textBox1.Text;
             Func<MeterType, bool> pred = null;
             switch (comboBox3.Text)
             {
                 case "Равно":
-                    pred = (MeterType c) => c.Name == textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                    pred = (MeterType c) => c.Name == copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
                     break;
                 case "Неравно":
-                    pred = (MeterType c) => c.Name != textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                    pred = (MeterType c) => c.Name != copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
                     break;
             }
-            CurrentCol = Operations.SelectMeterTypes(pred, (c) => c);
+            CurrentCol = Operations.SelectMeterTypes(pred);
         }
         private void NextOrder()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Id")
             {
                 Func<Order, bool> pred = null;
                 switch (comboBox3.Text)
                 {
                     case "Больше":
-                        pred = (Order a) => a.Id > int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id>" + textBox1.Text ));
+                        pred = (Order a) => a.Id > int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id>" + copy ));
                         break;
                     case "Меньше":
-                        pred = (Order a) => a.Id < int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id<" + textBox1.Text));
+                        pred = (Order a) => a.Id < int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id<" + copy));
 
                         break;
                     case "Равно":
-                        pred = (Order a) => a.Id == int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id==" + textBox1.Text));
+                        pred = (Order a) => a.Id == int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id==" + copy));
 
                         break;
                     case "Небольше":
-                        pred = (Order a) => a.Id <= int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id<=" + textBox1.Text));
+                        pred = (Order a) => a.Id <= int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id<=" + copy));
 
                         break;
                     case "Неменьше":
-                        pred = (Order a) => a.Id >= int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id>" + textBox1.Text));
+                        pred = (Order a) => a.Id >= int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id>" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (Order a) => a.Id != int.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("Id!=" + textBox1.Text));
+                        pred = (Order a) => a.Id != int.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("Id!=" + copy));
 
                         break;
                 }
-                CurrentCol = Operations.SelectOrders(pred, (c) => c);
+                CurrentCol = Operations.SelectOrders(pred);
             }else if (comboBox2.Text == "User")
             {
                 stack.Push(EntityTypes.Order);
@@ -570,10 +598,17 @@ namespace CourseWork
                 flowLayoutPanel1.Controls.Add(textb("(" + comboBox2.Text));
                 DeepOp = true;
 
+            }else if (comboBox2.Text == "Address")
+            {
+                stack.Push(EntityTypes.Order);
+                entityTypes = EntityTypes.Address;
+                flowLayoutPanel1.Controls.Add(textb("(" + comboBox2.Text));
+                DeepOp = true;
             }
         }
         private void NextOrderEntry()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Meter")
             {
                 stack.Push(EntityTypes.OrderEntry);
@@ -592,12 +627,12 @@ namespace CourseWork
                         break;
                     case "Задано":
                         Func<OrderEntry, bool> pred = (c) => c.PersonId != null;
-                        CurrentCol = Operations.SelectOrderEntrys(pred, (c) => c);
+                        CurrentCol = Operations.SelectOrderEntrys(pred);
                         flowLayoutPanel1.Controls.Add(textb("PersonId задано"));
                         break;
                     case "Незадано":
                         pred = (c) => c.PersonId == null;
-                        CurrentCol = Operations.SelectOrderEntrys(pred, (c) => c);
+                        CurrentCol = Operations.SelectOrderEntrys(pred);
                         flowLayoutPanel1.Controls.Add(textb("PersonId незадано"));
 
                         break;
@@ -616,34 +651,34 @@ namespace CourseWork
                         flowLayoutPanel1.Controls.Add(textb("StartTime незадано"));
                         break;
                     case "Больше":
-                        pred = (c) => c.StartTime > DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime>" + textBox1.Text));
+                        pred = (c) => c.StartTime > DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime>" + copy));
                         break;
                     case "Меньше":
-                        pred = (c) => c.StartTime < DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime<" + textBox1.Text));
+                        pred = (c) => c.StartTime < DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime<" + copy));
                         break;
                     case "Равно":
-                        pred = (c) => c.StartTime !=  DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime==" + textBox1.Text));
+                        pred = (c) => c.StartTime !=  DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime==" + copy));
 
                         break;
                     case "Небольше":
-                        pred = (c) => c.StartTime <= DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime<=" + textBox1.Text));
+                        pred = (c) => c.StartTime <= DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime<=" + copy));
 
                         break;
                     case "Неменьше":
-                        pred = (c) => c.StartTime >= DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime>=" + textBox1.Text));
+                        pred = (c) => c.StartTime >= DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime>=" + copy));
 
                         break;
                     case "Неравно":
-                        pred = (c) => c.StartTime != DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("StartTime !=" + textBox1.Text));
+                        pred = (c) => c.StartTime != DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("StartTime !=" + copy));
                         break;
                 }
-                CurrentCol = Operations.SelectOrderEntrys(pred, (c) => c);
+                CurrentCol = Operations.SelectOrderEntrys(pred);
             }else if (comboBox2.Text == "EndTime")
             {
                 Func<OrderEntry, bool> pred = null;
@@ -658,31 +693,31 @@ namespace CourseWork
                         flowLayoutPanel1.Controls.Add(textb("EndTime незадано"));
                         break;
                     case "Больше":
-                        pred = (c) => c.EndTime > DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime>" + textBox1.Text));
+                        pred = (c) => c.EndTime > DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime>" + copy));
                         break;
                     case "Меньше":
-                        pred = (c) => c.EndTime < DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime<" + textBox1.Text));
+                        pred = (c) => c.EndTime < DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime<" + copy));
                         break;
                     case "Равно":
-                        pred = (c) => c.EndTime != DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime==" + textBox1.Text));
+                        pred = (c) => c.EndTime != DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime==" + copy));
                         break;
                     case "Небольше":
-                        pred = (c) => c.EndTime <= DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime<=" + textBox1.Text));
+                        pred = (c) => c.EndTime <= DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime<=" + copy));
                         break;
                     case "Неменьше":
-                        pred = (c) => c.EndTime >= DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime>=" + textBox1.Text));
+                        pred = (c) => c.EndTime >= DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime>=" + copy));
                         break;
                     case "Неравно":
-                        pred = (c) => c.EndTime != DateTime.Parse(textBox1.Text);
-                        flowLayoutPanel1.Controls.Add(textb("EndTime !=" + textBox1.Text));
+                        pred = (c) => c.EndTime != DateTime.Parse(copy);
+                        flowLayoutPanel1.Controls.Add(textb("EndTime !=" + copy));
                         break;
                 }
-                CurrentCol = Operations.SelectOrderEntrys(pred, (c) => c);
+                CurrentCol = Operations.SelectOrderEntrys(pred);
             }else if (comboBox2.Text == "Status")
             {
                 stack.Push(EntityTypes.OrderEntry);
@@ -702,38 +737,41 @@ namespace CourseWork
         }
         private void NextPerson()
         {
+            string copy = textBox1.Text;
             Func<Person, bool> pred = null;
             switch (comboBox3.Text)
             {
                 case "Равно":
-                    pred = (Person c) => c.FIO == textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("FIO==" + textBox1.Text ));
+                    pred = (Person c) => c.FIO == copy;
+                    flowLayoutPanel1.Controls.Add(textb("FIO==" + copy ));
                     break;
                 case "Неравно":
-                    pred = (Person c) => c.FIO != textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("FIO!=" + textBox1.Text));
+                    pred = (Person c) => c.FIO != copy;
+                    flowLayoutPanel1.Controls.Add(textb("FIO!=" + copy));
                     break;
             }
-            CurrentCol = Operations.SelectPersons(pred, (c) => c);
+            CurrentCol = Operations.SelectPersons(pred);
         }
         private void NextStatus()
         {
+            string copy = textBox1.Text;
             Func<Status, bool> pred = null;
             switch (comboBox3.Text)
             {
                 case "Равно":
-                    pred = (Status c) => c.Name == textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                    pred = (Status c) => c.Name == copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
                     break;
                 case "Неравно":
-                    pred = (Status c) => c.Name != textBox1.Text;
-                    flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                    pred = (Status c) => c.Name != copy;
+                    flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
                     break;
             }
-            CurrentCol = Operations.SelectStatuss(pred, (c) => c);
+            CurrentCol = Operations.SelectStatuss(pred);
         }
         private void NextStavka()
         {
+            string copy = textBox1.Text;
             if (comboBox2.Text == "MeterType")
             {
                 stack.Push(EntityTypes.Stavka);
@@ -752,22 +790,23 @@ namespace CourseWork
             }
         }
         private void NextStreet()
-        {
+        { 
+            string copy = textBox1.Text;
             if (comboBox2.Text == "Name")
             {
                 Func<Street, bool> pred = null;
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (a) => a.Name == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name==" + textBox1.Text));
+                        pred = (a) => a.Name == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name==" + copy));
                         break;
                     case "Неравно":
-                        pred = (a) => a.Name != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Name!=" + textBox1.Text));
+                        pred = (a) => a.Name != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Name!=" + copy));
                         break;
                 }
-                CurrentCol = Operations.SelectStreets(pred, (a) => a);
+                CurrentCol = Operations.SelectStreets(pred);
             }else
             {
                 stack.Push(EntityTypes.Street);
@@ -779,24 +818,25 @@ namespace CourseWork
         }
         private void NextUser()
         {
+            string copy = textBox1.Text;
             Func<User, bool> pred = null;
             if (comboBox2.Text == "Login")
             {
                 switch (comboBox3.Text)
                 {
                     case "Равно":
-                        pred = (a) => a.Login == textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Login==" + textBox1.Text));
+                        pred = (a) => a.Login == copy;
+                        flowLayoutPanel1.Controls.Add(textb("Login==" + copy));
                         break;
                     case "Неравно":
-                        pred = (a) => a.Login != textBox1.Text;
-                        flowLayoutPanel1.Controls.Add(textb("Login!=" + textBox1.Text));
+                        pred = (a) => a.Login != copy;
+                        flowLayoutPanel1.Controls.Add(textb("Login!=" + copy));
                         break;
                 }
             }else
             {
                 UserType userType;
-                if (Enum.TryParse(textBox1.Text, out userType))
+                if (Enum.TryParse(copy, out userType))
                 {
                     switch (comboBox3.Text)
                     {
@@ -811,7 +851,7 @@ namespace CourseWork
                     }
                 }
             }
-            CurrentCol = Operations.SelectUsers(pred, (a) => a);
+            CurrentCol = Operations.SelectUsers(pred);
         }
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -826,64 +866,64 @@ namespace CourseWork
             {
                 case EntityTypes.Address:
                     var PrevCol = CurrentCol as IEnumerable<House>;
-                    CurrentCol = Operations.SelectAddresss((Address a) => PrevCol.Contains(a.House), a => a);
+                    CurrentCol = Operations.SelectAddresss((Address a) => PrevCol.Contains(a.House));
                     break;
                 case EntityTypes.House:
                     var PrevCol1 = CurrentCol as IEnumerable<Street>;
-                    CurrentCol = Operations.SelectHouses((House s) => PrevCol1.Contains(s.Street), a => a);
+                    CurrentCol = Operations.SelectHouses((House s) => PrevCol1.Contains(s.Street));
                     break;
                 case EntityTypes.Meter:
                     var PrevCol2 = CurrentCol as IEnumerable<MeterType>;
-                    CurrentCol = Operations.SelectMeters((Meter m) => PrevCol2.Contains(m.MeterType), a => a);
+                    CurrentCol = Operations.SelectMeters((Meter m) => PrevCol2.Contains(m.MeterType));
                 break;
                 case EntityTypes.Order:
                     if (entityTypes == EntityTypes.User)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<User>;
-                        CurrentCol = Operations.SelectOrders((Order o) => PrevCol3.Contains(o.User), a => a);
+                        CurrentCol = Operations.SelectOrders((Order o) => PrevCol3.Contains(o.User));
                     }else if (entityTypes == EntityTypes.Customer||entityTypes==EntityTypes.Company|| entityTypes == EntityTypes.CustomerOrCompany)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Customer>;
-                        CurrentCol = Operations.SelectOrders((Order s) => PrevCol3.Contains(s.Customer), a => a);
+                        CurrentCol = Operations.SelectOrders((Order s) => PrevCol3.Contains(s.Customer));
                     }else if (entityTypes == EntityTypes.Address)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Address>;
-                        CurrentCol = Operations.SelectOrders((Order s) => PrevCol3.Contains(s.Address), a => a);
+                        CurrentCol = Operations.SelectOrders((Order s) => PrevCol3.Contains(s.Address));
                     }
                     break;
                 case EntityTypes.OrderEntry:
                     if (entityTypes == EntityTypes.Order)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Order>;
-                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Order), a => a);
+                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Order));
                     }else if (entityTypes == EntityTypes.Meter)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Meter>;
-                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Meter), a => a);
+                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Meter));
                     }else if (entityTypes == EntityTypes.Person)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Person>;
-                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Person), a => a);
+                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Person));
                     }else if (entityTypes == EntityTypes.Status)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Status>;
-                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Status), a => a);
+                        CurrentCol = Operations.SelectOrderEntrys((OrderEntry o) => PrevCol3.Contains(o.Status));
                     }
                     break;
                 case EntityTypes.Stavka:
                     if (entityTypes == EntityTypes.MeterType)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<MeterType>;
-                        CurrentCol = Operations.SelectStavkas((Stavka o) => PrevCol3.Contains(o.MeterType), a => a);
+                        CurrentCol = Operations.SelectStavkas((Stavka o) => PrevCol3.Contains(o.MeterType));
                     }else if (entityTypes == EntityTypes.Person)
                     {
                         var PrevCol3 = CurrentCol as IEnumerable<Person>;
-                        CurrentCol = Operations.SelectStavkas((Stavka o) => PrevCol3.Contains(o.Person), a => a);
+                        CurrentCol = Operations.SelectStavkas((Stavka o) => PrevCol3.Contains(o.Person));
                     }
                     break;
                 case EntityTypes.Street:
                     var PrevCol4 = CurrentCol as IEnumerable<City>;
-                    CurrentCol = Operations.SelectStreets((Street o) => PrevCol4.Contains(o.City), a => a);
+                    CurrentCol = Operations.SelectStreets((Street o) => PrevCol4.Contains(o.City));
                     break;
             }
             entityTypes = entityTypes1;
@@ -1080,7 +1120,52 @@ namespace CourseWork
 
         private void button2_Click(object sender, EventArgs e)
         {
-            (Owner as AnaliticForm).ended(CurrentCol);
+            if (CurrentCol == null)
+            {
+                switch (entityTypes)
+                {
+                    case EntityTypes.Address:
+                        CurrentCol = Operations.SelectAddresss((s) => true);
+                        break;
+                    case EntityTypes.Company:
+                        CurrentCol = Operations.SelectCustomers((s) => s is Company);
+                        break;
+                    case EntityTypes.Customer:
+                        CurrentCol = Operations.SelectCustomers((s) => !(s is Company));
+                        break;
+                    case EntityTypes.CustomerOrCompany:
+                        CurrentCol = Operations.SelectCustomers((s) => true);
+                        break;
+                    case EntityTypes.House:
+                        CurrentCol = Operations.SelectHouses((s) => true);
+                        break;
+                    case EntityTypes.Meter:
+                        CurrentCol = Operations.SelectMeters((s) => true);
+                        break;
+                    case EntityTypes.MeterType:
+                        CurrentCol = Operations.SelectMeterTypes((s) => true);
+                        break;
+                    case EntityTypes.Order:
+                        CurrentCol = Operations.SelectOrders((s) => true);
+                        break;
+                    case EntityTypes.OrderEntry:
+                        CurrentCol = Operations.SelectOrderEntrys((s) => true);
+                        break;
+                    case EntityTypes.Stavka:
+                        CurrentCol = Operations.SelectStavkas((s) => true);
+                        break;
+                    case EntityTypes.Street:
+                        CurrentCol = Operations.SelectStreets((s) => true);
+                        break;
+                    case EntityTypes.Status:
+                        CurrentCol = Operations.SelectStatuss((s) => true);
+                        break;
+                    case EntityTypes.User:
+                        CurrentCol = Operations.SelectUsers((s) => true);
+                        break;
+                }
+            }
+             (Owner as AnaliticForm).ended(CurrentCol);
             Close();
         }
     }

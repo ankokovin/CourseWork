@@ -40,6 +40,7 @@ namespace CourseWork
                         case UserType.Analitic:
                             AnaliticForm analiticForm = new AnaliticForm();
                             analiticForm.FormClosed += BackUp;
+                            analiticForm.currentUser = result;
                             analiticForm.Show();
                             break;
                         case UserType.Operator:

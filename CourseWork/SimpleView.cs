@@ -26,10 +26,11 @@ namespace CourseWork
         private void CityForm_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = Source;
-            Program.HideColumns(ref dataGridView1, CurrentEntity);
+            Program.HideColumns(ref dataGridView1, CurrentEntity, CurrentUser);
         }
         public object Source;
         public Action Add;
+        public User CurrentUser;
         public Action<DataGridView> Change;
         public Action<DataGridView> Remove;
         public EntityTypes CurrentEntity;

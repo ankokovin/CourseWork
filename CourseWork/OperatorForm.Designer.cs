@@ -65,14 +65,16 @@
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.AddOrderTabPage = new System.Windows.Forms.TabPage();
             this.ChangeOrderTabPage = new System.Windows.Forms.TabPage();
-            this.COrderDataGridView = new System.Windows.Forms.DataGridView();
+            this.button4 = new System.Windows.Forms.Button();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.COrderEntryDataGridView = new System.Windows.Forms.DataGridView();
-            this.button4 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.COrderDataGridView = new System.Windows.Forms.DataGridView();
+            this.PhoneNumberTextBox = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.CustomerTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
@@ -86,11 +88,11 @@
             this.tabControl2.SuspendLayout();
             this.AddOrderTabPage.SuspendLayout();
             this.ChangeOrderTabPage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.COrderEntryDataGridView)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -106,6 +108,8 @@
             // 
             // CustomerTabPage
             // 
+            this.CustomerTabPage.Controls.Add(this.label12);
+            this.CustomerTabPage.Controls.Add(this.PhoneNumberTextBox);
             this.CustomerTabPage.Controls.Add(this.CompanyCheckBox);
             this.CustomerTabPage.Controls.Add(this.CustomerDataGridView);
             this.CustomerTabPage.Controls.Add(this.radioButton3);
@@ -520,20 +524,15 @@
             this.ChangeOrderTabPage.Text = "Изменение заказов";
             this.ChangeOrderTabPage.UseVisualStyleBackColor = true;
             // 
-            // COrderDataGridView
+            // button4
             // 
-            this.COrderDataGridView.AllowUserToAddRows = false;
-            this.COrderDataGridView.AllowUserToDeleteRows = false;
-            this.COrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.COrderDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.COrderDataGridView.Location = new System.Drawing.Point(0, 16);
-            this.COrderDataGridView.MultiSelect = false;
-            this.COrderDataGridView.Name = "COrderDataGridView";
-            this.COrderDataGridView.ReadOnly = true;
-            this.COrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.COrderDataGridView.Size = new System.Drawing.Size(385, 335);
-            this.COrderDataGridView.TabIndex = 0;
-            this.COrderDataGridView.SelectionChanged += new System.EventHandler(this.COrderDataGridView_SelectionChanged);
+            this.button4.Location = new System.Drawing.Point(8, 369);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(774, 23);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "Изменить заказную позицию";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // tableLayoutPanel4
             // 
@@ -548,25 +547,6 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.Size = new System.Drawing.Size(782, 357);
             this.tableLayoutPanel4.TabIndex = 1;
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.COrderDataGridView);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(3, 3);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(385, 351);
-            this.panel1.TabIndex = 2;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(46, 13);
-            this.label10.TabIndex = 1;
-            this.label10.Text = "Заказы";
             // 
             // panel2
             // 
@@ -601,15 +581,57 @@
             this.COrderEntryDataGridView.Size = new System.Drawing.Size(385, 335);
             this.COrderEntryDataGridView.TabIndex = 0;
             // 
-            // button4
+            // panel1
             // 
-            this.button4.Location = new System.Drawing.Point(8, 369);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(774, 23);
-            this.button4.TabIndex = 2;
-            this.button4.Text = "Изменить заказную позицию";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.panel1.Controls.Add(this.label10);
+            this.panel1.Controls.Add(this.COrderDataGridView);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(385, 351);
+            this.panel1.TabIndex = 2;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(46, 13);
+            this.label10.TabIndex = 1;
+            this.label10.Text = "Заказы";
+            // 
+            // COrderDataGridView
+            // 
+            this.COrderDataGridView.AllowUserToAddRows = false;
+            this.COrderDataGridView.AllowUserToDeleteRows = false;
+            this.COrderDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.COrderDataGridView.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.COrderDataGridView.Location = new System.Drawing.Point(0, 16);
+            this.COrderDataGridView.MultiSelect = false;
+            this.COrderDataGridView.Name = "COrderDataGridView";
+            this.COrderDataGridView.ReadOnly = true;
+            this.COrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.COrderDataGridView.Size = new System.Drawing.Size(385, 335);
+            this.COrderDataGridView.TabIndex = 0;
+            this.COrderDataGridView.SelectionChanged += new System.EventHandler(this.COrderDataGridView_SelectionChanged);
+            // 
+            // PhoneNumberTextBox
+            // 
+            this.PhoneNumberTextBox.Location = new System.Drawing.Point(27, 167);
+            this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
+            this.PhoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PhoneNumberTextBox.TabIndex = 13;
+            this.PhoneNumberTextBox.UseWaitCursor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(24, 151);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(93, 13);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Номер телефона";
+            this.label12.UseWaitCursor = true;
             // 
             // OperatorForm
             // 
@@ -636,13 +658,13 @@
             this.tabControl2.ResumeLayout(false);
             this.AddOrderTabPage.ResumeLayout(false);
             this.ChangeOrderTabPage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.COrderEntryDataGridView)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -694,5 +716,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridView COrderDataGridView;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox PhoneNumberTextBox;
     }
 }

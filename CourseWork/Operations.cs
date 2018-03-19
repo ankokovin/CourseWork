@@ -1173,7 +1173,7 @@ namespace CourseWork
         #endregion Person
         #region Customer
 
-        public static bool AddCustomer(string Name, string Passport, out string Res, bool save=true)
+        public static bool AddCustomer(string Name, string Passport,string PhoneNumber, out string Res, bool save=true)
         {
             try
             {
@@ -1185,6 +1185,7 @@ namespace CourseWork
                 Customer customer = new Customer();
                 customer.Name = Name;
                 customer.Passport = Passport;
+                customer.PhoneNumber = PhoneNumber;
                 cont.CustomerSet.Add(customer);
                 if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
@@ -1197,7 +1198,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeCustomer(int Id, string Name, string Passport, out string Res, bool save=true)
+        public static bool ChangeCustomer(int Id, string Name, string Passport,string PhoneNumber, out string Res, bool save=true)
         {
             try
             {
@@ -1214,6 +1215,7 @@ namespace CourseWork
                 }
                 a.Passport = Passport;
                 a.Name = Name;
+                a.PhoneNumber = PhoneNumber;
                 if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
                 return true;
@@ -1264,7 +1266,7 @@ namespace CourseWork
         #endregion Customer
         #region Company
 
-        public static bool AddCompany(string Name, string Passport,string CompanyName,string INN,  out string Res, bool save=true)
+        public static bool AddCompany(string Name, string Passport,string PhoneNumber,string CompanyName,string INN,  out string Res, bool save=true)
         {
             try
             {
@@ -1279,6 +1281,7 @@ namespace CourseWork
                 company.Passport = Passport;
                 company.INN = INN;
                 company.CompanyName = CompanyName;
+                company.PhoneNumber = PhoneNumber;
                 cont.CustomerSet.Add(company);
                 if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
@@ -1291,7 +1294,7 @@ namespace CourseWork
             }
         }
 
-        public static bool ChangeCompany(int Id, string Name, string Passport, string CompanyName, string INN, out string Res, bool save=true)
+        public static bool ChangeCompany(int Id, string Name, string Passport,string PhoneNumber, string CompanyName, string INN, out string Res, bool save=true)
         {
 
             try
@@ -1309,6 +1312,7 @@ namespace CourseWork
                 }
                 a.Passport = Passport;
                 a.Name = Name;
+                a.PhoneNumber = PhoneNumber;
                 if (save) cont.SaveChanges();
                 Res = "Изменение компании успешно";
                 return true;
@@ -1374,7 +1378,7 @@ namespace CourseWork
             NextId[EntityTypes.House] = (from p in cont.HouseSet where p.Number.Length == 0 select p.Id).First();
             AddAddress(-1, FindHouse(NextId[EntityTypes.House]), out string res4);
             NextId[EntityTypes.Address] = (from p in cont.AddressSet where p.Flat == -1 select p.Id).First();
-            AddCustomer("", "", out string res5);
+            AddCustomer("", "",null, out string res5);
             NextId[EntityTypes.Customer] = (from p in cont.CustomerSet where p.Name.Length == 0 select p.Id).First();
             AddPerson("", out string res6);
             NextId[EntityTypes.Person] = (from p in cont.PersonSet where p.FIO.Length == 0 select p.Id).First();
@@ -1402,24 +1406,19 @@ namespace CourseWork
         }
 
 
-        public static IEnumerable<T> SelectUsers<T>(Func<User, bool> predicate, Func<User, T> selector) => (from p in cont.UserSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectOrders<T>(Func<Order, bool> predicate, Func<Order, T> selector) => (from p in cont.OrderSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectOrderEntrys<T>(Func<OrderEntry, bool> predicate, Func<OrderEntry, T> selector) => (from p in cont.OrderEntrySet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectCustomers<T>(Func<Customer, bool> predicate, Func<Customer, T> selector) => (from p in cont.CustomerSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectMeters<T>(Func<Meter, bool> predicate, Func<Meter, T> selector) => (from p in cont.MeterSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectMeterTypes<T>(Func<MeterType, bool> predicate, Func<MeterType, T> selector) => (from p in cont.MeterTypeSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectStavkas<T>(Func<Stavka, bool> predicate, Func<Stavka, T> selector) => (from p in cont.StavkaSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectPersons<T>(Func<Person, bool> predicate, Func<Person, T> selector) => (from p in cont.PersonSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectCitys<T>(Func<City, bool> predicate, Func<City, T> selector) => (from p in cont.CitySet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectStreets<T>(Func<Street, bool> predicate, Func<Street, T> selector) => (from p in cont.StreetSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectHouses<T>(Func<House, bool> predicate, Func<House, T> selector) => (from p in cont.HouseSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectAddresss<T>(Func<Address, bool> predicate, Func<Address, T> selector) => (from p in cont.AddressSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T> SelectStatuss<T>(Func<Status, bool> predicate, Func<Status, T> selector) => (from p in cont.StatusSet.Local where predicate(p) select selector(p));
-        public static IEnumerable<T1> NextSelect<T1, T2>(Func<T2, bool> predicate, Func<T2, T1> selector, IEnumerable<T2> Prev) => (from p in Prev where predicate(p) select selector(p));
-
-
-       
-
-      
+        public static IEnumerable<User> SelectUsers(Func<User, bool> predicate  ) => (from p in cont.UserSet.Local where predicate(p) select p);
+        public static IEnumerable<Order> SelectOrders(Func<Order, bool> predicate ) => (from p in cont.OrderSet.Local where predicate(p) select p);
+        public static IEnumerable<OrderEntry> SelectOrderEntrys(Func<OrderEntry, bool> predicate ) => (from p in cont.OrderEntrySet.Local where predicate(p) select p);
+        public static IEnumerable<Customer> SelectCustomers(Func<Customer, bool> predicate ) => (from p in cont.CustomerSet.Local where predicate(p) select p);
+        public static IEnumerable<Meter> SelectMeters(Func<Meter, bool> predicate) => (from p in cont.MeterSet.Local where predicate(p) select p);
+        public static IEnumerable<MeterType> SelectMeterTypes(Func<MeterType, bool> predicate ) => (from p in cont.MeterTypeSet.Local where predicate(p) select p);
+        public static IEnumerable<Stavka> SelectStavkas(Func<Stavka, bool> predicate ) => (from p in cont.StavkaSet.Local where predicate(p) select p);
+        public static IEnumerable<Person> SelectPersons(Func<Person, bool> predicate  ) => (from p in cont.PersonSet.Local where predicate(p) select p);
+        public static IEnumerable<City> SelectCitys(Func<City, bool> predicate ) => (from p in cont.CitySet.Local where predicate(p) select p);
+        public static IEnumerable<Street> SelectStreets(Func<Street, bool> predicate ) => (from p in cont.StreetSet.Local where predicate(p) select p);
+        public static IEnumerable<House> SelectHouses(Func<House, bool> predicate ) => (from p in cont.HouseSet.Local where predicate(p) select p);
+        public static IEnumerable<Address> SelectAddresss(Func<Address, bool> predicate  ) => (from p in cont.AddressSet.Local where predicate(p) select p);
+        public static IEnumerable<Status> SelectStatuss(Func<Status, bool> predicate  ) => (from p in cont.StatusSet.Local where predicate(p) select p);
+        public static IEnumerable<T2> NextSelect<T2>(Func<T2, bool> predicate , IEnumerable<T2> Prev) => (from p in Prev where predicate(p) select p);
     }
 }

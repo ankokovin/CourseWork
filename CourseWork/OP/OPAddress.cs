@@ -55,7 +55,7 @@ namespace CourseWork
         {
             Operations.cont.HouseSet.Load();
             dataGridView1.DataSource = Operations.cont.HouseSet.Local.ToBindingList();
-            Program.HideColumns(ref dataGridView1, EntityTypes.House);
+            Program.HideColumns(ref dataGridView1, EntityTypes.House,CurrentUser);
         }
     }
 }

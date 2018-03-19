@@ -102,6 +102,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Passport" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="true" />
   </EntityType>
   <EntityType Name="PersonSet">
     <Key>
@@ -487,6 +488,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.CustomerOrder" FromRole="Customer" ToRole="Order" />
           <Property Name="Passport" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="true" />
         </EntityType>
         <EntityType Name="Company" BaseType="Model1.Customer">
           <Property Name="CompanyName" Nullable="false" Type="String" />
@@ -704,6 +706,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Passport" ColumnName="Passport" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
         </MappingFragment>
       </EntityTypeMapping>
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Company)">

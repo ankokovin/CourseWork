@@ -20,7 +20,7 @@ namespace CourseWork
         {
             Operations.cont.MeterTypeSet.Load();
             dataGridView1.DataSource = Operations.cont.MeterTypeSet.Local.ToBindingList();
-            Program.HideColumns(ref dataGridView1, EntityTypes.MeterType);
+            Program.HideColumns(ref dataGridView1, EntityTypes.MeterType,CurrentUser);
         }
         private void button1_Click(object sender, EventArgs e)
         {

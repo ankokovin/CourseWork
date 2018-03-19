@@ -95,11 +95,12 @@ namespace CourseWork
         public int Id { get; set; }
         public string Name { get; set; }
         public string Passport { get; set; }
+        public string PhoneNumber { get; set; }
         public static _Customer Trans(Customer customer)
         {
             if (customer is Company c)
             {
-                return new _Company { Id = c.Id, Name = c.Name, Passport = customer.Passport, CompanyName = c.CompanyName, INN = c.INN };
+                return new _Company { Id = c.Id, Name = c.Name, Passport = customer.Passport, CompanyName = c.CompanyName, INN = c.INN,PhoneNumber = c.PhoneNumber };
             }
             else
             {
@@ -107,7 +108,8 @@ namespace CourseWork
                 {
                     Id = customer.Id,
                     Name = customer.Name,
-                    Passport = customer.Passport
+                    Passport = customer.Passport,
+                    PhoneNumber = customer.PhoneNumber
                 };
             }
         }
@@ -340,13 +342,13 @@ namespace CourseWork
             {
                 if (c is _Company m)
                 {
-                    if (Operations.AddCompany(m.Name, m.Passport, m.CompanyName, m.INN, out string Res))
+                    if (Operations.AddCompany(m.Name, m.Passport,m.PhoneNumber, m.CompanyName, m.INN, out string Res))
                         CustomerIndices.Add(m.Id, ++idx);
                     else
                         CustomerIndices.Add(m.Id, (from p in Operations.cont.CustomerSet where p is Company && (p as Company).INN == m.INN select p.Id).First());
                 }else
                 {
-                    if (Operations.AddCustomer(c.Name, c.Passport, out string Res))
+                    if (Operations.AddCustomer(c.Name, c.Passport, c.PhoneNumber, out string Res))
                         CustomerIndices.Add(c.Id, ++idx);
                     else
                         CustomerIndices.Add(c.Id, (from p in Operations.cont.CustomerSet where !(p is Company) && p.Passport == c.Passport select p.Id).First());

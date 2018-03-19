@@ -27,10 +27,10 @@ namespace CourseWork
             dataGridView3.DataSource = Operations.cont.StatusSet.Local.ToBindingList();
             Operations.cont.PersonSet.Load();
             dataGridView4.DataSource = Operations.cont.PersonSet.Local.ToBindingList();
-            Program.HideColumns(ref dataGridView1, EntityTypes.Order);
-            Program.HideColumns(ref dataGridView2, EntityTypes.Meter);
-            Program.HideColumns(ref dataGridView3, EntityTypes.Status);
-            Program.HideColumns(ref dataGridView4, EntityTypes.Person);
+            Program.HideColumns(ref dataGridView1, EntityTypes.Order, CurrentUser);
+            Program.HideColumns(ref dataGridView2, EntityTypes.Meter, CurrentUser);
+            Program.HideColumns(ref dataGridView3, EntityTypes.Status, CurrentUser);
+            Program.HideColumns(ref dataGridView4, EntityTypes.Person, CurrentUser);
             dataGridView1.ClearSelection();
             dataGridView2.ClearSelection();
             dataGridView3.ClearSelection();
