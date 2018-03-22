@@ -24,6 +24,11 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Checker.IsHouseNumber(textBox1.Text))
+            {
+                MessageBox.Show("Неверный номер дома");
+                return;
+            }
             int index = dataGridView1.SelectedRows[0].Index;
             int id = 0;
             bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1,"Id"), index].Value.ToString(), out id);
@@ -50,7 +55,7 @@ namespace CourseWork
                 Text += h + " id:" + h.Id;
             }
             ActionMode = ActionMode.Change;
-            button1.Text = "Изменить дом";
+            button1.Text = "Внести изменение";
         }
 
         private void button1_Click(object sender, EventArgs e)

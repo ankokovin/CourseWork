@@ -19,6 +19,11 @@ namespace CourseWork
 
         protected override void Act()
         {
+            if (!Checker.IsName(textBox1.Text))
+            {
+                MessageBox.Show("Неверная строка названия");
+                return;
+            }
             if (ActionMode == ActionMode.Add)
             {
                 if (Operations.AddMeterType(textBox1.Text, out string Res))
@@ -42,7 +47,7 @@ namespace CourseWork
                 textBox1.Text = mt.Name;
                 Text += mt + " id:" + mt.Id;
             }
-            button1.Text = "Изменить тип приборов учёта";
+            button1.Text = "Внести изменение";
         }
 
         private void OPMeterType_Load(object sender, EventArgs e)

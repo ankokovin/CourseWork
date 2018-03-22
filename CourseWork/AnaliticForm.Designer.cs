@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.FastQueryButton = new System.Windows.Forms.Button();
             this.CustomQueryButton = new System.Windows.Forms.Button();
             this.XmlButton = new System.Windows.Forms.Button();
             this.ExcelButton = new System.Windows.Forms.Button();
@@ -37,18 +36,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.SuspendLayout();
             // 
-            // FastQueryButton
-            // 
-            this.FastQueryButton.Location = new System.Drawing.Point(266, 22);
-            this.FastQueryButton.Name = "FastQueryButton";
-            this.FastQueryButton.Size = new System.Drawing.Size(165, 23);
-            this.FastQueryButton.TabIndex = 1;
-            this.FastQueryButton.Text = "Быстрая диаграмма заказы";
-            this.FastQueryButton.UseVisualStyleBackColor = true;
-            // 
             // CustomQueryButton
             // 
-            this.CustomQueryButton.Location = new System.Drawing.Point(266, 51);
+            this.CustomQueryButton.Location = new System.Drawing.Point(266, 22);
             this.CustomQueryButton.Name = "CustomQueryButton";
             this.CustomQueryButton.Size = new System.Drawing.Size(165, 23);
             this.CustomQueryButton.TabIndex = 2;
@@ -80,6 +70,7 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
             this.button1.Location = new System.Drawing.Point(266, 230);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(165, 23);
@@ -115,7 +106,7 @@
             this.Controls.Add(this.ExcelButton);
             this.Controls.Add(this.XmlButton);
             this.Controls.Add(this.CustomQueryButton);
-            this.Controls.Add(this.FastQueryButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AnaliticForm";
             this.Text = "AnaliticForm";
             this.ResumeLayout(false);
@@ -123,7 +114,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button FastQueryButton;
         private System.Windows.Forms.Button CustomQueryButton;
         private System.Windows.Forms.Button XmlButton;
         private System.Windows.Forms.Button ExcelButton;

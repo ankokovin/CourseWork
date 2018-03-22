@@ -21,6 +21,11 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Checker.IsName(StatusTextBox.Text))
+            {
+                MessageBox.Show("Неверная строка названия");
+                return;
+            }
             if (ActionMode == ActionMode.Add)
             {
                 if (Operations.AddStatus(StatusTextBox.Text, out string Res))
@@ -43,7 +48,7 @@ namespace CourseWork
                 Text += st + " id:" + st.Id;
             }
             ActionMode = ActionMode.Change;
-            AddStatusButton.Text = "Изменить статус";
+            AddStatusButton.Text = "Внести изменение";
         }
     }
 }

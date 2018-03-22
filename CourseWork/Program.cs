@@ -54,6 +54,48 @@ namespace CourseWork
             }
         }
 
+        public static void Rename(ref DataGridView dgv)
+        {
+            Rename(ref dgv, "Id", "Идентификационный номер");
+            Rename(ref dgv, "Name", "Название");
+            Rename(ref dgv, "Address", "Адрес");
+            Rename(ref dgv, "City", "Город");
+            Rename(ref dgv, "House", "Дом");
+            Rename(ref dgv, "Street", "Улица");
+            Rename(ref dgv, "Order", "Заказ");
+            Rename(ref dgv, "OrderEntry", "Заказная позиция");
+            Rename(ref dgv, "Status", "Статус");
+            Rename(ref dgv, "Stavka", "Ставка");
+            Rename(ref dgv, "Customer", "Заказчик");
+            Rename(ref dgv, "Company", "Компания-заказчик");
+            Rename(ref dgv, "UserType", "Тип пользователя");
+            Rename(ref dgv, "User", "Создавший пользователь");
+            Rename(ref dgv, "Meter", "Счётчик");
+            Rename(ref dgv, "MeterType", "Тип счётчика");
+            Rename(ref dgv, "RegNumer", "Регистрационный номер");
+            Rename(ref dgv, "MeterId", "Номер счётчика");
+            Rename(ref dgv, "Person", "Исполнитель");
+            Rename(ref dgv, "StartTime", "Время начала");
+            Rename(ref dgv, "EndTime", "Время конца");
+            Rename(ref dgv, "startTime", "Удобное время начала");
+            Rename(ref dgv, "endTime", "Удобное время конца");
+            Rename(ref dgv, "Flat", "Номер квартиры");
+            Rename(ref dgv, "Number", "Номер дома");
+            Rename(ref dgv, "PhoneNumber", "Номер телефона");
+            Rename(ref dgv, "FIO", "ФИО");
+            Rename(ref dgv, "CompanyName", "Название компании");
+            Rename(ref dgv, "Passport", "Номер паспорта");
+        }
+
+        public static void Rename(ref DataGridView dgv, string Old, string New)
+        {
+            int idx = FindTitle(dgv, Old);
+            if (idx != -1)
+            {
+                dgv.Columns[idx].HeaderText = New;
+            }
+        }
+
         public static void HideRows(ref DataGridView dgv, Predicate<DataGridViewRow> predicate)
         {
             dgv.CurrentCell = null;

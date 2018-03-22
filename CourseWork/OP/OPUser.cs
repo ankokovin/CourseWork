@@ -21,9 +21,12 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Enum.TryParse(UserTypeComboBox.SelectedValue.ToString(), out UserType userType))
+                MessageBox.Show("Неверный тип пользователя");
             if (ActionMode == ActionMode.Add)
             {
-                Enum.TryParse(UserTypeComboBox.SelectedValue.ToString(), out UserType userType);
+               
+                    
                 if (Operations.AddUser(userType, LoginTextBox.Text, PasswordTextBox.Text,out string s))
                 {
                     Close();
@@ -32,7 +35,6 @@ namespace CourseWork
             }
             else
             {
-                Enum.TryParse(UserTypeComboBox.SelectedValue.ToString(), out UserType userType);
                 if (Operations.ChangeUser(Id,userType, LoginTextBox.Text, PasswordTextBox.Text, out string s))
                 {
                     Close();
@@ -51,7 +53,7 @@ namespace CourseWork
                 UserTypeComboBox.SelectedValue = user.UserType;
             }
             ActionMode = ActionMode.Change;
-            button1.Text = "Изменить пользователя";
+            button1.Text = "Внести изменение";
         }
 
         private void button1_Click(object sender, EventArgs e)

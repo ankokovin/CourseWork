@@ -485,7 +485,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
-          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="FIO" Type="String" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Model1.CustomerOrder" FromRole="Customer" ToRole="Order" />
           <Property Name="Passport" Type="String" Nullable="false" />
           <Property Name="PhoneNumber" Type="String" Nullable="true" />
@@ -704,7 +704,7 @@
       <EntityTypeMapping TypeName="IsTypeOf(Model1.Customer)">
         <MappingFragment StoreEntitySet="CustomerSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="FIO" ColumnName="Name" />
           <ScalarProperty Name="Passport" ColumnName="Passport" />
           <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
         </MappingFragment>

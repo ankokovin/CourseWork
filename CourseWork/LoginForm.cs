@@ -62,5 +62,10 @@ namespace CourseWork
             Enabled = true;
             Show();
         }
+
+        private void LoginForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

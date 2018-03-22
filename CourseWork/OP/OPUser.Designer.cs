@@ -65,7 +65,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(144, 23);
             this.button1.TabIndex = 3;
-            this.button1.Text = "Добавить пользователя";
+            this.button1.Text = "Внести пользователя";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -107,6 +107,7 @@
             this.Controls.Add(this.UserTypeComboBox);
             this.Controls.Add(this.PasswordTextBox);
             this.Controls.Add(this.LoginTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OPUser";
             this.Text = "Добавление пользователя";
             this.Load += new System.EventHandler(this.OPUser1_Load);

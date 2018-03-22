@@ -27,6 +27,7 @@ namespace CourseWork
         {
             dataGridView1.DataSource = Source;
             Program.HideColumns(ref dataGridView1, CurrentEntity, CurrentUser);
+            Program.Rename(ref dataGridView1);
         }
         public object Source;
         public Action Add;

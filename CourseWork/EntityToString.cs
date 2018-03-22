@@ -45,7 +45,7 @@ namespace CourseWork
     {
         public override string ToString()
         {
-            return Name + " " + Passport;
+            return FIO + " " + Passport;
         }
     }
     partial class Meter

@@ -22,6 +22,11 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Checker.IsNumber(textBox1.Text))
+            {
+                MessageBox.Show("Неверный номер квартиры");
+                return;
+            }
             int ind = dataGridView1.SelectedRows[0].Index;
             int id = 0;
             bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1, "Id"), ind].Value.ToString(), out id);
@@ -48,7 +53,7 @@ namespace CourseWork
                 Program.SelectId(ref dataGridView1, adr.House.Id);
                 Text += " " + adr + " id:" + adr.Id;
             }
-            button1.Text = "Изменить адрес";
+            button1.Text = "Внести изменение" ;
         }
 
         private void OPAddress_Load(object sender, EventArgs e)
@@ -56,6 +61,9 @@ namespace CourseWork
             Operations.cont.HouseSet.Load();
             dataGridView1.DataSource = Operations.cont.HouseSet.Local.ToBindingList();
             Program.HideColumns(ref dataGridView1, EntityTypes.House,CurrentUser);
+            Program.Rename(ref dataGridView1);
         }
+
+        
     }
 }

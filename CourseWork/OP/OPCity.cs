@@ -22,7 +22,7 @@ namespace CourseWork
                 CityNameTextBox.Text = city.Name;
                 Text += " " + city + " id:" + city.Id;
             }
-            AddCityButton.Text = "Изменить город";
+            AddCityButton.Text = "Внести изменение";
         }
         private void AddCityButton_Click(object sender, EventArgs e)
         {
@@ -30,6 +30,11 @@ namespace CourseWork
         }
         override protected void Act()
         {
+            if (!Checker.IsName(CityNameTextBox.Text))
+            {
+                MessageBox.Show("Неверная строка названия");
+                return;
+            }
             if (ActionMode == ActionMode.Add)
             {
                 if (Operations.AddCity(CityNameTextBox.Text, out string s))

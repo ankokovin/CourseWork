@@ -35,6 +35,7 @@
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.AndButton = new System.Windows.Forms.Button();
             this.OrButton = new System.Windows.Forms.Button();
             this.CloseButton = new System.Windows.Forms.Button();
@@ -46,6 +47,22 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Заказ",
+            "Заказная позиция",
+            "Город",
+            "Улица",
+            "Дом",
+            "Адрес",
+            "Пользователь",
+            "Счётчик",
+            "Тип счётчиков",
+            "Статус заказной позиции",
+            "Заказчик",
+            "Частный заказчик",
+            "Компания",
+            "Исполнитель",
+            "Ставка"});
             this.comboBox1.Location = new System.Drawing.Point(12, 14);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
@@ -72,6 +89,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.Enabled = false;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(3, 3);
             this.comboBox2.Name = "comboBox2";
@@ -81,6 +99,7 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.Enabled = false;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(130, 3);
             this.comboBox3.Name = "comboBox3";
@@ -96,6 +115,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.AndButton);
             this.panel1.Controls.Add(this.OrButton);
             this.panel1.Controls.Add(this.CloseButton);
@@ -107,6 +127,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(704, 100);
             this.panel1.TabIndex = 5;
+            // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.CustomFormat = "d.MM.yyyy HH:m";
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dateTimePicker1.Location = new System.Drawing.Point(130, 33);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 10;
+            this.dateTimePicker1.Visible = false;
+            this.dateTimePicker1.ValueChanged += new System.EventHandler(this.dateTimePicker1_ValueChanged);
             // 
             // AndButton
             // 
@@ -168,6 +199,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.comboBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CustomQueryForm";
             this.Text = "CustomQueryForm";
             this.Load += new System.EventHandler(this.CustomQueryForm_Load);
@@ -191,5 +223,6 @@
         private System.Windows.Forms.Button OrButton;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button ClearButton;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
     }
 }

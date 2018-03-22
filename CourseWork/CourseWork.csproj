@@ -58,6 +58,7 @@
     <Compile Include="Address.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Checker.cs" />
     <Compile Include="City.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -314,6 +315,7 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>

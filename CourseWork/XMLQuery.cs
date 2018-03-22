@@ -93,21 +93,21 @@ namespace CourseWork
     public class _Customer
     {
         public int Id { get; set; }
-        public string Name { get; set; }
+        public string FIO { get; set; }
         public string Passport { get; set; }
         public string PhoneNumber { get; set; }
         public static _Customer Trans(Customer customer)
         {
             if (customer is Company c)
             {
-                return new _Company { Id = c.Id, Name = c.Name, Passport = customer.Passport, CompanyName = c.CompanyName, INN = c.INN,PhoneNumber = c.PhoneNumber };
+                return new _Company { Id = c.Id, FIO = c.FIO, Passport = customer.Passport, CompanyName = c.CompanyName, INN = c.INN,PhoneNumber = c.PhoneNumber };
             }
             else
             {
                 return new _Customer
                 {
                     Id = customer.Id,
-                    Name = customer.Name,
+                    FIO = customer.FIO,
                     Passport = customer.Passport,
                     PhoneNumber = customer.PhoneNumber
                 };
@@ -268,7 +268,7 @@ namespace CourseWork
                     StreetIndices.Add(s.Id, (from p in Operations.cont.StreetSet where p.Name == s.Name && p.City.Id == cid select p.Id).First());
                 }
             }
-            Dictionary<int, int> HouseIndices = new Dictionary<int, int>();
+           Dictionary<int, int> HouseIndices = new Dictionary<int, int>();
             idx = Operations.NextId[EntityTypes.House];
             foreach (_House h in HouseSet)
             {
@@ -342,13 +342,13 @@ namespace CourseWork
             {
                 if (c is _Company m)
                 {
-                    if (Operations.AddCompany(m.Name, m.Passport,m.PhoneNumber, m.CompanyName, m.INN, out string Res))
+                    if (Operations.AddCompany(m.FIO, m.Passport,m.PhoneNumber, m.CompanyName, m.INN, out string Res))
                         CustomerIndices.Add(m.Id, ++idx);
                     else
                         CustomerIndices.Add(m.Id, (from p in Operations.cont.CustomerSet where p is Company && (p as Company).INN == m.INN select p.Id).First());
                 }else
                 {
-                    if (Operations.AddCustomer(c.Name, c.Passport, c.PhoneNumber, out string Res))
+                    if (Operations.AddCustomer(c.FIO, c.Passport, c.PhoneNumber, out string Res))
                         CustomerIndices.Add(c.Id, ++idx);
                     else
                         CustomerIndices.Add(c.Id, (from p in Operations.cont.CustomerSet where !(p is Company) && p.Passport == c.Passport select p.Id).First());
@@ -362,7 +362,7 @@ namespace CourseWork
                 int cid = CustomerIndices[o.CustomerId];
                 int aid = AddressesIndices[o.AddressId];
                 Operations.AddOrder(Operations.FindUser(uid), Operations.FindCustomer(cid),
-                      Operations.FindAddress(aid), out string Res,out Order order,++idx);
+                      Operations.FindAddress(aid), out string Res,out int id,++idx);
                     OrderIndices.Add(o.Id, idx);
             }
             Dictionary<int, int> StatusIndices = new Dictionary<int, int>();

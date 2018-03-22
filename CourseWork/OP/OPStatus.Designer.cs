@@ -39,7 +39,7 @@
             this.AddStatusButton.Name = "AddStatusButton";
             this.AddStatusButton.Size = new System.Drawing.Size(111, 23);
             this.AddStatusButton.TabIndex = 5;
-            this.AddStatusButton.Text = "Добавить статус";
+            this.AddStatusButton.Text = "Внести статус";
             this.AddStatusButton.UseVisualStyleBackColor = true;
             this.AddStatusButton.Click += new System.EventHandler(this.AddStatusButton_Click);
             // 
@@ -66,6 +66,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddStatusButton);
             this.Controls.Add(this.StatusTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OPStatus";
             this.Text = "Добавление статуса";
             this.ResumeLayout(false);

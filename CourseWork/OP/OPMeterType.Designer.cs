@@ -48,7 +48,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(185, 23);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить тип приборов учёта";
+            this.button1.Text = "Внести тип приборов учёта";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
@@ -66,6 +66,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OPMeterType";
             this.Text = "Добавление типа прибора учёта";
             this.Load += new System.EventHandler(this.OPMeterType_Load);

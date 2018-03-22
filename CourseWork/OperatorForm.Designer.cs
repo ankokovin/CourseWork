@@ -30,6 +30,8 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.CustomerTabPage = new System.Windows.Forms.TabPage();
+            this.label12 = new System.Windows.Forms.Label();
+            this.PhoneNumberTextBox = new System.Windows.Forms.TextBox();
             this.CompanyCheckBox = new System.Windows.Forms.CheckBox();
             this.CustomerDataGridView = new System.Windows.Forms.DataGridView();
             this.radioButton3 = new System.Windows.Forms.RadioButton();
@@ -73,8 +75,11 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
             this.COrderDataGridView = new System.Windows.Forms.DataGridView();
-            this.PhoneNumberTextBox = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
+            this.AddExcelOrderTabPage = new System.Windows.Forms.TabPage();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button6 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tabControl1.SuspendLayout();
             this.CustomerTabPage.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.CustomerDataGridView)).BeginInit();
@@ -93,6 +98,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.COrderEntryDataGridView)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).BeginInit();
+            this.AddExcelOrderTabPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -100,10 +107,11 @@
             this.tabControl1.Controls.Add(this.CustomerTabPage);
             this.tabControl1.Controls.Add(this.AddressTabPage);
             this.tabControl1.Controls.Add(this.OrderEntryTabPage);
-            this.tabControl1.Location = new System.Drawing.Point(6, 6);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(734, 423);
+            this.tabControl1.Size = new System.Drawing.Size(1169, 458);
             this.tabControl1.TabIndex = 0;
             // 
             // CustomerTabPage
@@ -122,14 +130,33 @@
             this.CustomerTabPage.Controls.Add(this.CompanyNameTextBox);
             this.CustomerTabPage.Controls.Add(this.PassportTextBox);
             this.CustomerTabPage.Controls.Add(this.NameTextBox);
+            this.CustomerTabPage.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.CustomerTabPage.Location = new System.Drawing.Point(4, 22);
             this.CustomerTabPage.Name = "CustomerTabPage";
             this.CustomerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CustomerTabPage.Size = new System.Drawing.Size(726, 397);
+            this.CustomerTabPage.Size = new System.Drawing.Size(1161, 432);
             this.CustomerTabPage.TabIndex = 0;
             this.CustomerTabPage.Text = "Заказчик";
             this.CustomerTabPage.UseVisualStyleBackColor = true;
             this.CustomerTabPage.UseWaitCursor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(24, 151);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(93, 13);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Номер телефона";
+            this.label12.UseWaitCursor = true;
+            // 
+            // PhoneNumberTextBox
+            // 
+            this.PhoneNumberTextBox.Location = new System.Drawing.Point(27, 167);
+            this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
+            this.PhoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PhoneNumberTextBox.TabIndex = 13;
+            this.PhoneNumberTextBox.UseWaitCursor = true;
             // 
             // CompanyCheckBox
             // 
@@ -154,7 +181,7 @@
             this.CustomerDataGridView.ReadOnly = true;
             this.CustomerDataGridView.RowHeadersVisible = false;
             this.CustomerDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.CustomerDataGridView.Size = new System.Drawing.Size(533, 304);
+            this.CustomerDataGridView.Size = new System.Drawing.Size(924, 304);
             this.CustomerDataGridView.TabIndex = 11;
             this.CustomerDataGridView.UseWaitCursor = true;
             this.CustomerDataGridView.Visible = false;
@@ -271,16 +298,16 @@
             this.AddressTabPage.Location = new System.Drawing.Point(4, 22);
             this.AddressTabPage.Name = "AddressTabPage";
             this.AddressTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddressTabPage.Size = new System.Drawing.Size(726, 397);
+            this.AddressTabPage.Size = new System.Drawing.Size(1161, 432);
             this.AddressTabPage.TabIndex = 1;
             this.AddressTabPage.Text = "Адрес";
             this.AddressTabPage.UseVisualStyleBackColor = true;
             // 
             // AddressTextBox
             // 
-            this.AddressTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.AddressTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.AddressTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.AddressTextBox.Location = new System.Drawing.Point(248, 229);
+            this.AddressTextBox.Location = new System.Drawing.Point(447, 209);
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(100, 20);
             this.AddressTextBox.TabIndex = 13;
@@ -290,9 +317,9 @@
             // 
             // HouseTextBox
             // 
-            this.HouseTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.HouseTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.HouseTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.HouseTextBox.Location = new System.Drawing.Point(248, 190);
+            this.HouseTextBox.Location = new System.Drawing.Point(447, 170);
             this.HouseTextBox.Name = "HouseTextBox";
             this.HouseTextBox.Size = new System.Drawing.Size(100, 20);
             this.HouseTextBox.TabIndex = 12;
@@ -301,9 +328,9 @@
             // 
             // StreetTextBox
             // 
-            this.StreetTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.StreetTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.StreetTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.StreetTextBox.Location = new System.Drawing.Point(248, 150);
+            this.StreetTextBox.Location = new System.Drawing.Point(447, 130);
             this.StreetTextBox.Name = "StreetTextBox";
             this.StreetTextBox.Size = new System.Drawing.Size(100, 20);
             this.StreetTextBox.TabIndex = 11;
@@ -312,9 +339,9 @@
             // 
             // CityTextBox
             // 
-            this.CityTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.CityTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.CityTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.CityTextBox.Location = new System.Drawing.Point(248, 109);
+            this.CityTextBox.Location = new System.Drawing.Point(447, 89);
             this.CityTextBox.Name = "CityTextBox";
             this.CityTextBox.Size = new System.Drawing.Size(100, 20);
             this.CityTextBox.TabIndex = 10;
@@ -323,7 +350,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(245, 213);
+            this.label8.Location = new System.Drawing.Point(444, 193);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(55, 13);
             this.label8.TabIndex = 7;
@@ -332,7 +359,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(245, 92);
+            this.label5.Location = new System.Drawing.Point(444, 72);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(37, 13);
             this.label5.TabIndex = 4;
@@ -341,7 +368,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(245, 173);
+            this.label7.Location = new System.Drawing.Point(444, 153);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(30, 13);
             this.label7.TabIndex = 6;
@@ -350,7 +377,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(245, 132);
+            this.label6.Location = new System.Drawing.Point(444, 112);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(39, 13);
             this.label6.TabIndex = 5;
@@ -361,7 +388,7 @@
             this.OrderEntryTabPage.Controls.Add(this.tableLayoutPanel1);
             this.OrderEntryTabPage.Location = new System.Drawing.Point(4, 22);
             this.OrderEntryTabPage.Name = "OrderEntryTabPage";
-            this.OrderEntryTabPage.Size = new System.Drawing.Size(726, 397);
+            this.OrderEntryTabPage.Size = new System.Drawing.Size(1161, 432);
             this.OrderEntryTabPage.TabIndex = 2;
             this.OrderEntryTabPage.Text = "Заказные позиции";
             this.OrderEntryTabPage.UseVisualStyleBackColor = true;
@@ -378,7 +405,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(726, 397);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1161, 432);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -393,14 +420,14 @@
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 3;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 315F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 370F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(357, 391);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(574, 426);
             this.tableLayoutPanel2.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(3, 359);
+            this.button1.Location = new System.Drawing.Point(3, 394);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(230, 23);
             this.button1.TabIndex = 0;
@@ -413,13 +440,14 @@
             this.MeterDataGridView.AllowUserToAddRows = false;
             this.MeterDataGridView.AllowUserToDeleteRows = false;
             this.MeterDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.MeterDataGridView.Location = new System.Drawing.Point(3, 44);
+            this.MeterDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MeterDataGridView.Location = new System.Drawing.Point(3, 24);
             this.MeterDataGridView.MultiSelect = false;
             this.MeterDataGridView.Name = "MeterDataGridView";
             this.MeterDataGridView.ReadOnly = true;
             this.MeterDataGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.MeterDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.MeterDataGridView.Size = new System.Drawing.Size(351, 309);
+            this.MeterDataGridView.Size = new System.Drawing.Size(568, 364);
             this.MeterDataGridView.TabIndex = 3;
             // 
             // label9
@@ -439,20 +467,20 @@
             this.tableLayoutPanel3.Controls.Add(this.OrderEntryDataGridView, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.button3, 0, 2);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(366, 3);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(583, 3);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 3;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.30471F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.695291F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(357, 391);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(575, 426);
             this.tableLayoutPanel3.TabIndex = 4;
             // 
             // dateTimePicker1
             // 
             this.dateTimePicker1.CustomFormat = "d.MM.yyyy HH:m";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 334);
+            this.dateTimePicker1.Location = new System.Drawing.Point(3, 366);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 10;
@@ -467,12 +495,12 @@
             this.OrderEntryDataGridView.Name = "OrderEntryDataGridView";
             this.OrderEntryDataGridView.ReadOnly = true;
             this.OrderEntryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.OrderEntryDataGridView.Size = new System.Drawing.Size(351, 325);
+            this.OrderEntryDataGridView.Size = new System.Drawing.Size(569, 357);
             this.OrderEntryDataGridView.TabIndex = 3;
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(3, 369);
+            this.button3.Location = new System.Drawing.Point(3, 404);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(123, 19);
             this.button3.TabIndex = 11;
@@ -486,7 +514,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(236, 23);
             this.button2.TabIndex = 1;
-            this.button2.Text = "Добавить заказ";
+            this.button2.Text = "Внести заказ";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
@@ -494,10 +522,11 @@
             // 
             this.tabControl2.Controls.Add(this.AddOrderTabPage);
             this.tabControl2.Controls.Add(this.ChangeOrderTabPage);
-            this.tabControl2.Location = new System.Drawing.Point(0, 0);
+            this.tabControl2.Controls.Add(this.AddExcelOrderTabPage);
+            this.tabControl2.Location = new System.Drawing.Point(0, 2);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(799, 490);
+            this.tabControl2.Size = new System.Drawing.Size(1183, 490);
             this.tabControl2.TabIndex = 2;
             // 
             // AddOrderTabPage
@@ -507,7 +536,7 @@
             this.AddOrderTabPage.Location = new System.Drawing.Point(4, 22);
             this.AddOrderTabPage.Name = "AddOrderTabPage";
             this.AddOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.AddOrderTabPage.Size = new System.Drawing.Size(791, 464);
+            this.AddOrderTabPage.Size = new System.Drawing.Size(1175, 464);
             this.AddOrderTabPage.TabIndex = 0;
             this.AddOrderTabPage.Text = "Добавление заказа";
             this.AddOrderTabPage.UseVisualStyleBackColor = true;
@@ -519,16 +548,16 @@
             this.ChangeOrderTabPage.Location = new System.Drawing.Point(4, 22);
             this.ChangeOrderTabPage.Name = "ChangeOrderTabPage";
             this.ChangeOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.ChangeOrderTabPage.Size = new System.Drawing.Size(791, 464);
+            this.ChangeOrderTabPage.Size = new System.Drawing.Size(1175, 464);
             this.ChangeOrderTabPage.TabIndex = 1;
             this.ChangeOrderTabPage.Text = "Изменение заказов";
             this.ChangeOrderTabPage.UseVisualStyleBackColor = true;
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(8, 369);
+            this.button4.Location = new System.Drawing.Point(8, 435);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(774, 23);
+            this.button4.Size = new System.Drawing.Size(1161, 23);
             this.button4.TabIndex = 2;
             this.button4.Text = "Изменить заказную позицию";
             this.button4.UseVisualStyleBackColor = true;
@@ -537,15 +566,15 @@
             // tableLayoutPanel4
             // 
             this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 40.94421F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 59.05579F));
             this.tableLayoutPanel4.Controls.Add(this.panel2, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.panel1, 0, 0);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 6);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(782, 357);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(1165, 423);
             this.tableLayoutPanel4.TabIndex = 1;
             // 
             // panel2
@@ -553,15 +582,15 @@
             this.panel2.Controls.Add(this.label11);
             this.panel2.Controls.Add(this.COrderEntryDataGridView);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(394, 3);
+            this.panel2.Location = new System.Drawing.Point(480, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(385, 351);
+            this.panel2.Size = new System.Drawing.Size(682, 417);
             this.panel2.TabIndex = 3;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(3, 0);
+            this.label11.Location = new System.Drawing.Point(204, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(103, 13);
             this.label11.TabIndex = 1;
@@ -578,7 +607,7 @@
             this.COrderEntryDataGridView.Name = "COrderEntryDataGridView";
             this.COrderEntryDataGridView.ReadOnly = true;
             this.COrderEntryDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.COrderEntryDataGridView.Size = new System.Drawing.Size(385, 335);
+            this.COrderEntryDataGridView.Size = new System.Drawing.Size(682, 401);
             this.COrderEntryDataGridView.TabIndex = 0;
             // 
             // panel1
@@ -588,13 +617,13 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(385, 351);
+            this.panel1.Size = new System.Drawing.Size(471, 417);
             this.panel1.TabIndex = 2;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 0);
+            this.label10.Location = new System.Drawing.Point(242, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(46, 13);
             this.label10.TabIndex = 1;
@@ -611,36 +640,69 @@
             this.COrderDataGridView.Name = "COrderDataGridView";
             this.COrderDataGridView.ReadOnly = true;
             this.COrderDataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.COrderDataGridView.Size = new System.Drawing.Size(385, 335);
+            this.COrderDataGridView.Size = new System.Drawing.Size(471, 401);
             this.COrderDataGridView.TabIndex = 0;
             this.COrderDataGridView.SelectionChanged += new System.EventHandler(this.COrderDataGridView_SelectionChanged);
             // 
-            // PhoneNumberTextBox
+            // AddExcelOrderTabPage
             // 
-            this.PhoneNumberTextBox.Location = new System.Drawing.Point(27, 167);
-            this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
-            this.PhoneNumberTextBox.Size = new System.Drawing.Size(100, 20);
-            this.PhoneNumberTextBox.TabIndex = 13;
-            this.PhoneNumberTextBox.UseWaitCursor = true;
+            this.AddExcelOrderTabPage.Controls.Add(this.dataGridView1);
+            this.AddExcelOrderTabPage.Controls.Add(this.button6);
+            this.AddExcelOrderTabPage.Controls.Add(this.button5);
+            this.AddExcelOrderTabPage.Location = new System.Drawing.Point(4, 22);
+            this.AddExcelOrderTabPage.Name = "AddExcelOrderTabPage";
+            this.AddExcelOrderTabPage.Padding = new System.Windows.Forms.Padding(3);
+            this.AddExcelOrderTabPage.Size = new System.Drawing.Size(1175, 464);
+            this.AddExcelOrderTabPage.TabIndex = 2;
+            this.AddExcelOrderTabPage.Text = "Добавить заказ из файла Excel";
+            this.AddExcelOrderTabPage.UseVisualStyleBackColor = true;
             // 
-            // label12
+            // dataGridView1
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(24, 151);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(93, 13);
-            this.label12.TabIndex = 14;
-            this.label12.Text = "Номер телефона";
-            this.label12.UseWaitCursor = true;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(3, 35);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(1165, 423);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(1061, 6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(107, 23);
+            this.button6.TabIndex = 2;
+            this.button6.Text = "Внести заказ";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(3, 6);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(107, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Открыть файл";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Filter = "Файл xls|*.xls|Файл xlsx|*.xlsx";
             // 
             // OperatorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(815, 502);
+            this.ClientSize = new System.Drawing.Size(1184, 502);
             this.Controls.Add(this.tabControl2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OperatorForm";
             this.Text = "OperatorForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.OperatorForm_FormClosing);
             this.Load += new System.EventHandler(this.OperatorForm_Load);
             this.tabControl1.ResumeLayout(false);
             this.CustomerTabPage.ResumeLayout(false);
@@ -665,6 +727,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.COrderDataGridView)).EndInit();
+            this.AddExcelOrderTabPage.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -718,5 +782,10 @@
         private System.Windows.Forms.DataGridView COrderDataGridView;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox PhoneNumberTextBox;
+        private System.Windows.Forms.TabPage AddExcelOrderTabPage;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

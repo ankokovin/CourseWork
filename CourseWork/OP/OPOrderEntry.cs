@@ -39,6 +39,11 @@ namespace CourseWork
 
         protected override void Act()
         {
+            if (!Checker.IsNumber(textBox1.Text))
+            {
+                MessageBox.Show("Неверный регистрационный номер");
+                return;
+            }
             int ind1 = dataGridView1.SelectedRows[0].Index;
             int id1 = 0;
             bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1, "Id"), ind1].Value.ToString(), out id1);
@@ -87,7 +92,7 @@ namespace CourseWork
         public override void Change(object obj)
         {
             ActionMode = ActionMode.Change;
-            button1.Text = "Изменить заказную позицию";
+            button1.Text = "Внести изменение";
             if (obj is OrderEntry ordEnt)
             {
                 dateTimePicker1.Value = ordEnt.StartTime!=null ? (DateTime)ordEnt.StartTime: dateTimePicker1.Value;

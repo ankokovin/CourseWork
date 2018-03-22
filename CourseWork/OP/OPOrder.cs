@@ -38,7 +38,7 @@ namespace CourseWork
             if (!ok) return;
             if (ActionMode == ActionMode.Add)
             {
-                if (Operations.AddOrder((Owner as AdminForm).CurrentUser,Operations.FindCustomer(id2), Operations.FindAddress(id1), out string Res,out Order order))
+                if (Operations.AddOrder((Owner as AdminForm).CurrentUser,Operations.FindCustomer(id2), Operations.FindAddress(id1), out string Res,out int id))
                     Close();
                 MessageBox.Show(Res);
             }
@@ -54,7 +54,7 @@ namespace CourseWork
         public override void Change(object obj)
         {
             ActionMode = ActionMode.Change;
-            button1.Text = "Изменить заказ";
+            button1.Text = "Внести изменение";
             Text = "Изменение заказа ";
             if (obj is Order ord)
             {

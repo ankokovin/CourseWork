@@ -39,7 +39,7 @@
             this.AddCityButton.Name = "AddCityButton";
             this.AddCityButton.Size = new System.Drawing.Size(111, 23);
             this.AddCityButton.TabIndex = 3;
-            this.AddCityButton.Text = "Добавить город";
+            this.AddCityButton.Text = "Внести город";
             this.AddCityButton.UseVisualStyleBackColor = true;
             this.AddCityButton.Click += new System.EventHandler(this.AddCityButton_Click);
             // 
@@ -66,6 +66,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.AddCityButton);
             this.Controls.Add(this.CityNameTextBox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OPCity";
             this.Text = "Добавление города";
             this.ResumeLayout(false);

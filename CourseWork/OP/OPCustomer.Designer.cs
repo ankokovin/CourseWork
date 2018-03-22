@@ -80,9 +80,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(12, 248);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(123, 23);
             this.button1.TabIndex = 5;
-            this.button1.Text = "Добавить заказчика";
+            this.button1.Text = "Внести заказчика";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -162,6 +162,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "OPCustomer";
             this.Text = "Добавление заказчика";
             this.Load += new System.EventHandler(this.OPCustomer_Load);

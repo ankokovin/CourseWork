@@ -22,8 +22,33 @@ namespace CourseWork
 
         protected override void Act()
         {
+            if (!Checker.IsFIO(textBox1.Text))
+            {
+                MessageBox.Show("Неверное ФИО");
+                return;
+            }
+            if (!Checker.IsPassportNumber(textBox2.Text))
+            {
+                MessageBox.Show("Неверный номер паспорта");
+                return;
+            }
+            if (!Checker.IsPhoneNumber(textBox5.Text))
+            {
+                MessageBox.Show("Неверный номер телефона");
+                return;
+            }
             if (radioButton1.Checked)
             {
+                if (!Checker.IsName(textBox4.Text))
+                {
+                    MessageBox.Show("Неверная строка названия");
+                    return;
+                }
+                if (!Checker.IsINN(textBox3.Text))
+                {
+                    MessageBox.Show("Неверный ИНН");
+                    return;
+                }
                 if (ActionMode == ActionMode.Add)
                 {
                     if (Operations.AddCompany(textBox1.Text, textBox2.Text,textBox5.Text, textBox4.Text, textBox3.Text, out string Res))
@@ -60,7 +85,7 @@ namespace CourseWork
             ActionMode = ActionMode.Change;
             if (obj is Company com)
             {
-                textBox1.Text = com.Name;
+                textBox1.Text = com.FIO;
                 textBox2.Text = com.Passport;
                 textBox4.Text = com.CompanyName;
                 textBox3.Text = com.INN;
@@ -69,12 +94,12 @@ namespace CourseWork
                 Text += com + " id:" + com.Id;
             }else if (obj is Customer cus)
             {
-                textBox1.Text = cus.Name;
+                textBox1.Text = cus.FIO;
                 textBox2.Text = cus.Passport;
                 radioButton1.Enabled = false;
                 radioButton1.Checked = false;
             }
-            button1.Text = "Изменить заказчика";
+            button1.Text = "Внести изменение";
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

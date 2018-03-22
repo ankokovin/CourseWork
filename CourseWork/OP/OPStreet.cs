@@ -24,6 +24,11 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Checker.IsName(StreetTextBox.Text))
+            {
+                MessageBox.Show("Неверная строка названия улицы");
+                return;
+            }
             if (ActionMode == ActionMode.Add)
             {
                 int index = dataGridView1.SelectedRows[0].Index;
@@ -58,7 +63,7 @@ namespace CourseWork
                 Program.SelectId(ref dataGridView1, street.Id);
             }
             ActionMode = ActionMode.Change;
-            ActButton.Text = "Изменить улицу";
+            ActButton.Text = "Внести изменение";
         }
 
         private void ActButton_Click(object sender, EventArgs e)

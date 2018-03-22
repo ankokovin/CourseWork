@@ -22,6 +22,11 @@ namespace CourseWork
 
         protected override void Act()
         {
+            if (!Checker.IsFIO(textBox1.Text))
+            {
+                MessageBox.Show("Неверная строка ФИО");
+                return;
+            }
             if (ActionMode == ActionMode.Add)
             {
                 if (Operations.AddPerson(textBox1.Text, out string res))
@@ -44,7 +49,7 @@ namespace CourseWork
                 Text += p + " id:" + p.Id;
             }
             ActionMode = ActionMode.Change;
-            button1.Text = "Изменить работника";
+            button1.Text = "Внести изменение";
         }
     }
 }

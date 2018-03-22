@@ -28,6 +28,11 @@ namespace CourseWork
         }
         protected override void Act()
         {
+            if (!Checker.IsName(textBox1.Text))
+            {
+                MessageBox.Show("Неверная строка имени");
+                return;
+            }
             int index = dataGridView1.SelectedRows[0].Index;
             int id = 0;
             bool ok = int.TryParse(dataGridView1[Program.FindTitle(dataGridView1, "Id"), index].Value.ToString(), out id);
@@ -55,7 +60,7 @@ namespace CourseWork
                 Program.SelectId(ref dataGridView1, m.MeterType.Id);
                 Text += m + "id: " + m.Id;
             }
-            button1.Text = "Изменить прибор учёта";
+            button1.Text = "Внести изменение";
         }
 
         private void button1_Click_1(object sender, EventArgs e)

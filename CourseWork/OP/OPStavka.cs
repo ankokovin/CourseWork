@@ -54,7 +54,7 @@ namespace CourseWork
         public override void Change(object obj)
         {
             ActionMode = ActionMode.Add;
-            button1.Text = "Изменить ставку";
+            button1.Text = "Внести изменение";
             Text = "Изменение ставки ";
             if (obj is Stavka st)
             {

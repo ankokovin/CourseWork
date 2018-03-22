@@ -33,7 +33,6 @@ namespace CourseWork
                     Res = "Пользователь с данным именем уже существует";
                     return false;
                 }
-
                 User user = new User
                 {
                     Login = Login,
@@ -47,7 +46,6 @@ namespace CourseWork
             }
             catch (Exception e)
             {
-                // TODO: добавить обработку
                 Res = e.Message;
                 return false;
             }
@@ -63,7 +61,7 @@ namespace CourseWork
         /// <returns>Результат изменения</returns>
         public static bool ChangeUser(int Id, UserType userType, string Login, string Password, out string Res, bool save=true)
         {
-            if ((from u in cont.UserSet where u.Login == Login select u).Count() > 1)
+            if ((from u in cont.UserSet where u.Login == Login&&u.Id!=Id select u).Any())
             {
                 Res = "Пользователь с данным именем уже существует";
                 return false;
@@ -131,28 +129,35 @@ namespace CourseWork
         /// <returns>Пользователь, под которым происходит вход, null при ошибке входа</returns>
         public static User TryEntry(string Login, string Password,out string Message)
         {
-            Message = string.Empty;
-            var user = (from u in cont.UserSet
-                        where u.Login == Login
-                        select u).ToList();
-            if (user.Count == 0)
+            try
             {
-                Message += "Такого пользователя не существует";
-                return null;
-            }
-            else
+                Message = string.Empty;
+                var user = (from u in cont.UserSet
+                            where u.Login == Login
+                            select u).ToList();
+                if (user.Count == 0)
+                {
+                    Message += "Такого пользователя не существует";
+                    return null;
+                }
+                else
+                {
+                    if (user.Count > 1)
+                        Message += "Несколько пользователей имеют одинаковый логин!";
+
+                    foreach (User u in user)
+                        if (u.Password == Password)
+                        {
+                            //Login complete
+                            Message += "Успешный вход :" + u;
+                            return u;
+                        }
+                    Message += "Неверный пароль";
+                    return null;
+                }
+            } catch(Exception e)
             {
-                if (user.Count > 1)
-                    Message += "Несколько пользователей имеют одинаковый логин!";
-                 
-                foreach (User u in user)
-                    if (u.Password == Password)
-                    {
-                        //Login complete
-                        Message += "Успешный вход :"+u;
-                        return u;
-                    }
-                Message += "Неверный пароль";
+                Message = e.Message;
                 return null;
             }
         }
@@ -236,7 +241,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from c in cont.CitySet where c.Name == Name select c).FirstOrDefault() != null)
+                if ((from c in cont.CitySet where c.Name == Name&&c.Id!=id select c).Any())
                 {
                     Res = "Уже есть город с именем " + Name;
                     return false;
@@ -305,7 +310,7 @@ namespace CourseWork
         /// <returns>Результат изменения</returns>
         public static bool ChangeStreet(int id, string Name, City city, out string Res, bool save=true)
         {
-            if ((from s in cont.StreetSet where s.City.Id == city.Id && s.Name == Name select s).FirstOrDefault() != null)
+            if ((from s in cont.StreetSet where s.City.Id == city.Id && s.Name == Name && s.Id!=id select s).FirstOrDefault() != null)
             {
                 Res = "В городе " + city.Name + " уже есть улица " + Name;
                 return false;
@@ -583,16 +588,23 @@ namespace CourseWork
         #endregion Address
         #endregion Адреса
         #region Order
-        public static bool AddOrder(User user,Customer customer,Address address, out string Res, out Order result,int? id=null, bool save=true)
+        public static bool AddOrder(User user,Customer customer,Address address, out string Res, out int result,int? id=null, bool save=true)
         {
             try
             {
+                if (id!=null&&(from p in cont.OrderSet where p.Id == id select p).Any())
+                {
+                    Res = "Уже есть заказ с данным номером";
+                    result = -1;
+                    return false;
+                }
                 Order order = new Order();
                 order.Customer = customer;
                 order.Address = address;
                 order.User = user;
                 order.Id = id == null ? ((from p in cont.OrderSet select p ).Any()?(from p in cont.OrderSet select p.Id).Max() + 1 : 1): (int)id;
-                result = cont.OrderSet.Add(order);
+                cont.OrderSet.Add(order);
+                result = order.Id;
                 if (save) cont.SaveChanges();
                 Res = "Успешное добавление";
                 return true;
@@ -600,7 +612,7 @@ namespace CourseWork
             catch (Exception e)
             {
                 Res = e.Message;
-                result = null;
+                result = -1;
                 return false;
             }
         }
@@ -783,7 +795,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.MeterSet where h.Id != Id && h.Name == Name select h).FirstOrDefault() != null)
+                if ((from h in cont.MeterSet where h.Id != Id && h.Name == Name select h).Any())
                 {
                     Res = "Уже есть прибор учёта с данным названием";
                     return false;
@@ -1039,7 +1051,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.StavkaSet where h.Id != Id && h.MeterType.Id == meterType.Id && h.Person.Id == person.Id select h).FirstOrDefault() != null)
+                if ((from h in cont.StavkaSet where h.Id != Id && h.MeterType.Id == meterType.Id && h.Person.Id == person.Id select h).Any())
                 {
                     Res = "Уже есть данная ставка у данного человека";
                     return false;
@@ -1116,7 +1128,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.PersonSet where h.Id != Id && h.FIO == FIO select h).FirstOrDefault() != null)
+                if ((from h in cont.PersonSet where h.Id != Id && h.FIO == FIO select h).Any())
                 {
                     Res = "Уже есть человек с данным ФИО";
                     return false;
@@ -1183,7 +1195,7 @@ namespace CourseWork
                     return false;
                 }
                 Customer customer = new Customer();
-                customer.Name = Name;
+                customer.FIO = Name;
                 customer.Passport = Passport;
                 customer.PhoneNumber = PhoneNumber;
                 cont.CustomerSet.Add(customer);
@@ -1202,7 +1214,7 @@ namespace CourseWork
         {
             try
             {
-                if ((from h in cont.CustomerSet where h.Id != Id && !(h is Company) && h.Passport == h.Passport select h).FirstOrDefault() != null)
+                if ((from h in cont.CustomerSet where h.Id != Id && !(h is Company) && h.Passport == h.Passport select h).Any())
                 {
                     Res = "Уже есть частный клиент с данным номером паспорта";
                     return false;
@@ -1214,7 +1226,7 @@ namespace CourseWork
                     return false;
                 }
                 a.Passport = Passport;
-                a.Name = Name;
+                a.FIO = Name;
                 a.PhoneNumber = PhoneNumber;
                 if (save) cont.SaveChanges();
                 Res = "Изменение дома успешно";
@@ -1277,7 +1289,7 @@ namespace CourseWork
                     return false;
                 }
                 Company company = new Company();
-                company.Name = Name;
+                company.FIO = Name;
                 company.Passport = Passport;
                 company.INN = INN;
                 company.CompanyName = CompanyName;
@@ -1299,7 +1311,7 @@ namespace CourseWork
 
             try
             {
-                if ((from h in cont.CustomerSet where h.Id != Id && (h is Company) && (h as Company).INN == INN select h).FirstOrDefault() != null)
+                if ((from h in cont.CustomerSet where h.Id != Id && (h is Company) && (h as Company).INN == INN select h).Any())
                 {
                     Res = "Уже есть компания с данным ИНН";
                     return false;
@@ -1311,7 +1323,7 @@ namespace CourseWork
                     return false;
                 }
                 a.Passport = Passport;
-                a.Name = Name;
+                a.FIO = Name;
                 a.PhoneNumber = PhoneNumber;
                 if (save) cont.SaveChanges();
                 Res = "Изменение компании успешно";
@@ -1379,7 +1391,7 @@ namespace CourseWork
             AddAddress(-1, FindHouse(NextId[EntityTypes.House]), out string res4);
             NextId[EntityTypes.Address] = (from p in cont.AddressSet where p.Flat == -1 select p.Id).First();
             AddCustomer("", "",null, out string res5);
-            NextId[EntityTypes.Customer] = (from p in cont.CustomerSet where p.Name.Length == 0 select p.Id).First();
+            NextId[EntityTypes.Customer] = (from p in cont.CustomerSet where p.FIO.Length == 0 select p.Id).First();
             AddPerson("", out string res6);
             NextId[EntityTypes.Person] = (from p in cont.PersonSet where p.FIO.Length == 0 select p.Id).First();
             AddMeterType("", out string res7);
@@ -1389,7 +1401,7 @@ namespace CourseWork
             AddStavka(Operations.FindMeterType(NextId[EntityTypes.MeterType]), FindPerson(NextId[EntityTypes.Person]), out string res9);
             int mt = NextId[EntityTypes.MeterType];
             NextId[EntityTypes.Stavka] = (from p in cont.StavkaSet where p.MeterType.Id ==mt  select p.Id).First();
-            AddOrder(FindUser(NextId[EntityTypes.User]), FindCustomer(NextId[EntityTypes.Customer]), FindAddress(NextId[EntityTypes.Address]), out string res10, out Order order);
+            AddOrder(FindUser(NextId[EntityTypes.User]), FindCustomer(NextId[EntityTypes.Customer]), FindAddress(NextId[EntityTypes.Address]), out string res10, out int order);
             int ad = NextId[EntityTypes.Address];
             NextId[EntityTypes.Order] = (from p in cont.OrderSet where p.Address.Id ==  ad select p.Id).First();
             AddStatus("", out string Res10);

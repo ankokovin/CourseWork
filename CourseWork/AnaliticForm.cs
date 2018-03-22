@@ -164,6 +164,9 @@ namespace CourseWork
         {
             results.Add(result);
             flowLayoutPanel1.Controls.Add(new TextBox { Text = (++Queries).ToString() + " запрос", ReadOnly = true });
+            XmlButton.Enabled = false;
+            ExcelButton.Enabled = false;
+            button1.Enabled = true;
         }
        
 
@@ -190,11 +193,13 @@ namespace CourseWork
             Operations.cont.StreetSet.Load();
             Operations.cont.UserSet.Load();
             tabControl1.TabPages.Clear();
-
+            listdgv.Clear();
+            int i = 0;
             foreach (var s in  results){
                 var b = Calc(s, out EntityTypes entity);
                 arrays.Add(b);
                 TabPage tabPage = new TabPage();
+                tabPage.Text = "Запрос№" + (++i);
                 DataGridView dataGridView = new DataGridView
                 {
                     MultiSelect = false, ReadOnly = true, AllowUserToAddRows = false, AllowUserToDeleteRows = false, Dock = DockStyle.Fill, 
