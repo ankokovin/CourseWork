@@ -73,7 +73,7 @@ namespace CourseWork
         private void button1_Click(object sender, EventArgs e)
         {
             _OrderEntry order = new _OrderEntry();
-            order.MeterId = int.Parse(MeterDataGridView[Program.FindTitle(MeterDataGridView,"Id"), MeterDataGridView.SelectedRows[0].Index].Value.ToString());
+            order.MeterId = int.Parse(MeterDataGridView[Program.FindTitle(MeterDataGridView,"Идентификационный номер"), MeterDataGridView.SelectedRows[0].Index].Value.ToString());
             OrderEntryList.Add(order);
 
             OrderEntryDataGridView.Refresh();
@@ -306,10 +306,10 @@ namespace CourseWork
         {
             switch (OrderEntryDataGridView.SelectedCells[0].OwningColumn.HeaderText)
             {
-                case "startTime":
+                case "Удобное время начала":
                     OrderEntryList[OrderEntryDataGridView.SelectedCells[0].RowIndex].startTime = dateTimePicker1.Value as DateTime?;
                     break;
-                case "endTime":
+                case "Удобное время конца":
                     OrderEntryList[OrderEntryDataGridView.SelectedCells[0].RowIndex].endTime = dateTimePicker1.Value as DateTime?;
                     break;
             }

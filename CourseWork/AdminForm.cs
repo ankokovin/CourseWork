@@ -100,12 +100,12 @@ namespace CourseWork
             CityForm.CurrentEntity = EntityTypes.City;
             changer.owner = this;
             CityForm.Add += changer.Add;
-            CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,Program.FindTitle(dgv,"Id"));
+            CityForm.Change +=(DataGridView dgv)=> changer.Change(dgv,Program.FindTitle(dgv,"Идентификационный номер"));
             CityForm.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveCity(id,out string s);
                 MessageBox.Show(s);
@@ -125,12 +125,12 @@ namespace CourseWork
             Changer<OPStreet> changer = new Changer<OPStreet>(EntityTypes.Street);
             changer.owner = this;
             StreetForm.Add += changer.Add;
-            StreetForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            StreetForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             StreetForm.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveStreet(id, out string s);
                 MessageBox.Show(s);
@@ -151,12 +151,12 @@ namespace CourseWork
             Changer<OPUser> changer = new Changer<OPUser>(EntityTypes.User);
             changer.owner = this;
             UserForm.Add += changer.Add;
-            UserForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            UserForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             UserForm.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 if (CurrentUser.Id == id)
                 {
@@ -181,12 +181,12 @@ namespace CourseWork
             Changer<OPAddress> changer = new Changer<OPAddress>(EntityTypes.Address);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveAddress(id, out string s);
                 MessageBox.Show(s);
@@ -206,12 +206,12 @@ namespace CourseWork
             Changer<OPMeter> changer = new Changer<OPMeter>(EntityTypes.Meter);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveMeter(id, out string s);
                 MessageBox.Show(s);
@@ -230,12 +230,12 @@ namespace CourseWork
             Changer<OPMeterType> changer = new Changer<OPMeterType>(EntityTypes.MeterType);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveMeterType(id, out string s);
                 MessageBox.Show(s);
@@ -254,12 +254,12 @@ namespace CourseWork
             Changer<OPOrder> changer = new Changer<OPOrder>(EntityTypes.Order);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveOrder(id, out string s);
                 MessageBox.Show(s);
@@ -279,12 +279,12 @@ namespace CourseWork
             Changer<OPOrderEntry> changer = new Changer<OPOrderEntry>(EntityTypes.OrderEntry);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveOrderEntry(id, out string s);
                 MessageBox.Show(s);
@@ -304,12 +304,12 @@ namespace CourseWork
             Changer<OPStatus> changer = new Changer<OPStatus>(EntityTypes.Status);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveStatus(id, out string s);
                 MessageBox.Show(s);
@@ -329,12 +329,12 @@ namespace CourseWork
             Changer<OPCustomer> changer = new Changer<OPCustomer>(EntityTypes.Customer);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 if (Operations.FindCustomer(id) is Company)
                 {
@@ -362,12 +362,12 @@ namespace CourseWork
             Changer<OPPerson> changer = new Changer<OPPerson>(EntityTypes.Person);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemovePerson(id, out string s);
                 MessageBox.Show(s);
@@ -387,12 +387,12 @@ namespace CourseWork
             Changer<OPStavka> changer = new Changer<OPStavka>(EntityTypes.Stavka);
             changer.owner = this;
             simpleView.Add += changer.Add;
-            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            simpleView.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             simpleView.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveStavka(id, out string s);
                 MessageBox.Show(s);
@@ -412,12 +412,12 @@ namespace CourseWork
             Changer<OPHouse> changer = new Changer<OPHouse>(EntityTypes.House);
             changer.owner = this;
             HouseForm.Add += changer.Add;
-            HouseForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Id"));
+            HouseForm.Change += (DataGridView dgv) => changer.Change(dgv, Program.FindTitle(dgv, "Идентификационный номер"));
             HouseForm.Remove += (DataGridView dgv) =>
             {
                 int index = dgv.SelectedRows[0].Index;
                 int id = 0;
-                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Id"), index].Value.ToString(), out id);
+                bool ok = int.TryParse(dgv[Program.FindTitle(dgv, "Идентификационный номер"), index].Value.ToString(), out id);
                 if (!ok) return;
                 Operations.RemoveAddress(id, out string s);
                 MessageBox.Show(s);

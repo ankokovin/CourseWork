@@ -107,11 +107,10 @@
             this.tabControl1.Controls.Add(this.CustomerTabPage);
             this.tabControl1.Controls.Add(this.AddressTabPage);
             this.tabControl1.Controls.Add(this.OrderEntryTabPage);
-            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1169, 458);
+            this.tabControl1.Size = new System.Drawing.Size(1169, 426);
             this.tabControl1.TabIndex = 0;
             // 
             // CustomerTabPage
@@ -134,7 +133,7 @@
             this.CustomerTabPage.Location = new System.Drawing.Point(4, 22);
             this.CustomerTabPage.Name = "CustomerTabPage";
             this.CustomerTabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.CustomerTabPage.Size = new System.Drawing.Size(1161, 432);
+            this.CustomerTabPage.Size = new System.Drawing.Size(1161, 400);
             this.CustomerTabPage.TabIndex = 0;
             this.CustomerTabPage.Text = "Заказчик";
             this.CustomerTabPage.UseVisualStyleBackColor = true;

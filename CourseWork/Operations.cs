@@ -28,6 +28,16 @@ namespace CourseWork
         {
             try
             { 
+                if (Login.Length == 0)
+                {
+                    Res = "Логин не может быть пустой строкой";
+                    return false;
+                }
+                if (Password.Length == 0)
+                {
+                    Res = "Пароль не может быть пустой строкой";
+                    return false;
+                }
                 if ((from u in cont.UserSet where u.Login==Login select u).Count() > 0)
                 {
                     Res = "Пользователь с данным именем уже существует";
@@ -61,6 +71,16 @@ namespace CourseWork
         /// <returns>Результат изменения</returns>
         public static bool ChangeUser(int Id, UserType userType, string Login, string Password, out string Res, bool save=true)
         {
+            if (Login.Length == 0)
+            {
+                Res = "Логин не может быть пустой строкой";
+                return false;
+            }
+            if (Password.Length == 0)
+            {
+                Res = "Пароль не может быть пустой строкой";
+                return false;
+            }
             if ((from u in cont.UserSet where u.Login == Login&&u.Id!=Id select u).Any())
             {
                 Res = "Пользователь с данным именем уже существует";

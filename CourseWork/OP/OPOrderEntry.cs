@@ -39,7 +39,7 @@ namespace CourseWork
 
         protected override void Act()
         {
-            if (!Checker.IsNumber(textBox1.Text))
+            if (textBox1.Text.Length>0 && !Checker.IsNumber(textBox1.Text))
             {
                 MessageBox.Show("Неверный регистрационный номер");
                 return;
