@@ -1438,19 +1438,19 @@ namespace CourseWork
         }
 
 
-        public static IEnumerable<User> SelectUsers(Func<User, bool> predicate  ) => (from p in cont.UserSet.Local where predicate(p) select p);
-        public static IEnumerable<Order> SelectOrders(Func<Order, bool> predicate ) => (from p in cont.OrderSet.Local where predicate(p) select p);
-        public static IEnumerable<OrderEntry> SelectOrderEntrys(Func<OrderEntry, bool> predicate ) => (from p in cont.OrderEntrySet.Local where predicate(p) select p);
-        public static IEnumerable<Customer> SelectCustomers(Func<Customer, bool> predicate ) => (from p in cont.CustomerSet.Local where predicate(p) select p);
-        public static IEnumerable<Meter> SelectMeters(Func<Meter, bool> predicate) => (from p in cont.MeterSet.Local where predicate(p) select p);
-        public static IEnumerable<MeterType> SelectMeterTypes(Func<MeterType, bool> predicate ) => (from p in cont.MeterTypeSet.Local where predicate(p) select p);
-        public static IEnumerable<Stavka> SelectStavkas(Func<Stavka, bool> predicate ) => (from p in cont.StavkaSet.Local where predicate(p) select p);
-        public static IEnumerable<Person> SelectPersons(Func<Person, bool> predicate  ) => (from p in cont.PersonSet.Local where predicate(p) select p);
-        public static IEnumerable<City> SelectCitys(Func<City, bool> predicate ) => (from p in cont.CitySet.Local where predicate(p) select p);
-        public static IEnumerable<Street> SelectStreets(Func<Street, bool> predicate ) => (from p in cont.StreetSet.Local where predicate(p) select p);
-        public static IEnumerable<House> SelectHouses(Func<House, bool> predicate ) => (from p in cont.HouseSet.Local where predicate(p) select p);
-        public static IEnumerable<Address> SelectAddresss(Func<Address, bool> predicate  ) => (from p in cont.AddressSet.Local where predicate(p) select p);
-        public static IEnumerable<Status> SelectStatuss(Func<Status, bool> predicate  ) => (from p in cont.StatusSet.Local where predicate(p) select p);
-        public static IEnumerable<T2> NextSelect<T2>(Func<T2, bool> predicate , IEnumerable<T2> Prev) => (from p in Prev where predicate(p) select p);
+        public static IEnumerable<User> SelectUsers(Func<User, bool> predicate  ) => (from p in cont.UserSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Order> SelectOrders(Func<Order, bool> predicate ) => (from p in cont.OrderSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<OrderEntry> SelectOrderEntrys(Func<OrderEntry, bool> predicate ) => (from p in cont.OrderEntrySet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Customer> SelectCustomers(Func<Customer, bool> predicate ) => (from p in cont.CustomerSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Meter> SelectMeters(Func<Meter, bool> predicate) => (from p in cont.MeterSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<MeterType> SelectMeterTypes(Func<MeterType, bool> predicate ) => (from p in cont.MeterTypeSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Stavka> SelectStavkas(Func<Stavka, bool> predicate ) => (from p in cont.StavkaSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Person> SelectPersons(Func<Person, bool> predicate  ) => (from p in cont.PersonSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<City> SelectCitys(Func<City, bool> predicate ) => (from p in cont.CitySet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Street> SelectStreets(Func<Street, bool> predicate ) => (from p in cont.StreetSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<House> SelectHouses(Func<House, bool> predicate ) => (from p in cont.HouseSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Address> SelectAddresss(Func<Address, bool> predicate  ) => (from p in cont.AddressSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<Status> SelectStatuss(Func<Status, bool> predicate  ) => (from p in cont.StatusSet.Local where predicate(p) select p).AsParallel();
+        public static IEnumerable<T2> NextSelect<T2>(Func<T2, bool> predicate , IEnumerable<T2> Prev) => (from p in Prev where predicate(p) select p).AsParallel();
     }
 }
